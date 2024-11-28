@@ -7,7 +7,7 @@ fun main() {
         println("შეიყვანეთ Y ცვლადის მნიშვნელობა: ")
         val y = readLine()!!
 
-        if (x != null && y != null && getNumbersFromString(y) != 0.0) {
+        if (getNumbersFromString(y) != 0.0) {
             val z = getNumbersFromString(x) / getNumbersFromString(y)
             println("X და Y განაყოფი არის: $z")
         }
