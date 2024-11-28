@@ -1,59 +1,31 @@
 package com.example.learnandroid
 
 fun main() {
-    while(true){
-        var doubleX: Double
-        var doubleY: Double
-
+    do {
         println("შეიყვანეთ X ცვლადის მნიშვნელობა: ")
-        var x = readLine()
-
+        val x = readLine()!!
         println("შეიყვანეთ Y ცვლადის მნიშვნელობა: ")
-        var y = readLine()
+        val y = readLine()!!
 
-        if (x == null){
-            doubleX = 0.0
-        }
-        else {
-            doubleX = findNumbersInString(x)
-        }
-
-        if (y == null) {
-            doubleY = 0.0
-        }
-        else {
-            doubleY = findNumbersInString(y)
-        }
-
-        if (doubleY == 0.0) {
-            println("X-ის Y-ზე გაყოფა არ შეიძლება, Y=0.")
-        }
-        else {
-            val z = doubleX / doubleY
+        if (x != null && y != null && getNumbersFromString(y) != 0.0) {
+            val z = getNumbersFromString(x) / getNumbersFromString(y)
             println("X და Y განაყოფი არის: $z")
         }
-
-        println("გსურთ პროგრამის ხელახლა დაწყება <Y/N>")
-        val answer = readLine()
-
-        if(answer?.lowercase() == "y") {
-            continue
-        }
         else {
-            break
+            println("X-ის Y-ზე გაყოფა არ შეიძლება, Y=0.")
         }
-    }
+
+        println("გსურთ პროგრამის ხელახლა დაწყება <Y/N>?")
+        val answer = readLine()
+    } while (answer?.lowercase() == "y")
 }
 
-fun findNumbersInString(text: String) : Double {
-    var numbers = ""
-    var result: Double = 0.0
-
+fun getNumbersFromString(text: String): Double {
+    var result = "0"
     for (i in text) {
-        if (i.isDigit()) {
-            numbers += i
+        if(i.isDigit()) {
+            result += i
         }
     }
-    result = numbers.toDouble()
-    return result
+    return result.toDouble()
 }
