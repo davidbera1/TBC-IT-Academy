@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="translate">Translate</string>
+    <string name="eng">ENG</string>
+    <string name="geo">GEO</string>
+    <string name="geo_translate">თარგმნა</string>
+    <string name="zero">0</string>
+    <string name="geo_input_number">შეიყვანეთ რიცხვი 1-1000 მდე</string>
 </resources>
