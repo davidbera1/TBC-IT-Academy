@@ -134,10 +134,10 @@ fun geoNumber(num: Int): String {
     var result = ""
 
     if (numLength == 1) {                   // 1 ციფრა რიცხვი
-        result = geoTillTwenty(num.toInt())
+        result = geoTillTwenty(num)
     }
     else if (numLength == 2) {              // 2 ციფრა რიცხვი
-        result = geoTillHundred(num.toInt())
+        result = geoTillHundred(num)
     }
     else if (numLength == 3) {              // 3 ციფრა რიცხვი
         val digit1 = num.toString()[0]
