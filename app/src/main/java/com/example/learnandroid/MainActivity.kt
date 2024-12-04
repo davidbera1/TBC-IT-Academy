@@ -1,11 +1,14 @@
 package com.example.learnandroid
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SwitchCompat
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -20,239 +23,202 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val toggleSwitch = findViewById<SwitchCompat>(R.id.toggleSwitch)
-        val btnTranslate = findViewById<Button>(R.id.translate)
+        val btnSave = findViewById<Button>(R.id.saveButton)
+        val btnClear = findViewById<Button>(R.id.clearButton)
+        val email = findViewById<EditText>(R.id.email)
+        val username = findViewById<EditText>(R.id.username)
+        val firstName = findViewById<EditText>(R.id.firstName)
+        val lastName = findViewById<EditText>(R.id.lastName)
+        val age = findViewById<EditText>(R.id.age)
         val tvResult = findViewById<TextView>(R.id.tvResult)
-        val input = findViewById<TextView>(R.id.editText)
 
-        btnTranslate.setOnClickListener {
-            tvResult.text = ""
-            val intInput = input.text.toString().toIntOrNull()
-            if (intInput != null && intInput in 0..1000) {
-                if (toggleSwitch.isChecked) {
-                    tvResult.text = engNumber(intInput)
-                }
-                else {
-                    tvResult.text = geoNumber(intInput)
-                }
+        fun clearFields() {
+            email.text.clear()
+            username.text.clear()
+            firstName.text.clear()
+            lastName.text.clear()
+            age.text.clear()
+        }
+        // function to hide views for bonus task
+        fun setVisibility(boolean: Boolean) {
+            if (boolean) {
+                email.visibility = View.VISIBLE
+                username.visibility = View.VISIBLE
+                firstName.visibility = View.VISIBLE
+                lastName.visibility = View.VISIBLE
+                age.visibility = View.VISIBLE
+                btnSave.visibility = View.VISIBLE
+                btnClear.visibility = View.VISIBLE
             }
             else {
-                tvResult.text = "შეიყვანე სწორი რიცხვი"
+                email.visibility = View.GONE
+                username.visibility = View.GONE
+                firstName.visibility = View.GONE
+                lastName.visibility = View.GONE
+                age.visibility = View.GONE
+                btnSave.visibility = View.GONE
+                btnClear.visibility = View.GONE
             }
         }
 
-    }
-}
+        btnSave.setOnClickListener {
+            val emailValue = email.text.toString()
+            val usernameValue = username.text.toString()
+            val firstNameValue = firstName.text.toString()
+            val lastNameValue = lastName.text.toString()
+            val ageValue = age.text.toString().toIntOrNull()
 
-fun geoTillTwenty(num: Int): String {
-    val result = when(num) {
-        0 -> "ნული"
-        1 -> "ერთი"
-        2 -> "ორი"
-        3 -> "სამი"
-        4 -> "ოთხი"
-        5 -> "ხუთი"
-        6 -> "ექვსი"
-        7 -> "შვიდი"
-        8 -> "რვა"
-        9 -> "ცხრა"
-        10 -> "ათი"
-        11 -> "თერთმეტი"
-        12 -> "თორმეტი"
-        13 -> "ცამეტი"
-        14 -> "თოთხმეტი"
-        15 -> "თხუთმეტი"
-        16 -> "თექვსმეტი"
-        17 -> "ჩვიდმეტი"
-        18 -> "თვრამეტი"
-        19 -> "ცხრამეტი"
-        else -> "ოცი"
-    }
-    return result
-}
+            // check if all fields are filled and age >=0
+            if (
+                emailValue.isNotEmpty() &&
+                usernameValue.isNotEmpty() &&
+                firstNameValue.isNotEmpty() &&
+                lastNameValue.isNotEmpty() &&
+                ageValue != null && ageValue > 0 &&
+                usernameValue.length >= 10 &&
+                isValidEmail(emailValue)
+                ) {
+                tvResult.setTextColor(Color.BLACK)
+                tvResult.text = "მონაცემები წარმატებით შეინახა"
 
-fun geoTillHundred(num: Int): String {
-    val digit1 = num.toString()[0]
-    val digit2 = num.toString()[1]
-    var result = when(digit1) {
-        '2','3' -> "ოცდა"
-        '4','5' -> "ორმოცდა"
-        '6','7' -> "სამოცდა"
-        '8','9' -> "ოთხმოცდა"
-        else -> ""
-    }
+                // BONUS TASK
 
-    if (digit1 == '1') {
-        result = geoTillTwenty(num) // 20-მდე
-    }
+                // hiding previous input fields
+                setVisibility(false)
+                // creating text views for bonus task
+                val tvEmail = TextView(this).apply {
+                    text = "Email: $emailValue"
+                    textSize = 20f
+                }
+                val tvUsername = TextView(this).apply {
+                    text = "Username: $usernameValue"
+                    textSize = 20f
+                }
+                val tvFullName = TextView(this).apply {
+                    text = "Full name: $firstNameValue $lastNameValue"
+                    textSize = 20f
+                }
+                val tvAge = TextView(this).apply {
+                    text = "Age: $ageValue"
+                    textSize = 20f
+                }
+                val btnAgain = Button(this).apply {
+                    text = "Again"
+                }
+                val layout = findViewById<ConstraintLayout>(R.id.main)
 
-    else if (digit2 == '0') {
-        when(digit1) {
-            '2' -> result = "ოცი"
-            '3' -> result = "ოცდაათი"
-            '4' -> result = "ორმოცი"
-            '5' -> result = "ორმოცდაათი"
-            '6' -> result = "სამოცი"
-            '7' -> result = "სამოცდაათი"
-            '8' -> result = "ოთხმოცი"
-            '9' -> result = "ოთხმოცდაათი"
+                // setting parameters for text views
+                val paramsEmail = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topToTop = R.id.main
+                    startToStart = R.id.main
+                    endToEnd = R.id.main
+                    topMargin = 200
+                }
+                tvEmail.layoutParams = paramsEmail
+
+                val paramsUsername = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topToTop = R.id.main
+                    startToStart = R.id.main
+                    endToEnd = R.id.main
+                    topMargin = 400
+                }
+                tvUsername.layoutParams = paramsUsername
+
+                val paramsFullName = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topToTop = R.id.main
+                    startToStart = R.id.main
+                    endToEnd = R.id.main
+                    topMargin = 600
+                }
+                tvFullName.layoutParams = paramsFullName
+
+                val paramsAge = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topToTop = R.id.main
+                    startToStart = R.id.main
+                    endToEnd = R.id.main
+                    topMargin = 800
+                }
+                tvAge.layoutParams = paramsAge
+
+                val paramsBtnAgain = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    bottomMargin = 400
+                    endToEnd = R.id.main
+                    startToStart = R.id.main
+                    bottomToBottom = R.id.main
+                }
+                btnAgain.layoutParams = paramsBtnAgain
+
+                // adding new views to ConstraintLayout
+                layout.addView(tvEmail)
+                layout.addView(tvUsername)
+                layout.addView(tvFullName)
+                layout.addView(tvAge)
+                layout.addView(btnAgain)
+
+                // go back to main view if "Again" is clicked
+                btnAgain.setOnClickListener {
+                    setVisibility(true)
+                    layout.removeView(tvEmail)
+                    layout.removeView(tvUsername)
+                    layout.removeView(tvFullName)
+                    layout.removeView(tvAge)
+                    layout.removeView(btnAgain)
+                }
+
+            }
+            // incorrect input values
+            else {
+                tvResult.setTextColor(Color.RED)
+                tvResult.text = "შეიყვანეთ სწორი მონაცემები"
+            }
         }
-    }
 
-    else if (
-        digit1 == '2' || digit1 == '4' || digit1 == '6' || digit1 == '8'
-    ) {
-        result+=geoTillTwenty(digit2.digitToInt()) // 20s, 40s, 60s, 80s
-    }
-    else if(
-        digit1 == '3' || digit1 == '5' || digit1 == '7' || digit1 == '9'
-    ) {
-        result+=geoTillTwenty(digit2.digitToInt() + 10) // 30s, 50s, 70s, 90s
-    }
-    return result
-
-}
-
-fun geoHundreds(num: Int): String {
-    val result = when(num) {
-        1 -> "ას"
-        2 -> "ორას"
-        3 -> "სამას"
-        4 -> "ოთხას"
-        5 -> "ხუთას"
-        6 -> "ექვსას"
-        7 -> "შვიდას"
-        8 -> "რვაას"
-        9 -> "ცხრაას"
-        else -> ""
-    }
-    return result
-}
-
-fun geoNumber(num: Int): String {
-    val numLength = num.toString().length
-    var result = ""
-
-    if (numLength == 1) {                   // 1 ციფრა რიცხვი
-        result = geoTillTwenty(num)
-    }
-    else if (numLength == 2) {              // 2 ციფრა რიცხვი
-        result = geoTillHundred(num)
-    }
-    else if (numLength == 3) {              // 3 ციფრა რიცხვი
-        val digit1 = num.toString()[0]
-        val digit2 = num.toString()[1]
-        val digit3 = num.toString()[2]
-        if (digit1 != '0' && digit2 == '0' && digit3 == '0') {   // 100, 200..900
-            result = geoHundreds(digit1.digitToInt()) + "ი"
+        // clear input fields if long click is performed
+        btnClear.setOnLongClickListener {
+            clearFields()
+            true
         }
-        else if (digit2 == '0') {           // 101, 204 და ა.შ. როარ გაქრაშოს
-            result = geoHundreds(digit1.digitToInt()) + " "
-            result += geoTillTwenty(digit3.digitToInt())
 
+    }
+
+    // only accepting emails which end with acceptable @ and do not contain special characters
+    fun isValidEmail(email: String): Boolean {
+        val specialChars = listOf('!', '#', '$', '%', '^', '&', '*', '(', ')', '+', '=', '{',
+            '}', '[', ']', '|', '\\', ':', ';', '"', '\'' ,'<', '>', '?', '/')
+
+        for (i in email) {
+            if (i in specialChars) {
+                return false
+            }
         }
-        else {
-            result = geoHundreds(digit1.digitToInt()) + " "
-            val lastTwoDigitNum = (digit2.toString() + digit3.toString()).toInt()
-            result += geoTillHundred(lastTwoDigitNum)
-        }
-    }
-    else if (num == 1000) {
-        result = "ათასი"
-    }
-    else {
-        result = "შეიყვანეთ რიცხვი 0-1000 მდე"
-    }
-
-    return result
-}
-
-// =========================================== BONUS ===============================================
-
-fun engTillTwenty(num: Int): String {
-    val result = when(num) {
-        0 -> "zero"
-        1 -> "one"
-        2 -> "two"
-        3 -> "three"
-        4 -> "four"
-        5 -> "five"
-        6 -> "six"
-        7 -> "seven"
-        8 -> "eight"
-        9 -> "nine"
-        10 -> "ten"
-        11 -> "eleven"
-        12 -> "twelve"
-        13 -> "thirteen"
-        14 -> "fourteen"
-        15 -> "fifteen"
-        16 -> "sixteen"
-        17 -> "seventeen"
-        18 -> "eighteen"
-        19 -> "nineteen"
-        else -> "twenty"
-    }
-    return result
-}
-
-fun engTillHundred(num: Int): String {
-    val digit1 = num.toString()[0]
-    val digit2 = num.toString()[1]
-    var result = when(digit1) {
-        '2' -> "twenty"
-        '3' -> "thirty"
-        '4' -> "forty"
-        '5' -> "fifty"
-        '6' -> "sixty"
-        '7' -> "seventy"
-        '8' -> "eighty"
-        '9' -> "ninety"
-        else -> ""
-    }
-    if (digit2 != '0') {
-        result+= "-"
-        result+= engTillTwenty(digit2.digitToInt())
-    }
-    if (digit1 == '1') {
-        result = engTillTwenty(num) // 20-მდე
-    }
-    return result
-}
-
-fun engNumber(num: Int): String {
-    val numLength = num.toString().length
-    var result = ""
-
-    if (numLength == 1) {
-        result = engTillTwenty(num)
-    }
-    else if(numLength == 2) {
-        result = engTillHundred(num)
-    }
-    else if(numLength == 3) {
-        val digit1 = num.toString()[0]
-        val digit2 = num.toString()[1]
-        val digit3 = num.toString()[2]
-        if (digit1 != '0' && digit2 == '0' && digit3 == '0') {
-            result = engTillTwenty(digit1.digitToInt()) + " hundred"
-        }
-        else if (digit2 == '0') {
-            result = engTillTwenty(digit1.digitToInt()) + " hundred "
-            result += engTillTwenty(digit3.digitToInt())
+        if (
+            email.endsWith("@gmail.com") ||
+            email.endsWith("@mail.ru") ||
+            email.endsWith("@yahoo.com") ||
+            email.endsWith("@outlook.com") ||
+            email.endsWith("@hotmail.com") ||
+            email.endsWith("@icloud.com")
+        ) {
+            return true
         }
         else {
-            result = engTillTwenty(digit1.digitToInt()) + " hundred "
-            val lastTwoDigitNum = (digit2.toString() + digit3.toString()).toInt()
-            result += engTillHundred(lastTwoDigitNum)
+            return false
         }
     }
-    else if (num == 1000) {
-        result = "one thousand"
-    }
-    else {
-        result = "შეიყვანეთ რიცხვი 0-1000 მდე"
-    }
 
-    return result
 }

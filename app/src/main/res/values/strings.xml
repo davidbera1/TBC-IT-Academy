@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
-    <string name="translate">Translate</string>
-    <string name="eng">ENG</string>
-    <string name="geo">GEO</string>
-    <string name="geo_translate">თარგმნა</string>
-    <string name="zero">0</string>
-    <string name="geo_input_number">შეიყვანეთ რიცხვი 1-1000 მდე</string>
+    <string name="profile_info">Profile Info</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="age">Age</string>
+    <string name="save">Save</string>
+    <string name="clear">Clear</string>
 </resources>
