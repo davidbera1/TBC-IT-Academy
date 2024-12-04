@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             val lastNameValue = lastName.text.toString()
             val ageValue = age.text.toString().toIntOrNull()
 
-            // check if all fields are filled and age >=0
+            // check if all fields are filled and age >0
             if (
                 emailValue.isNotEmpty() &&
                 usernameValue.isNotEmpty() &&
