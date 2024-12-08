@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="enter_email">Enter email</string>
+    <string name="users_0"><![CDATA[Users -> 0]]></string>
+    <string name="add_user">Add user</string>
+    <string name="find_user_info">Find User Info</string>
+    <string name="enter_email_search">Enter Email</string>
+    <string name="get_user_info">Get user info</string>
 </resources>
