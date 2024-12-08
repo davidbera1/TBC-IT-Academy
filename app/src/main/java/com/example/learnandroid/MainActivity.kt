@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
                 // clear warning if it was shown before
                 binding.tvWarning.text = ""
                 users.put(email, fullName)
+
+                // update user count after adding user
+                binding.tvUsersCount.text = "Users -> ${countUsers()}"
             }
             else if(userExists(email)) {
                 binding.tvWarning.text = "User already exists"
@@ -43,9 +46,6 @@ class MainActivity : AppCompatActivity() {
             else {
                 binding.tvWarning.text = "Input correct information"
             }
-
-            // update user count after adding user
-            binding.tvUsersCount.text = "Users -> ${countUsers()}"
         }
 
         binding.searchButton.setOnClickListener {
@@ -92,8 +92,8 @@ class MainActivity : AppCompatActivity() {
         val specialChars = listOf('!', '#', '$', '%', '^', '&', '*', '(', ')', '+', '=', '{',
             '}', '[', ']', '|', '\\', ':', ';', '"', '\'' ,'<', '>', '?', '/')
 
-        for (i in email) {
-            if (i in specialChars) {
+        for (char in email) {
+            if (char in specialChars) {
                 return false
             }
         }
