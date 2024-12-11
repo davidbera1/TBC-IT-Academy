@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="travel">Travel</string>
+    <string name="description">Find Your Dream\nDestination With Us</string>
+    <string name="greeting">Hi, David 👋</string>
+    <string name="explore">Explore the world</string>
+    <string name="search">Search places</string>
+    <string name="popular_places">Popular places</string>
+    <string name="view_all">View all</string>
+    <string name="most_viewed">Most Viewed</string>
+    <string name="nearby">Nearby</string>
+    <string name="latest">Latest</string>
+    <string name="mount_fuji_tokyo">Mount Fuji, Tokyo</string>
+    <string name="recently_viewed">Recently Viewed</string>
+    <string name="favorites">Favorites</string>
+    <string name="username">David</string>
+    <string name="edit_personal_info">Edit Personal Info</string>
+    <string name="logout">Logout</string>
+    <string name="overview">Overview</string>
+    <string name="details">Details</string>
+    <string name="time">8 hours</string>
+    <string name="temperature">16 °C</string>
+    <string name="rating">4.5</string>
+    <string name="mountain_info">Mount Fuji is Japan\'s highest and most iconic volcano, standing at 3,776 meters (12,389 feet). It is an active stratovolcano located on Honshu Island, known for its symmetrical, snow-capped peak. A UNESCO World Heritage site, Mount Fuji is a popular destination for climbers and photographers. Its beauty has inspired countless works of art and is a symbol of Japan\'s natural landscape and culture.</string>
 </resources>
