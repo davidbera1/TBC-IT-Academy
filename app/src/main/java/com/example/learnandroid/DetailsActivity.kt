@@ -44,5 +44,8 @@ class DetailsActivity : AppCompatActivity() {
         binding.imgBtnBack.setOnClickListener {
             finish()
         }
+        binding.imgBtnBookmark.setOnClickListener {
+            // just to be clickable
+        }
     }
 }

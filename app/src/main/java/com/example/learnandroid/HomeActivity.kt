@@ -40,6 +40,9 @@ class HomeActivity : AppCompatActivity() {
 
         binding.tvMountFujiDescription.text = getString(R.string.mount_fuji_tokyo)
 
+        binding.tvMountFujiLocation.text = getString(R.string.tokyo_japan)
+
+        binding.tvRating.text = getString(R.string.rating)
 
         // BUTTONS SECTION
         binding.btnViewAll.text = getString(R.string.view_all)
@@ -62,6 +65,14 @@ class HomeActivity : AppCompatActivity() {
         binding.imgUserPhoto.setOnClickListener {
             val intent = Intent(this, UserActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.btnViewAll.setOnClickListener {
+            // just to be clickable
+        }
+
+        binding.imgBtnFavorite.setOnClickListener {
+            // just to be clickable
         }
 
         binding.btnMostViewed.setOnClickListener {

@@ -13,9 +13,65 @@
     <ImageView
         android:id="@+id/imgMountFuji"
         android:layout_width="wrap_content"
-        android:layout_height="450dp"
-        android:src="@drawable/mount_fuji"
-        android:layout_marginHorizontal="20dp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="top|center"
+        android:src="@drawable/mount_fuji" />
+
+    <TextView
+        android:id="@+id/tvMountFujiDescription"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:textColor="@color/white"
+        android:text="@string/fuji_mountain"
+        android:textSize="18sp"
+        android:paddingTop="5dp"
+        android:paddingStart="15dp"
+        android:background="@drawable/textview_background"
+        android:layout_gravity="center"
+        android:layout_marginBottom="60dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/location"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="80dp"/>
+
+    <TextView
+        android:id="@+id/tvMountFujiLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/lightgray"
+        android:textSize="12sp"
+        android:text="@string/tokyo_japan"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="30dp"/>
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price"
+        android:textColor="@color/lightgray"
+        android:textSize="12sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="70dp"
+        android:layout_marginStart="70dp"/>
+
+    <TextView
+        android:id="@+id/tvPriceValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$230"
+        android:textColor="@color/lightgray"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="70dp"/>
+
 
     <ImageButton
         android:id="@+id/imgBtnBack"
@@ -24,8 +80,8 @@
         android:src="@drawable/back"
         android:background="@drawable/circle_button"
         android:scaleType="fitCenter"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="30dp"/>
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="80dp"/>
 
     <ImageButton
         android:id="@+id/imgBtnBookmark"
@@ -34,8 +90,8 @@
         android:background="@drawable/circle_button"
         android:src="@drawable/bookmark"
         android:scaleType="fitCenter"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="80dp"
         android:layout_gravity="end"/>
     
     <TextView
@@ -111,15 +167,52 @@
         android:layout_marginTop="150dp"
         android:layout_marginStart="180dp"/>
 
-    <TextView
-        android:id="@+id/tvMountainInfo"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:layout_height="100dp"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="20dp"
-        android:paddingStart="20dp"/>
+        android:layout_marginBottom="150dp"
+        android:paddingTop="10dp"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="50dp">
 
+        <TextView
+            android:id="@+id/tvMountainInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/roboto"
+            android:text="@string/mountain_info"
+            android:textSize="18sp" />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBookNow"
+        android:layout_width="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_height="60dp"
+        android:background="@drawable/lightblack_button_corners_rounded"
+        android:text="@string/book_now"
+        android:paddingRight="20dp"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:fontFamily="@font/roboto"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="50dp"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:elevation="5dp"
+        android:src="@drawable/sent"
+        android:layout_gravity="bottom|center"
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="58dp" />
 
 
 </FrameLayout>
