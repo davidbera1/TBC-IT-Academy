@@ -38,6 +38,16 @@ class DetailsActivity : AppCompatActivity() {
         binding.tvRating.text = getString(R.string.rating)
 
         binding.tvMountainInfo.text = getString(R.string.mountain_info)
+
+        binding.tvMountFujiDescription.text = getString(R.string.fuji_mountain)
+
+        binding.tvMountFujiLocation.text = getString(R.string.tokyo_japan)
+
+        binding.tvPrice.text = getString(R.string.price)
+
+        binding.tvPriceValue.text = getString(R.string.price_value)
+
+        binding.btnBookNow.text = getString(R.string.book_now)
     }
 
     private fun setUpListeners() {
