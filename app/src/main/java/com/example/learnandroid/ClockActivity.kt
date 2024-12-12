@@ -27,24 +27,7 @@ class ClockActivity : AppCompatActivity() {
         }
     }
     private fun setUpViews() {
-        binding.imgHome.setImageResource(R.drawable.home)
-        binding.imgHome.isClickable = true
-
-
-        binding.imgClock.setImageResource(R.drawable.clock)
-        binding.imgClock.isClickable = true
-
-
-        binding.imgHeart.setImageResource(R.drawable.heart)
-        binding.imgHeart.isClickable = true
-
-
-        binding.imgUser.setImageResource(R.drawable.user)
-        binding.imgUser.isClickable = true
-
-
         binding.tvRecentlyViewed.text = getString(R.string.recently_viewed)
-        binding.tvRecentlyViewed.textSize = 40f
     }
 
     private fun setUpListeners() {

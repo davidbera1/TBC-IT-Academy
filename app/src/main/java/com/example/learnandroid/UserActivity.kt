@@ -28,37 +28,11 @@ class UserActivity : AppCompatActivity() {
     }
 
     fun setUpViews() {
-
         binding.tvUsername.text = getString(R.string.username)
-        binding.tvUsername.textSize = 40f
 
-
-        // IMAGES SECTION
-        binding.imgHome.setImageResource(R.drawable.home)
-        binding.imgHome.isClickable = true
-
-
-        binding.imgClock.setImageResource(R.drawable.clock)
-        binding.imgClock.isClickable = true
-
-
-        binding.imgHeart.setImageResource(R.drawable.heart)
-        binding.imgHeart.isClickable = true
-
-
-        binding.imgUser.setImageResource(R.drawable.user)
-        binding.imgUser.isClickable = true
-
-
-        binding.imgUserPhoto.setImageResource(R.drawable.user_photo)
-
-
-        // BUTTONS SECTON
         binding.btnEditPersonalInfo.text = getString(R.string.edit_personal_info)
-        binding.btnEditPersonalInfo.setBackgroundResource(R.drawable.lightgray_button_corners_rounded)
 
         binding.btnLogout.text = getString(R.string.logout)
-        binding.btnLogout.setBackgroundResource(R.drawable.lightgray_button_corners_rounded)
     }
 
     fun setUpListeners() {

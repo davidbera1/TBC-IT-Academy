@@ -14,12 +14,15 @@
         android:id="@+id/imgMountFuji"
         android:layout_width="wrap_content"
         android:layout_height="450dp"
+        android:src="@drawable/mount_fuji"
         android:layout_marginHorizontal="20dp"/>
 
     <ImageButton
         android:id="@+id/imgBtnBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:src="@drawable/back"
+        android:background="@drawable/circle_button"
         android:scaleType="fitCenter"
         android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"/>
@@ -28,6 +31,8 @@
         android:id="@+id/imgBtnBookmark"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:background="@drawable/circle_button"
+        android:src="@drawable/bookmark"
         android:scaleType="fitCenter"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
@@ -37,6 +42,8 @@
         android:id="@+id/tvOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="90dp"/>
@@ -45,6 +52,8 @@
         android:id="@+id/tvDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/gray"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:layout_marginStart="20dp"/>
@@ -53,6 +62,7 @@
         android:id="@+id/imgClock"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:src="@drawable/clock"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="150dp"/>
@@ -61,6 +71,7 @@
         android:id="@+id/imgWeather"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:src="@drawable/weather"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"/>
 
@@ -68,6 +79,7 @@
         android:id="@+id/imgStar"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:src="@drawable/star"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:layout_marginStart="140dp"/>
@@ -76,6 +88,7 @@
         android:id="@+id/tvClock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="100dp"/>
@@ -84,6 +97,7 @@
         android:id="@+id/tvWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:layout_marginStart="40dp"/>
@@ -92,6 +106,7 @@
         android:id="@+id/tvRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:layout_marginStart="180dp"/>
@@ -100,6 +115,7 @@
         android:id="@+id/tvMountainInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="20dp"
         android:paddingStart="20dp"/>

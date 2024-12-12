@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUp() {
         binding.tvTravel.text = getString(R.string.travel)
-        binding.imgLogo.setImageResource(R.drawable.logo)
         binding.tvDescription.text = getString(R.string.description)
         // launch second activity when clicked anywhere on the screen
         binding.main.setOnClickListener {
