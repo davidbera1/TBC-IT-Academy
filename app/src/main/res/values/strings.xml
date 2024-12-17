@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="age">Age</string>
+    <string name="email">Email</string>
+    <string name="add_user">add user</string>
+    <string name="remove_user">remove user</string>
+    <string name="update_user">update user</string>
+    <string name="active_users_0">Active Users: 0</string>
+    <string name="removed_users_0">Removed Users: 0</string>
+    <string name="user_does_not_exist">User does not exist</string>
+    <string name="error">Error</string>
+    <string name="user_deleted_successfully">User deleted successfully</string>
+    <string name="success">Success</string>
+    <string name="user_added_successfully">User added successfully</string>
+    <string name="user_with_that_email_already_exists">User with that email already exists</string>
+    <string name="user_info_updated_successfully">User info updated successfully</string>
+    <string name="age_must_be_positive_number">Age must be positive number</string>
+    <string name="please_fill_all_fields_correctly">Please fill all fields correctly</string>
+    <string name="search_user_info_with_email">Search user info with email</string>
+    <string name="search">Search</string>
+    <string name="please_enter_valid_email">Please enter valid email</string>
 </resources>
