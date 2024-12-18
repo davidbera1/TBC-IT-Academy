@@ -3,11 +3,194 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/imgPhoto"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/photo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="100dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLetsYouIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgPhoto"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/let_s_you_in"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFacebookLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/white_button_outline"
+            app:layout_constraintTop_toBottomOf="@id/tvLetsYouIn"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/continue_with_facebook"
+            android:textAllCaps="false"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/imgFacebook"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:elevation="5dp"
+            android:src="@drawable/facebook"
+            app:layout_constraintStart_toStartOf="@id/btnFacebookLogin"
+            app:layout_constraintEnd_toEndOf="@id/btnFacebookLogin"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintTop_toTopOf="@id/btnFacebookLogin"
+            app:layout_constraintBottom_toBottomOf="@id/btnFacebookLogin"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGoogleLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/white_button_outline"
+            app:layout_constraintTop_toBottomOf="@id/btnFacebookLogin"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/continue_with_google"
+            android:textAllCaps="false"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/imgGoogle"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:elevation="5dp"
+            android:src="@drawable/google"
+            app:layout_constraintStart_toStartOf="@id/btnGoogleLogin"
+            app:layout_constraintEnd_toEndOf="@id/btnGoogleLogin"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintTop_toTopOf="@id/btnGoogleLogin"
+            app:layout_constraintBottom_toBottomOf="@id/btnGoogleLogin"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAppleLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/white_button_outline"
+            app:layout_constraintTop_toBottomOf="@id/btnGoogleLogin"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/continue_with_apple"
+            android:textAllCaps="false"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/imgApple"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:elevation="5dp"
+            android:src="@drawable/apple"
+            app:layout_constraintStart_toStartOf="@id/btnAppleLogin"
+            app:layout_constraintEnd_toEndOf="@id/btnAppleLogin"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintTop_toTopOf="@id/btnAppleLogin"
+            app:layout_constraintBottom_toBottomOf="@id/btnAppleLogin"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvOr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btnAppleLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/gray"
+            android:text="@string/or"/>
+
+        <View
+            android:layout_width="140dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAppleLogin"/>
+
+        <View
+            android:layout_width="140dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAppleLogin"
+            android:layout_marginTop="40dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/black_button"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toBottomOf="@id/tvOr"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:text="@string/sign_in_with_password"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDontHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSignIn"
+            android:layout_marginTop="20dp"
+            app:layout_constraintHorizontal_bias="0.4"
+            android:textColor="@color/gray"
+            android:text="@string/don_t_have_an_account"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:layout_constraintStart_toEndOf="@id/tvDontHaveAccount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSignIn"
+            android:layout_marginTop="20dp"
+            app:layout_constraintHorizontal_bias="0.1"
+            android:textColor="@color/black"
+            android:text="@string/sign_up"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/RegisterFragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/LoginFragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
