@@ -2,6 +2,7 @@ package com.example.learnandroid
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,8 +28,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpListeners() {
-        supportFragmentManager.popBackStack()
         binding.tvSignUp.setOnClickListener {
+            supportFragmentManager.popBackStack()
             makeRegisterFragmentVisible(true)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.RegisterFragment_container, RegisterFragment(), "register")
