@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="search_with_info">Search with user info</string>
+    <string name="search_user">search user</string>
+    <string name="add_new_user">Add New User</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="birthday">Birthday</string>
+    <string name="address">Address</string>
+    <string name="email">Email</string>
+    <string name="save_user">save user</string>
+    <string name="desc">Desc</string>
 </resources>
