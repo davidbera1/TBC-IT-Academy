@@ -162,13 +162,16 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    /** Function for filtering items according to selected category. If category = All, shows all
+     * items, else - shows items with matching category only. Uses adapter's updateItems function. */
     private fun filterVerticalItems(selectedCategory: String) {
         val recyclerViewVertical = binding.recyclerViewVertical
         val adapter = recyclerViewVertical.adapter as VerticalRecyclerViewAdapter
 
         if (selectedCategory == getString(R.string.all)) {
             adapter.updateItems(itemsVertical)
-        } else {
+        }
+        else {
             val filteredItems = itemsVertical.filter { item ->
                 item.categoryType == selectedCategory }
             adapter.updateItems(filteredItems)

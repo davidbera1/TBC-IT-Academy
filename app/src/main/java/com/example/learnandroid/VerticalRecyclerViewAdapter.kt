@@ -10,6 +10,8 @@ class VerticalRecyclerViewAdapter(
     private var items: List<VerticalRecyclerViewItem>
 ) : RecyclerView.Adapter<VerticalRecyclerViewAdapter.ViewHolder>() {
 
+    /** Function to be called from MainActivity to update items according to category filter.
+     * Updates the items list and informs about change */
     fun updateItems(newItems: List<VerticalRecyclerViewItem>) {
         items = newItems
         notifyDataSetChanged()

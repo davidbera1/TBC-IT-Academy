@@ -26,25 +26,30 @@ class HorizontalRecyclerViewAdapter(
     override fun onBindViewHolder(holder: HorizontalRecyclerViewAdapter.ViewHolder, position: Int) {
         val item = items[position]
         holder.binding.button.text = item.buttonText
-
+        // update color for each button
         updateButtonColors(holder, position)
 
         holder.binding.button.setOnClickListener {
             handleButtonClick(position)
+            // pass selected category string to MainActivity and into filter function
             onCategorySelected(item.buttonText)
         }
     }
 
+    /** Function for updating button colors when clicked */
     private fun updateButtonColors(holder: ViewHolder, position: Int) {
         if (position == selectedPosition) {
             holder.binding.button.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.button_background_green)
             holder.binding.button.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
-        } else {
+        }
+        else {
             holder.binding.button.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.button_background_default)
             holder.binding.button.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.text_color))
         }
     }
 
+    /** Function to handle button click. Compares selectedPosition and passed position variable,
+     * then notifies about item change and triggers onBindViewHolder, which then updates colors */
     private fun handleButtonClick(position: Int) {
         if (selectedPosition != position) {
             val previousPosition = selectedPosition
