@@ -39,7 +39,6 @@ class EditAddressFragment : Fragment() {
 
             // call updateItem() from MainActivity to update items and destroy Fragment
             (activity as MainActivity).updateItem(addressName=addressName, address=address, image=image, position=currentPosition)
-            (activity as MainActivity).makeFragmentVisible(false)
             Toast.makeText(requireContext(), getString(R.string.address_updated_successfully), Toast.LENGTH_SHORT).show()
             parentFragmentManager.popBackStack()
         }

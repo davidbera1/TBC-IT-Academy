@@ -37,8 +37,8 @@ class AddNewAddressFragment : Fragment() {
                 val address = binding?.etAddress?.text.toString()
                 val image = getIcon()
 
+                // call addItems() from MainActivity to add items and destroy Fragment
                 (activity as MainActivity).addItems(image=image, addressName=addressName, address=address)
-                (activity as MainActivity).makeFragmentVisible(false)
                 Toast.makeText(requireContext(), getString(R.string.address_added_successfully), Toast.LENGTH_SHORT).show()
                 parentFragmentManager.popBackStack()
             }

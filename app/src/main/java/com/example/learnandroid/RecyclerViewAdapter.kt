@@ -45,7 +45,6 @@ class RecyclerViewAdapter : ListAdapter<Items, RecyclerViewAdapter.ItemsViewHold
                         (itemView.context as MainActivity).currentPosition = adapterPosition
 
                         // start EditAddressFragment
-                        (itemView.context as MainActivity).makeFragmentVisible(true)
                         (itemView.context as MainActivity).supportFragmentManager.beginTransaction()
                             .replace(R.id.fragmentContainer, EditAddressFragment())
                             .addToBackStack(null)

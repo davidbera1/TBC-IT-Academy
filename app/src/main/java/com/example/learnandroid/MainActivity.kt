@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpListeners() {
         binding.btnAddNewAddress.setOnClickListener {
-            makeFragmentVisible(true)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, AddNewAddressFragment())
                 .addToBackStack(null)
@@ -82,14 +81,4 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter?.notifyItemChanged(position)
     }
 
-    /** Function for changing Fragment's visibility. Takes a boolean argument and is called from
-     * Fragments and Adapter */
-    fun makeFragmentVisible(boolean: Boolean) {
-        if (boolean) {
-            binding.fragmentContainer.visibility = View.VISIBLE
-        }
-        else {
-            binding.fragmentContainer.visibility = View.GONE
-        }
-    }
 }
