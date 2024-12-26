@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.learnandroid.databinding.FragmentAddNewAddressBinding
 import com.example.learnandroid.databinding.FragmentEditAddressBinding
 
 class EditAddressFragment : Fragment() {
