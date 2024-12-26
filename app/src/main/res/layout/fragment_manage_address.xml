@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".AddNewAddressFragment">
+    tools:context=".ManageAddressFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAddNewAddress"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintTop_toBottomOf="@id/tvAddNewAddress"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:hint="@string/place_name_ex_home"
@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etAddress"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:text="@string/choose_your_desired_icon"
         android:textColor="@color/black"
         android:textSize="18sp"/>
@@ -112,11 +112,123 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cbOffice"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:textColor="@color/white"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="@string/add_address"/>
+
+
+<!--  EDIT SECTION  -->
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEditAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAddNewAddress"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/product_sans"
+        android:text="@string/edit_address"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etNewAddressName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/tvEditAddress"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="@string/enter_new_place_name"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etNewAddress"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/etNewAddressName"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="@string/enter_new_address"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUpdateIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etNewAddress"
+        android:layout_marginTop="50dp"
+        android:text="@string/update_icon"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cbNewHome"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvUpdateIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
+        android:layout_marginTop="30dp"
+        android:button="@null"
+        android:drawableStart="@drawable/custom_checkbox"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgNewHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/home"
+        app:layout_constraintStart_toEndOf="@id/cbNewHome"
+        app:layout_constraintTop_toBottomOf="@id/tvUpdateIcon"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cbNewOffice"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvUpdateIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        android:layout_marginTop="30dp"
+        android:button="@null"
+        android:drawableStart="@drawable/custom_checkbox"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgNewOffice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/office"
+        app:layout_constraintStart_toEndOf="@id/cbNewOffice"
+        app:layout_constraintTop_toBottomOf="@id/tvUpdateIcon"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEditAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:background="@drawable/button_black_rounded_corners"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cbNewOffice"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/save_changes"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.learnandroid
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -41,12 +42,13 @@ class RecyclerViewAdapter : ListAdapter<Items, RecyclerViewAdapter.ItemsViewHold
                     binding.tvEdit.isClickable = true
                     binding.tvEdit.setOnClickListener {
 
-                        // pass current adapter position to MainActivity to access it from EditAddressFragment
+                        // pass current adapter position to MainActivity to access it from ManageAddressFragment
                         (itemView.context as MainActivity).currentPosition = adapterPosition
 
-                        // start EditAddressFragment
+                        // start ManageAddressFragment and pass MainActivity operation name
+                        (itemView.context as MainActivity).operation = "edit"
                         (itemView.context as MainActivity).supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragmentContainer, EditAddressFragment())
+                            .replace(R.id.fragmentContainer, ManageAddressFragment())
                             .addToBackStack(null)
                             .commit()
                     }

@@ -1,7 +1,6 @@
 package com.example.learnandroid
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,6 +10,7 @@ import com.example.learnandroid.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     var currentPosition: Int = 0
+    var operation: String = ""
     private var itemsList = mutableListOf<Items>()
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +32,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpListeners() {
         binding.btnAddNewAddress.setOnClickListener {
+            // set operation to create and start ManageAddressFragment
+            operation = "create"
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, AddNewAddressFragment())
+                .replace(R.id.fragmentContainer, ManageAddressFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         adapter.submitList(itemsList)
     }
 
-    /** Function for adding new items at zero index. Takes 3 arguments and is called from AddNewAddressFragment */
+    /** Function for adding new items at zero index. Takes 3 arguments and is called from ManageAddressFragment */
     fun addItems(image: Int, addressName: String, address: String) {
         val id = itemsList.size + 1
         itemsList.add(index = 0, Items(id, image, addressName, address))
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     /** Function for updating items. Takes 3 arguments that have default values and can be left blank
      *  and a position which is a must. If argument is not passed, value won't be updated.
-     *  Functions is called from EditAddressFragment */
+     *  Functions is called from ManageAddressFragment */
     fun updateItem(addressName: String = "", address: String = "", image: Int = 0, position: Int) {
         if (addressName != "") {
             itemsList[position].addressName = addressName
