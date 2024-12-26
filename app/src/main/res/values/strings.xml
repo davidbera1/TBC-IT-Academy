@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="add_new_address">Add new address</string>
+    <string name="send_to">SEND TO</string>
+    <string name="edit"><u>Edit</u></string>
+    <string name="place_name_ex_home">Place name ex. Home</string>
+    <string name="enter_address">Enter address</string>
+    <string name="choose_your_desired_icon">Choose your desired icon</string>
+    <string name="add_address">add address</string>
+    <string name="please_fill_all_the_fields_correctly">Please fill all the fields correctly</string>
+    <string name="address_added_successfully">Address added successfully</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="update_icon">Update icon</string>
+    <string name="save_changes">save changes</string>
+    <string name="enter_new_address">Enter new address</string>
+    <string name="enter_new_place_name">Enter new place name</string>
+    <string name="address_updated_successfully">Address updated successfully</string>
 </resources>

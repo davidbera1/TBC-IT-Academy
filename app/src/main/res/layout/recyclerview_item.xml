@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="138dp"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/recyclerview_background">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="27dp"
+            android:layout_marginStart="19dp"
+            android:button="@null"
+            android:drawableStart="@drawable/custom_checkbox"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/checkbox"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="17dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSendTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/send_to"
+            android:textSize="12sp"
+            android:fontFamily="@font/product_sans"
+            android:textColor="@color/neutral"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAddressName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvSendTo"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="3dp"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/product_sans"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddressName"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="17dp"
+            android:textSize="12sp"
+            android:textColor="@color/address_text_color"
+            android:fontFamily="@font/product_sans"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="23dp"
+            android:text="@string/edit"
+            android:textColor="@color/red"
+            android:fontFamily="@font/product_sans"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

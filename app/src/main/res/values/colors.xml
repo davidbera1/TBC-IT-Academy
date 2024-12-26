@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="neutral">#23262F</color>
+    <color name="address_text_color">#777E90</color>
+    <color name="red">#F80000</color>
+    <color name="recyclerview_item_border_color">#F4F4F4</color>
+    <color name="button_color">#343434</color>
 </resources>
