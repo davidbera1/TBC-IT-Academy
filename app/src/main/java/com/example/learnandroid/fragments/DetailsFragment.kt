@@ -43,6 +43,11 @@ class DetailsFragment : Fragment() {
         setUp()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun setUp() {
         // find the order which was selected using orderId in orderList
         val currentOrder = orderList.find { it.orderId == orderId }
