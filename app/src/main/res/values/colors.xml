@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="neutrals_5">#B1B5C3</color>
+    <color name="neutrals_7">#F4F5F6</color>
+    <color name="neutrals_8">#FCFCFD</color>
+    <color name="message_right_color">#E6E8EC</color>
+    <color name="hint_text_color">#B1B5C3</color>
+    <color name="online_status_text_color">#D9000000</color>
 </resources>
