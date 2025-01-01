@@ -38,6 +38,11 @@ class ChatFragment : Fragment() {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun setUpListener() {
         binding.btnSendMessage.setOnClickListener {
             val message = binding.etMessage.text.toString()
