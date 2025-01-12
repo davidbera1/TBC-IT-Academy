@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#181a20</color>
+    <color name="order_item_background">#1f222a</color>
+    <color name="button_color">#35383f</color>
+    <color name="review_background">#1f222a</color>
+    <color name="review_item_background">#181a20</color>
+    <color name="submit_button_color">#fafafa</color>
+    <color name="gray">#808080</color>
+    <color name="brown">#7a5547</color>
+    <color name="blue_grey">#5d788b</color>
+    <color name="image_background_color">#35383f</color>
 </resources>

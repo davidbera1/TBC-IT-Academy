@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/holderFragment">
+    <fragment
+        android:id="@+id/holderFragment"
+        android:name="com.example.learnandroid.fragments.HolderFragment"
+        android:label="fragment_holder"
+        tools:layout="@layout/fragment_holder" >
+        <action
+            android:id="@+id/action_holderFragment_to_reviewBottomSheetDialogFragment"
+            app:destination="@id/reviewBottomSheetDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/reviewBottomSheetDialogFragment"
+        android:name="com.example.learnandroid.fragments.ReviewBottomSheetDialogFragment"
+        android:label="fragment_review_bottom_sheet_dialog"
+        tools:layout="@layout/fragment_review_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_reviewBottomSheetDialogFragment_to_holderFragment"
+            app:destination="@id/holderFragment" />
+        <argument
+            android:name="order"
+            app:argType="com.example.learnandroid.model.OrderItem" />
+    </dialog>
+</navigation>
