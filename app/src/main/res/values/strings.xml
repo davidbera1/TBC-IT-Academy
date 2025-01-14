@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="payment">Payment</string>
+    <string name="card_management">Card Management</string>
+    <string name="add_new">Add new+</string>
+    <string name="or_check_out_with">or check out with</string>
+    <string name="add_new_card">Add new card</string>
+    <string name="cardholder_name">Cardholder Name</string>
+    <string name="enter_your_name_here">Enter your name here</string>
+    <string name="card_number">Card Number</string>
+    <string name="enter_card_number">Enter card number</string>
+    <string name="expires">Expires</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="cvv">CVV</string>
+    <string name="mastercard">Mastercard</string>
+    <string name="visa">Visa</string>
+    <string name="add_card">Add card</string>
+    <string name="allowed_symbols_for_name">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "</string>
+    <string name="please_fill_all_fields_correctly">Please fill all fields correctly</string>
+    <string name="card_was_added_successfully">Card was added successfully</string>
+    <string name="would_you_really_like_to_delete_the_card">Would you really like to delete the card?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+
+
 </resources>
