@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="e_auth">E AUTH</string>
+    <string name="register">Register</string>
+    <string name="register_with_arrow"><![CDATA[Register ->]]></string>
+    <string name="registration_successful">Registration Successful</string>
+    <string name="field_is_required">%1$s field is required!</string>
 </resources>
