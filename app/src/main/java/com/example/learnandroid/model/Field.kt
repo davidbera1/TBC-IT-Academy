@@ -1,4 +1,4 @@
-package com.example.learnandroid.models
+package com.example.learnandroid.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.learnandroid.R
 import com.example.learnandroid.adapter.FieldGroupAdapter
 import com.example.learnandroid.databinding.FragmentRegisterBinding
-import com.example.learnandroid.models.Field
-import com.example.learnandroid.models.RegisterViewModel
+import com.example.learnandroid.model.Field
+import com.example.learnandroid.viewmodel.RegisterViewModel
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 

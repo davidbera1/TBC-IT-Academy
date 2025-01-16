@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learnandroid.databinding.RvItemBinding
-import com.example.learnandroid.models.Field
+import com.example.learnandroid.model.Field
 
 class FieldGroupAdapter : ListAdapter<List<Field>, FieldGroupAdapter.FieldGroupViewHolder>(FieldGroupDiffUtil()) {
 

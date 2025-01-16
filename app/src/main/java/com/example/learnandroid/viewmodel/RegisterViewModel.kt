@@ -1,6 +1,7 @@
-package com.example.learnandroid.models
+package com.example.learnandroid.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.learnandroid.model.Field
 import kotlinx.serialization.json.Json
 
 class RegisterViewModel : ViewModel() {
