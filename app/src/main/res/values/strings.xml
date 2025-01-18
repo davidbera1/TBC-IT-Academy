@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="welcome">Welcome</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="please_fill_both_fields">Please fill both fields</string>
+    <string name="login_was_successful">Login was successful</string>
+    <string name="login_failed">Login failed</string>
+    <string name="registration_was_successful">Registration was successful</string>
+    <string name="registration_failed">Registration failed</string>
 </resources>
