@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="search">Search</string>
+    <string name="sent_a_voice_message">Sent a voice message</string>
+    <string name="sent_an_attachment">Sent an attachment</string>
+
 </resources>
