@@ -52,6 +52,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
         if (binding.cbRememberMe.isChecked) {
             observeTokenAndSaveUserSession(email = email)
+        } else {
+            saveUserSession(isLoggedIn = false, email = email, token = "")
         }
     }
 

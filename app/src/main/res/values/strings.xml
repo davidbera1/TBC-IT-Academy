@@ -17,5 +17,6 @@
     <string name="home">Home</string>
     <string name="repeat_password">Repeat password</string>
     <string name="please_fill_all_fields_correctly">Please fill all fields correctly</string>
+    <string name="email_useremail">Email: %1$s</string>
 
 </resources>

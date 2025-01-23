@@ -1,6 +1,8 @@
 package com.example.learnandroid.fragments
 
 import android.content.Context
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -8,6 +10,15 @@ import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val sharedPreferences = activity?.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        val email = sharedPreferences?.getString("email", "")
+
+        binding.tvEmail.text = getString(R.string.email_useremail, email)
+    }
 
     override fun setUpListeners() {
         binding.btnLogout.setOnClickListener {
