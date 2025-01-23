@@ -2,6 +2,7 @@ package com.example.learnandroid.fragments
 
 import android.content.Context
 import android.widget.Toast
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentHomeBinding
@@ -14,7 +15,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             // findNavController().navigateUp() doesn't work when app gets restarted and then user
             // logs out, it navigates to welcome fragment instead of login fragment
             val direction = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
-            val navOptions = androidx.navigation.NavOptions.Builder()
+            val navOptions = NavOptions.Builder()
                 .setPopUpTo(findNavController().graph.id, true)
                 .build()
 

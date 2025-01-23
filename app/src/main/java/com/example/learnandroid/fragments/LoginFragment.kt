@@ -8,6 +8,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentLoginBinding
@@ -91,7 +92,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         viewModel.resetLoginResult()
 
                         val direction = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-                        val navOptions = androidx.navigation.NavOptions.Builder()
+                        val navOptions = NavOptions.Builder()
                             .setPopUpTo(findNavController().graph.id, true)
                             .build()
 

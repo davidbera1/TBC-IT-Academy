@@ -3,6 +3,7 @@ package com.example.learnandroid.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentWelcomeBinding
@@ -34,7 +35,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
         if (isLoggedIn == true) {
             val direction = WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
 
-            val navOptions = androidx.navigation.NavOptions.Builder()
+            val navOptions = NavOptions.Builder()
                 .setPopUpTo(R.id.welcomeFragment, true)
                 .build()
 

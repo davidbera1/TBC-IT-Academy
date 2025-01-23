@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentRegisterBinding
@@ -77,7 +78,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
                         val direction =
                             RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
-                        val navOptions = androidx.navigation.NavOptions.Builder()
+                        val navOptions = NavOptions.Builder()
                             .setPopUpTo(findNavController().graph.id, true)
                             .build()
 
