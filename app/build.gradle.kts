@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    kotlin("plugin.serialization") version "2.0.21"
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlinx-serialization")
 }
 
 android {

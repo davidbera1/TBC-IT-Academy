@@ -1,9 +1,19 @@
 package com.example.learnandroid.fragments
 
+import android.content.Context
+import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentWelcomeBinding
 
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBinding::inflate) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        checkSavedUserSession()
+    }
 
     override fun setUpListeners() {
         binding.btnRegister.setOnClickListener {
@@ -14,6 +24,21 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
         binding.btnLogin.setOnClickListener {
             val direction = WelcomeFragmentDirections.actionWelcomeFragmentToLoginFragment()
             findNavController().navigate(direction)
+        }
+    }
+
+    private fun checkSavedUserSession() {
+        val sharedPreferences = activity?.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences?.getBoolean("isLoggedIn", false)
+
+        if (isLoggedIn == true) {
+            val direction = WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
+
+            val navOptions = androidx.navigation.NavOptions.Builder()
+                .setPopUpTo(R.id.welcomeFragment, true)
+                .build()
+
+            findNavController().navigate(direction, navOptions = navOptions)
         }
     }
 }

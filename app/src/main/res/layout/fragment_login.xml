@@ -46,7 +46,7 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/et_background"
         android:drawableStart="@drawable/email"
-        android:drawablePadding="43dp"
+        android:drawablePadding="33dp"
         android:fontFamily="@font/roboto"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:textColorHint="@color/light_purple"
         app:layout_constraintTop_toBottomOf="@id/etEmail"
@@ -83,6 +83,23 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cbRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/btnLogin"
+        app:layout_constraintStart_toStartOf="@id/btnLogin" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/remember_me"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/btnLogin"
+        app:layout_constraintStart_toEndOf="@id/cbRememberMe" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
@@ -90,8 +107,9 @@
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="48dp"
-        android:background="@drawable/purple_button_background"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/gray_button_background"
+        android:enabled="false"
         android:fontFamily="@font/roboto"
         android:text="@string/login"
         android:textAllCaps="false"

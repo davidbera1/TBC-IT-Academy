@@ -15,6 +15,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ellipse_top" />
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgBtnBack"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_circle"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
@@ -57,33 +68,16 @@
         android:textColorHint="@color/light_purple"
         app:layout_constraintTop_toBottomOf="@id/imgRegisterPhoto" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etUsername"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/et_background"
-        android:drawableStart="@drawable/user"
-        android:drawablePadding="43dp"
-        android:fontFamily="@font/roboto"
-        android:hint="@string/username"
-        android:paddingStart="33dp"
-        android:paddingEnd="33dp"
-        android:textColor="@color/purple"
-        android:textColorHint="@color/light_purple"
-        app:layout_constraintBottom_toTopOf="@id/tilPasswordContainer"
-        app:layout_constraintTop_toBottomOf="@id/etEmail" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPasswordContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="67dp"
         android:textColorHint="@color/light_purple"
-        app:layout_constraintBottom_toTopOf="@id/btnRegister"
+        app:layout_constraintTop_toBottomOf="@id/etEmail"
         app:passwordToggleDrawable="@drawable/eye"
         app:passwordToggleEnabled="true">
 
@@ -96,6 +90,34 @@
             android:drawablePadding="43dp"
             android:fontFamily="@font/roboto"
             android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="33dp"
+            android:paddingEnd="43dp"
+            android:textColor="@color/purple" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRepeatPasswordContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:textColorHint="@color/light_purple"
+        app:layout_constraintTop_toBottomOf="@id/tilPasswordContainer"
+        app:passwordToggleDrawable="@drawable/eye"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRepeatPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/et_background"
+            android:drawableStart="@drawable/password"
+            android:drawablePadding="43dp"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/repeat_password"
             android:inputType="textPassword"
             android:paddingStart="33dp"
             android:paddingEnd="43dp"
