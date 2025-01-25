@@ -67,8 +67,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        viewModel.resetRegisterResult()
-
                         val bundle = Bundle().apply {
                             putString("email", binding.etEmail.text.toString())
                             putString("password", binding.etPassword.text.toString())
@@ -91,8 +89,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                             getString(R.string.registration_failed),
                             Toast.LENGTH_SHORT
                         ).show()
-
-                        viewModel.resetRegisterResult()
                     }
 
                     else -> {}

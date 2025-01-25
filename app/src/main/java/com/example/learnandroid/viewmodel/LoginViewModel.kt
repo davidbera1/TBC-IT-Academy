@@ -20,7 +20,7 @@ class LoginViewModel : ViewModel() {
     fun login(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = RetrofitClient.authService.login(AuthDto(email=email, password=password))
+                val response = RetrofitClient.authService.login(AuthDto(email = email, password = password))
 
                 if (response.isSuccessful) {
                     _loginResult.value = true
@@ -32,13 +32,5 @@ class LoginViewModel : ViewModel() {
                 _loginResult.value = false
             }
         }
-    }
-
-    fun resetLoginResult() {
-        _loginResult.value = null
-    }
-
-    fun resetToken() {
-        _token.value = null
     }
 }

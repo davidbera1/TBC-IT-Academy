@@ -62,7 +62,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             viewModel.token.collect { token ->
                 if (!token.isNullOrEmpty()) {
                     saveUserSession(isLoggedIn = true, email = email, token = token)
-                    viewModel.resetToken()
                 }
             }
         }
@@ -91,8 +90,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        viewModel.resetLoginResult()
-
                         val direction = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
                         val navOptions = NavOptions.Builder()
                             .setPopUpTo(findNavController().graph.id, true)
@@ -107,7 +104,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                             getString(R.string.login_failed),
                             Toast.LENGTH_SHORT
                         ).show()
-                        viewModel.resetLoginResult()
                     }
 
                     else -> {}
