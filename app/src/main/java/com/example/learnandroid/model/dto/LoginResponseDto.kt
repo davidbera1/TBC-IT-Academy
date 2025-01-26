@@ -1,8 +1,8 @@
-package com.example.learnandroid.model
+package com.example.learnandroid.model.dto
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LoginResponse(
+data class LoginResponseDto(
     val token: String
 )

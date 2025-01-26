@@ -1,6 +1,5 @@
 package com.example.learnandroid.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavOptions
@@ -29,10 +28,9 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
     }
 
     private fun checkSavedUserSession() {
-        val sharedPreferences = activity?.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
-        val isLoggedIn = sharedPreferences?.getBoolean("isLoggedIn", false)
+        val isLoggedIn = getUserSessionSharedPreferences().getBoolean("isLoggedIn", false)
 
-        if (isLoggedIn == true) {
+        if (isLoggedIn) {
             val direction = WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
 
             val navOptions = NavOptions.Builder()

@@ -58,41 +58,48 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     private fun observeRegisterResult() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.registerResult.collect { boolean ->
-                when (boolean) {
-                    true -> {
-                        Toast.makeText(
-                            requireContext(),
-                            getString(R.string.registration_was_successful),
-                            Toast.LENGTH_SHORT
-                        ).show()
 
-                        val bundle = Bundle().apply {
-                            putString("email", binding.etEmail.text.toString())
-                            putString("password", binding.etPassword.text.toString())
-                        }
-
-                        setFragmentResult("credentials", bundle)
-
-                        val direction =
-                            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
-                        val navOptions = NavOptions.Builder()
-                            .setPopUpTo(findNavController().graph.id, true)
-                            .build()
-
-                        findNavController().navigate(direction, navOptions = navOptions)
-                    }
-
-                    false -> {
-                        Toast.makeText(
-                            requireContext(),
-                            getString(R.string.registration_failed),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-
-                    else -> {}
+            viewModel.registerResult.collect { result ->
+                if (result.loader == true) {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.btnRegister.isEnabled = false
+                    binding.btnRegister.setBackgroundResource(R.drawable.gray_button_background)
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                    binding.btnRegister.isEnabled = true
+                    binding.btnRegister.setBackgroundResource(R.drawable.purple_button_background)
                 }
+
+                if (result.registerResult == true) {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.registration_was_successful),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    val bundle = Bundle().apply {
+                        putString("email", binding.etEmail.text.toString())
+                        putString("password", binding.etPassword.text.toString())
+                    }
+
+                    setFragmentResult("credentials", bundle)
+
+                    val direction =
+                        RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                    val navOptions = NavOptions.Builder()
+                        .setPopUpTo(findNavController().graph.id, true)
+                        .build()
+
+                    findNavController().navigate(direction, navOptions = navOptions)
+
+                } else if (result.registerResult == false) {
+                    Toast.makeText(
+                        requireContext(),
+                        result.errorMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
             }
         }
     }

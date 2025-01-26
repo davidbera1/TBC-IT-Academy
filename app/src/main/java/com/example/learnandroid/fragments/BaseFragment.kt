@@ -1,5 +1,7 @@
 package com.example.learnandroid.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,10 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     private var _binding: VB? = null
     protected val binding get() = _binding!!
+
+    private val sharedPreferences: SharedPreferences by lazy {
+        requireActivity().getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,4 +41,6 @@ abstract class BaseFragment<VB : ViewBinding>(
     }
 
     abstract fun setUpListeners()
+
+    protected fun getUserSessionSharedPreferences(): SharedPreferences = sharedPreferences
 }

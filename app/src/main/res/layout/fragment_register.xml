@@ -141,6 +141,17 @@
         android:textSize="23sp"
         app:layout_constraintBottom_toTopOf="@id/imgEllipseBottom" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnRegister" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgEllipseBottom"
         android:layout_width="wrap_content"

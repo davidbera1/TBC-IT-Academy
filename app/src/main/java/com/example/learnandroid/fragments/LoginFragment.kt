@@ -1,6 +1,5 @@
 package com.example.learnandroid.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -59,19 +58,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun observeTokenAndSaveUserSession(email: String) {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.token.collect { token ->
-                if (!token.isNullOrEmpty()) {
-                    saveUserSession(isLoggedIn = true, email = email, token = token)
+            viewModel.loginResult.collect { result ->
+                if (!result.token.isNullOrEmpty()) {
+                    saveUserSession(isLoggedIn = true, email = email, token = result.token)
                 }
             }
         }
     }
 
     private fun saveUserSession(isLoggedIn: Boolean, email: String, token: String) {
-        val sharedPreferences = activity?.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
-        val editor = sharedPreferences?.edit()
+        val editor = getUserSessionSharedPreferences().edit()
 
-        editor?.apply {
+        editor.apply {
             putBoolean("isLoggedIn", isLoggedIn)
             putString("email", email)
             putString("token", token)
@@ -81,32 +79,38 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun observeLoginResult() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.loginResult.collect { boolean ->
-                when (boolean) {
-                    true -> {
-                        Toast.makeText(
-                            requireContext(),
-                            getString(R.string.login_was_successful),
-                            Toast.LENGTH_SHORT
-                        ).show()
+            viewModel.loginResult.collect { result ->
 
-                        val direction = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-                        val navOptions = NavOptions.Builder()
-                            .setPopUpTo(findNavController().graph.id, true)
-                            .build()
+                if (result.loader == true) {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.btnLogin.isEnabled = false
+                    binding.btnLogin.setBackgroundResource(R.drawable.gray_button_background)
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                    binding.btnLogin.isEnabled = true
+                    binding.btnLogin.setBackgroundResource(R.drawable.purple_button_background)
+                }
 
-                        findNavController().navigate(direction, navOptions = navOptions)
-                    }
+                if (result.loginResult == true) {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.login_was_successful),
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-                    false -> {
-                        Toast.makeText(
-                            requireContext(),
-                            getString(R.string.login_failed),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    val direction = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                    val navOptions = NavOptions.Builder()
+                        .setPopUpTo(findNavController().graph.id, true)
+                        .build()
 
-                    else -> {}
+                    findNavController().navigate(direction, navOptions = navOptions)
+
+                } else if (result.loginResult == false) {
+                    Toast.makeText(
+                        requireContext(),
+                        result.errorMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

@@ -1,49 +1,59 @@
 package com.example.learnandroid.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.navigation.NavOptions
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.learnandroid.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.learnandroid.adapter.UsersAdapter
 import com.example.learnandroid.databinding.FragmentHomeBinding
+import com.example.learnandroid.viewmodel.HomeViewModel
+import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+
+    private val viewModel: HomeViewModel by viewModels()
+    private lateinit var adapter: UsersAdapter
+
+    override fun setUpListeners() {
+        binding.btnProfile.setOnClickListener {
+            val direction = HomeFragmentDirections.actionHomeFragmentToProfileFragment()
+            findNavController().navigate(direction)
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sharedPreferences = activity?.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
-        val email = sharedPreferences?.getString("email", "")
+        val recyclerView = binding.recyclerView
+        adapter = UsersAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.tvEmail.text = getString(R.string.email_useremail, email)
+        viewModel.getUsers()
+        observeGetUsersResult()
     }
 
-    override fun setUpListeners() {
-        binding.btnLogout.setOnClickListener {
-            clearUserSession()
-            // findNavController().navigateUp() doesn't work when app gets restarted and then user
-            // logs out, it navigates to welcome fragment instead of login fragment
-            val direction = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
-            val navOptions = NavOptions.Builder()
-                .setPopUpTo(findNavController().graph.id, true)
-                .build()
+    private fun observeGetUsersResult() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getUsersResult.collect { result ->
 
-            findNavController().navigate(direction, navOptions=navOptions)
+                if (result.loader == true) {
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
 
-            Toast.makeText(requireContext(), getString(R.string.logged_out), Toast.LENGTH_SHORT)
-                .show()
-        }
-    }
+                result.users?.data?.let { users ->
+                    adapter.submitList(users.toList())
+                }
 
-    private fun clearUserSession() {
-        val sharedPreferences = activity?.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
-        val editor = sharedPreferences?.edit()
-
-        editor?.apply {
-            clear()
-            apply()
+                if (result.errorMessage != null) {
+                    Toast.makeText(requireContext(), result.errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }

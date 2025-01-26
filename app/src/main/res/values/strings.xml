@@ -8,15 +8,15 @@
     <string name="login">Login</string>
     <string name="please_fill_all_fields">Please fill all fields</string>
     <string name="login_was_successful">Login was successful</string>
-    <string name="login_failed">Login failed</string>
     <string name="registration_was_successful">Registration was successful</string>
-    <string name="registration_failed">Registration failed</string>
     <string name="remember_me">Remember me</string>
     <string name="logout">Logout</string>
     <string name="logged_out">Logged Out</string>
-    <string name="home">Home</string>
+    <string name="profile">Profile</string>
     <string name="repeat_password">Repeat password</string>
     <string name="please_fill_all_fields_correctly">Please fill all fields correctly</string>
     <string name="email_useremail">Email: %1$s</string>
+    <string name="home">Home</string>
+    <string name="registered_users">Registered users:</string>
 
 </resources>
