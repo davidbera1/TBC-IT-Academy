@@ -19,7 +19,8 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             _loginResult.emit(LoginResult(loader = true))
             try {
-                val response = RetrofitClient.authService.login(AuthDto(email = email, password = password))
+                val response =
+                    RetrofitClient.authService.login(AuthDto(email = email, password = password))
 
                 if (response.isSuccessful) {
                     _loginResult.emit(

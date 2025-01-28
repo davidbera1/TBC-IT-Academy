@@ -15,7 +15,4 @@ interface AuthService {
 
     @POST("register")
     suspend fun register(@Body authDto: AuthDto): Response<RegisterResponseDto>
-
-    @GET("users?page=1")
-    suspend fun getUsers(): Response<UsersDto>
 }

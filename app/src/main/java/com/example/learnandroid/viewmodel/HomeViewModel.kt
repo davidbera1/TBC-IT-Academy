@@ -18,12 +18,13 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             _getUsersResult.value = _getUsersResult.value.copy(loader = true)
             try {
-                val response = RetrofitClient.authService.getUsers()
+                val response = RetrofitClient.userService.getUsers()
 
                 if (response.isSuccessful) {
                     _getUsersResult.value = _getUsersResult.value.copy(users = response.body())
                 } else {
-                    _getUsersResult.value = _getUsersResult.value.copy(errorMessage = response.errorBody().toString())
+                    _getUsersResult.value =
+                        _getUsersResult.value.copy(errorMessage = response.errorBody().toString())
                 }
             } catch (e: Throwable) {
                 _getUsersResult.value = _getUsersResult.value.copy(errorMessage = e.message)

@@ -2,10 +2,11 @@ package com.example.learnandroid.fragments
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.NavOptions
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentWelcomeBinding
+import com.example.learnandroid.datastore.UserSessionManager
+import kotlinx.coroutines.launch
 
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBinding::inflate) {
 
@@ -28,16 +29,14 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
     }
 
     private fun checkSavedUserSession() {
-        val isLoggedIn = getUserSessionSharedPreferences().getBoolean("isLoggedIn", false)
-
-        if (isLoggedIn) {
-            val direction = WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
-
-            val navOptions = NavOptions.Builder()
-                .setPopUpTo(R.id.welcomeFragment, true)
-                .build()
-
-            findNavController().navigate(direction, navOptions = navOptions)
+        val flow = UserSessionManager.getUserSession(requireContext())
+        viewLifecycleOwner.lifecycleScope.launch {
+            flow.collect { userSession ->
+                if (userSession.isLoggedIn) {
+                    val direction = WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
+                    findNavController().navigate(direction)
+                }
+            }
         }
     }
 }

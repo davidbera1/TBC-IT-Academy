@@ -17,4 +17,5 @@ object RetrofitClient {
         .build()
 
     val authService: AuthService = retrofit.create(AuthService::class.java)
+    val userService: UserService = retrofit.create(UserService::class.java)
 }

@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentRegisterBinding
@@ -34,10 +33,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     }
 
     private fun validateFields(): Boolean {
-        return binding.etEmail.text.toString().isNotEmpty() &&
-                binding.etPassword.text.toString().isNotEmpty() &&
-                binding.etRepeatPassword.text.toString().isNotEmpty() &&
-                binding.etPassword.text.toString() == binding.etRepeatPassword.text.toString()
+        return binding.etEmail.text.toString().isNotEmpty() && binding.etPassword.text.toString()
+            .isNotEmpty() && binding.etRepeatPassword.text.toString()
+            .isNotEmpty() && binding.etPassword.text.toString() == binding.etRepeatPassword.text.toString()
     }
 
     // only allowed email: eve.holt@reqres.in
@@ -58,8 +56,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     private fun observeRegisterResult() {
         viewLifecycleOwner.lifecycleScope.launch {
-
             viewModel.registerResult.collect { result ->
+
                 if (result.loader == true) {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.btnRegister.isEnabled = false
@@ -86,17 +84,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
                     val direction =
                         RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
-                    val navOptions = NavOptions.Builder()
-                        .setPopUpTo(findNavController().graph.id, true)
-                        .build()
-
-                    findNavController().navigate(direction, navOptions = navOptions)
+                    findNavController().navigate(direction)
 
                 } else if (result.registerResult == false) {
                     Toast.makeText(
-                        requireContext(),
-                        result.errorMessage,
-                        Toast.LENGTH_SHORT
+                        requireContext(), result.errorMessage, Toast.LENGTH_SHORT
                     ).show()
                 }
 
