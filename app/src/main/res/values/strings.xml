@@ -15,9 +15,10 @@
     <string name="profile">Profile</string>
     <string name="repeat_password">Repeat password</string>
     <string name="please_fill_all_fields_correctly">Please fill all fields correctly</string>
-    <string name="email_useremail">Email: %1$s</string>
     <string name="home">Home</string>
     <string name="registered_users">Registered users:</string>
     <string name="welcome_email">Welcome %1$s</string>
+    <string name="user_id">User ID: %1$s</string>
+    <string name="full_name">Full name: %1$s %2$s</string>
 
 </resources>

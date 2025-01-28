@@ -58,4 +58,6 @@ dependencies {
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.okhttp)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.glide)
 }

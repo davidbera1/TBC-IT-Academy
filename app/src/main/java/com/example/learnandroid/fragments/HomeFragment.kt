@@ -2,14 +2,15 @@ package com.example.learnandroid.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.learnandroid.adapter.UsersAdapter
 import com.example.learnandroid.databinding.FragmentHomeBinding
 import com.example.learnandroid.viewmodel.HomeViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -32,27 +33,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.getUsers()
-        observeGetUsersResult()
+        observePaging()
     }
 
-    private fun observeGetUsersResult() {
+    private fun observePaging() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getUsersResult.collect { result ->
-
-                if (result.loader == true) {
+            adapter.loadStateFlow.collect { loadState ->
+                if (loadState.refresh is LoadState.Loading) {
                     binding.progressBar.visibility = View.VISIBLE
                 } else {
                     binding.progressBar.visibility = View.GONE
                 }
+            }
+        }
 
-                result.users?.data?.let { users ->
-                    adapter.submitList(users.toList())
-                }
-
-                if (result.errorMessage != null) {
-                    Toast.makeText(requireContext(), result.errorMessage, Toast.LENGTH_SHORT).show()
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.usersPager.collectLatest { pagingData ->
+                adapter.submitData(pagingData)
             }
         }
     }
