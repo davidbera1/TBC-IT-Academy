@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".presentation.security.SecurityFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_top" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/background_mid" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/background_bottom" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSecurityScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/security_screen"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEnterPasscode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/enter_your_passcode"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSecurityScreen" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgCircle1"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/circle_green"
+        app:layout_constraintEnd_toStartOf="@id/tvEnterPasscode"
+        app:layout_constraintTop_toBottomOf="@id/tvEnterPasscode" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgCircle2"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/circle_green"
+        app:layout_constraintEnd_toStartOf="@id/imgCircle3"
+        app:layout_constraintStart_toEndOf="@id/imgCircle1"
+        app:layout_constraintTop_toBottomOf="@id/tvEnterPasscode" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgCircle3"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/circle_green"
+        app:layout_constraintEnd_toStartOf="@id/imgCircle4"
+        app:layout_constraintStart_toEndOf="@id/imgCircle2"
+        app:layout_constraintTop_toBottomOf="@id/tvEnterPasscode" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgCircle4"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/circle_gray"
+        app:layout_constraintStart_toEndOf="@id/tvEnterPasscode"
+        app:layout_constraintTop_toBottomOf="@id/tvEnterPasscode" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn1"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/one"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgCircle1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn2"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/two"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@id/btn3"
+        app:layout_constraintStart_toEndOf="@id/btn1"
+        app:layout_constraintTop_toBottomOf="@id/imgCircle2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn3"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/three"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgCircle4" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn4"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/four"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn5"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/five"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@id/btn6"
+        app:layout_constraintStart_toEndOf="@id/btn4"
+        app:layout_constraintTop_toBottomOf="@id/btn2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn6"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/six"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn3" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn7"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/seven"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn4" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn8"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/eight"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@id/btn9"
+        app:layout_constraintStart_toEndOf="@id/btn7"
+        app:layout_constraintTop_toBottomOf="@id/btn5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn9"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/nine"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn6" />
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btnFingerprint"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:src="@drawable/fingerprint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn7" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn0"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/zero"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@id/btnBackspace"
+        app:layout_constraintStart_toEndOf="@id/btnFingerprint"
+        app:layout_constraintTop_toBottomOf="@id/btn8" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btnBackspace"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/circle_white_button"
+        android:fontFamily="@font/poppins_regular"
+        android:src="@drawable/backspace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn9" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:clickable="true"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/forgot_password"
+        android:textColor="@color/gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
