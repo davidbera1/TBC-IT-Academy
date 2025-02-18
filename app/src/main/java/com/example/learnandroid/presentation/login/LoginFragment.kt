@@ -9,12 +9,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
+import com.example.learnandroid.data.model.UserSession
 import com.example.learnandroid.databinding.FragmentLoginBinding
-import com.example.learnandroid.data.local.datastore.UserSessionManager
-import com.example.learnandroid.data.model.dataclass.UserSession
 import com.example.learnandroid.presentation.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
     private val viewModel: LoginViewModel by viewModels()
@@ -60,8 +61,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 // save session only when login was successful
                 if (result.loginResult == true) {
                     if (binding.cbRememberMe.isChecked) {
-                        UserSessionManager.saveUserSession(
-                            context = requireContext(), UserSession(
+                        viewModel.saveUserSession(
+                            UserSession(
                                 isLoggedIn = true,
                                 email = binding.etEmail.text.toString(),
                                 token = result.token
@@ -69,8 +70,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         )
                     } else {
                         // save only email if remember me is not checked
-                        UserSessionManager.saveUserSession(
-                            context = requireContext(), UserSession(
+                        viewModel.saveUserSession(
+                            UserSession(
                                 email = binding.etEmail.text.toString(),
                             )
                         )

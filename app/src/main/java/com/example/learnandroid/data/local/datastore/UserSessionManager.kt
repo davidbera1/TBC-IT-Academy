@@ -7,21 +7,23 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.learnandroid.data.model.dataclass.UserSession
+import com.example.learnandroid.data.model.UserSession
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "UserSession")
 
-object UserSessionManager {
-
+class UserSessionManager @Inject constructor(
+    private val context: Context
+) {
     private val IS_LOGGED_IN = booleanPreferencesKey("isLoggedIn")
     private val EMAIL = stringPreferencesKey("email")
     private val TOKEN = stringPreferencesKey("token")
 
-    suspend fun saveUserSession(context: Context, userSession: UserSession) {
+    suspend fun saveUserSession(userSession: UserSession) {
         withContext(Dispatchers.IO) {
             context.dataStore.edit { preferences ->
                 preferences[IS_LOGGED_IN] = userSession.isLoggedIn
@@ -31,7 +33,7 @@ object UserSessionManager {
         }
     }
 
-    fun getUserSession(context: Context): Flow<UserSession> {
+    fun getUserSession(): Flow<UserSession> {
         return context.dataStore.data.map { preferences ->
             UserSession(
                 isLoggedIn = preferences[IS_LOGGED_IN] ?: false,
@@ -41,7 +43,7 @@ object UserSessionManager {
         }
     }
 
-    suspend fun clearUserSession(context: Context) {
+    suspend fun clearUserSession() {
         withContext(Dispatchers.IO) {
             context.dataStore.edit { preferences ->
                 preferences.clear()

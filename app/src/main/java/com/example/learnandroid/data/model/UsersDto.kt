@@ -1,4 +1,4 @@
-package com.example.learnandroid.data.model.dto
+package com.example.learnandroid.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

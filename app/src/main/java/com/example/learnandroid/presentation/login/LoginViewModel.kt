@@ -2,48 +2,35 @@ package com.example.learnandroid.presentation.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.learnandroid.data.model.dataclass.LoginResult
-import com.example.learnandroid.data.model.dto.AuthDto
-import com.example.learnandroid.data.remote.RetrofitClient
-import com.example.learnandroid.data.remote.common.ApiHelper
-import com.example.learnandroid.data.remote.common.Resource
-import kotlinx.coroutines.Dispatchers
+import com.example.learnandroid.data.local.datastore.UserSessionManager
+import com.example.learnandroid.data.model.LoginResult
+import com.example.learnandroid.data.model.UserSession
+import com.example.learnandroid.data.repository.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val userSessionManager: UserSessionManager
+) : ViewModel() {
 
     private val _loginResult = MutableSharedFlow<LoginResult>()
     val loginResult: SharedFlow<LoginResult> = _loginResult
 
     fun login(email: String, password: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            _loginResult.emit(LoginResult(loader = true))
-            val response = ApiHelper.handleHttpRequest {
-                RetrofitClient.authService.login(AuthDto(email = email, password = password))
-            }
-            when (response) {
-                is Resource.Success -> {
-                    _loginResult.emit(
-                        LoginResult(
-                            token = response.data.token,
-                            loginResult = true,
-                            loader = false
-                        )
-                    )
-                }
+        viewModelScope.launch {
+            val result = userRepository.login(email, password)
+            _loginResult.emit(result)
+        }
+    }
 
-                is Resource.Error -> {
-                    _loginResult.emit(
-                        LoginResult(
-                            errorMessage = response.error,
-                            loginResult = false,
-                            loader = false
-                        )
-                    )
-                }
-            }
+    fun saveUserSession(userSession: UserSession) {
+        viewModelScope.launch {
+            userSessionManager.saveUserSession(userSession)
         }
     }
 }

@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.learnandroid.R
+import com.example.learnandroid.data.local.room.entity.User
 import com.example.learnandroid.databinding.RecyclerItemBinding
-import com.example.learnandroid.data.model.dto.UsersDto
 
 class UsersAdapter :
-    PagingDataAdapter<UsersDto.Data, UsersAdapter.UsersViewHolder>(UsersDiffUtil()) {
+    PagingDataAdapter<User, UsersAdapter.UsersViewHolder>(UsersDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val binding = RecyclerItemBinding.inflate(
@@ -29,7 +29,7 @@ class UsersAdapter :
     inner class UsersViewHolder(private val binding: RecyclerItemBinding) :
         ViewHolder(binding.root) {
         @SuppressLint("StringFormatMatches")
-        fun onBind(data: UsersDto.Data) {
+        fun onBind(data: User) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.avatar)
@@ -46,17 +46,17 @@ class UsersAdapter :
     }
 }
 
-class UsersDiffUtil : DiffUtil.ItemCallback<UsersDto.Data>() {
+class UsersDiffUtil : DiffUtil.ItemCallback<User>() {
     override fun areItemsTheSame(
-        oldItem: UsersDto.Data,
-        newItem: UsersDto.Data
+        oldItem: User,
+        newItem: User
     ): Boolean {
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItem: UsersDto.Data,
-        newItem: UsersDto.Data
+        oldItem: User,
+        newItem: User
     ): Boolean {
         return oldItem == newItem
     }

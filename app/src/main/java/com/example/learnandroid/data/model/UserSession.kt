@@ -1,4 +1,4 @@
-package com.example.learnandroid.data.model.dataclass
+package com.example.learnandroid.data.model
 
 data class UserSession(
     val isLoggedIn: Boolean = false,

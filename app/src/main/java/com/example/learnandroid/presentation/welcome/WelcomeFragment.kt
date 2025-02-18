@@ -2,14 +2,18 @@ package com.example.learnandroid.presentation.welcome
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.databinding.FragmentWelcomeBinding
-import com.example.learnandroid.data.local.datastore.UserSessionManager
 import com.example.learnandroid.presentation.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBinding::inflate) {
+
+    private val viewModel: WelcomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,7 +34,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
     }
 
     private fun checkSavedUserSession() {
-        val flow = UserSessionManager.getUserSession(requireContext())
+        val flow = viewModel.getUserSession()
         viewLifecycleOwner.lifecycleScope.launch {
             flow.collect { userSession ->
                 if (userSession.isLoggedIn) {
