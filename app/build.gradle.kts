@@ -68,6 +68,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.okhttp)
+    // okhttp interceptor
+    implementation(libs.logging.interceptor)
 
     // datastore
     implementation(libs.androidx.datastore.preferences)
