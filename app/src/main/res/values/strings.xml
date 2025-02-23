@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="write_comment">Write comment…</string>
+
+    <!--  dummy values  -->
+    <string name="when_you_wake_up">When you wake up</string>
+    <string name="alice_smith">Alice Smith</string>
+    <string name="_20_april_at_4_20_pm">20 April at 4:20 PM</string>
+    <string name="we_re_interested_in_your_ideas_and_would_be_glad_to_build_something_bigger_out_of_it">We’re interested in your ideas and would be glad to build something bigger out of it.</string>
+    <string name="_7_comments">7 Comments</string>
+    <string name="_49_likes">49 Likes</string>
+    <string name="share">Share</string>
 </resources>

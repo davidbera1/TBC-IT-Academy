@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green">#3ED598</color>
+    <color name="red">#FF565E</color>
+    <color name="gray">#96A7AF</color>
+    <color name="line_color">#B8C2C0</color>
+    <color name="et_background_color">#2A3C44</color>
+    <color name="post_background_color">#30444E</color>
+
+    <!--  gradient top and bottom  -->
+    <color name="background_top">#22343C</color>
+    <color name="background_bottom">#1F2E35</color>
 </resources>

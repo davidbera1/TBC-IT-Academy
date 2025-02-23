@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="29dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="29dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/post_background"
+    android:elevation="5dp"
+    android:paddingBottom="16dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgAuthorIconHolder"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/circle_background"
+        android:backgroundTint="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgAuthorIcon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        app:layout_constraintBottom_toBottomOf="@id/imgAuthorIconHolder"
+        app:layout_constraintEnd_toEndOf="@id/imgAuthorIconHolder"
+        app:layout_constraintStart_toStartOf="@id/imgAuthorIconHolder"
+        app:layout_constraintTop_toTopOf="@id/imgAuthorIconHolder"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/alice_smith"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/imgAuthorIconHolder"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="-4dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/_20_april_at_4_20_pm"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@id/imgAuthorIconHolder"
+        app:layout_constraintTop_toBottomOf="@id/tvAuthor" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="19dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/we_re_interested_in_your_ideas_and_would_be_glad_to_build_something_bigger_out_of_it"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/postImagesContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="19dp"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPost1"
+            android:layout_width="133dp"
+            android:layout_height="154dp"
+            android:background="@drawable/post_image_background"
+            android:clipToOutline="true"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgPost2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPost2"
+            android:layout_width="133dp"
+            android:layout_height="71dp"
+            android:background="@drawable/post_image_background"
+            android:clipToOutline="true"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgPost1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPost3"
+            android:layout_width="133dp"
+            android:layout_height="71dp"
+            android:background="@drawable/post_image_background"
+            android:clipToOutline="true"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgPost1"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="19dp"
+        android:background="@color/line_color"
+        app:layout_constraintTop_toBottomOf="@id/postImagesContainer" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        app:srcCompat="@drawable/comment" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="13dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/_7_comments"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@id/imgComment"
+        app:layout_constraintTop_toBottomOf="@id/line1" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgHeart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        app:srcCompat="@drawable/heart" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="13dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/_49_likes"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@id/imgHeart"
+        app:layout_constraintTop_toBottomOf="@id/line1" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="9dp"
+        app:layout_constraintEnd_toStartOf="@id/tvShare"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        app:srcCompat="@drawable/share" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="19dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/share"
+        android:textColor="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="23dp"
+        android:background="@color/line_color"
+        app:layout_constraintTop_toBottomOf="@id/imgHeart" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgUserIconHolder"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/circle_background"
+        android:backgroundTint="@color/green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line2" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgUserIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUserIconHolder"
+        app:layout_constraintEnd_toEndOf="@+id/imgUserIconHolder"
+        app:layout_constraintStart_toStartOf="@+id/imgUserIconHolder"
+        app:layout_constraintTop_toTopOf="@+id/imgUserIconHolder"
+        app:srcCompat="@drawable/man" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etComment"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/et_background"
+        android:hint="@string/write_comment"
+        android:paddingStart="16dp"
+        android:paddingEnd="30dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgUserIconHolder"
+        app:layout_constraintTop_toBottomOf="@id/line2" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@id/etComment"
+        app:layout_constraintEnd_toEndOf="@id/etComment"
+        app:layout_constraintTop_toTopOf="@id/etComment"
+        app:srcCompat="@drawable/attachment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
