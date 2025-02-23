@@ -11,8 +11,9 @@
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="@string/welcome"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -24,23 +25,48 @@
         android:id="@+id/imgLogo"
         android:layout_width="400dp"
         android:layout_height="400dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvWelcome"
         app:srcCompat="@drawable/logo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/language"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@id/imgLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgLanguage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="30dp"
+        android:clickable="true"
+        android:src="@drawable/usa"
+        app:layout_constraintBottom_toTopOf="@id/imgLogo"
+        app:layout_constraintStart_toEndOf="@id/tvLanguage"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/button_background"
         android:text="@string/login"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="25sp"
-        android:layout_marginTop="50dp"
         app:layout_constraintTop_toBottomOf="@id/imgLogo" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -48,13 +74,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/button_background"
         android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="25sp"
-        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@ coreSplashscreen = "1.0.1"
 datastorePreferences = "1.1.2"
 firebaseBom = "33.9.0"
 glide = "4.16.0"
-hiltAndroid = "2.51.1"
+hiltAndroid = "2.55"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -22,7 +22,7 @@ firebaseAuthKtx = "23.2.0"
 legacySupportV4 = "1.0.0"
 lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
-fragmentKtx = "1.8.5"
+fragmentKtx = "1.8.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

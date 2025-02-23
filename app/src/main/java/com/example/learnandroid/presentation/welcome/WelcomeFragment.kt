@@ -5,13 +5,19 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.learnandroid.R
+import com.example.learnandroid.data.datastore.LanguagePreference
 import com.example.learnandroid.databinding.FragmentWelcomeBinding
 import com.example.learnandroid.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBinding::inflate) {
+
+    @Inject
+    lateinit var languagePreference: LanguagePreference
 
     private val viewModel: WelcomeViewModel by viewModels()
 
@@ -19,6 +25,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
         super.onViewCreated(view, savedInstanceState)
 
         checkUserSession()
+        observeLanguage()
     }
 
     override fun setUpListeners() {
@@ -30,6 +37,31 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
         binding.btnRegister.setOnClickListener {
             val direction = WelcomeFragmentDirections.actionWelcomeFragmentToRegisterFragment()
             findNavController().navigate(direction)
+        }
+
+        binding.imgLanguage.setOnClickListener {
+            changeLanguage()
+        }
+    }
+
+    private fun changeLanguage() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val newLanguage = if (viewModel.language.value == "en") "ka" else "en"
+            languagePreference.saveLanguage(newLanguage)
+            viewModel.setLanguage(newLanguage)
+            requireActivity().recreate()
+        }
+    }
+
+    private fun observeLanguage() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.language.collect { language ->
+                if (language == "ka") {
+                    binding.imgLanguage.setImageResource(R.drawable.georgia)
+                } else if (language == "en") {
+                    binding.imgLanguage.setImageResource(R.drawable.usa)
+                }
+            }
         }
     }
 

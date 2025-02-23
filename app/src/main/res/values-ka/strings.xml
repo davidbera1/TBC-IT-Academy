@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recipedia</string>
+    <string name="welcome">მოგესალმებათ Recipedia!</string>
+    <string name="login">ავტორიზაცია</string>
+    <string name="register">რეგისტრაცია</string>
+    <string name="email">ელ. ფოსტა</string>
+    <string name="password">პაროლი</string>
+    <string name="login_successful">ავტორიზაცია შესრულდა</string>
+    <string name="registration_successful">რეგისტრაცია შესრულდა</string>
+    <string name="language">აირჩიეთ ენა:</string>
+</resources>
