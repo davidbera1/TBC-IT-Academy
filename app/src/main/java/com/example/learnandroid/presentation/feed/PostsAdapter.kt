@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.PostItemBinding
 import com.example.learnandroid.presentation.model.Post
-import com.example.learnandroid.utils.toDate
 
 class PostsAdapter : ListAdapter<Post, PostsAdapter.PostsViewHolder>(PostDiffUtil()) {
 
@@ -33,8 +32,8 @@ class PostsAdapter : ListAdapter<Post, PostsAdapter.PostsViewHolder>(PostDiffUti
                     .error(R.drawable.error)
                     .into(imgAuthorIcon)
 
-                tvAuthor.text = post.owner.firstName.plus(" ").plus(post.owner.lastName)
-                tvDate.text = post.owner.postDate.toDate()
+                tvAuthor.text = post.owner.fullName
+                tvDate.text = post.owner.postDate
                 tvDescription.text = post.title
 
                 if (post.comments == 1) {

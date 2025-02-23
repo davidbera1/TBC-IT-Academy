@@ -10,9 +10,8 @@ data class Post(
     val owner: Owner
 ) {
     data class Owner(
-        val firstName: String,
-        val lastName: String,
+        val fullName: String,
         val profile: String?,
-        val postDate: Long
+        val postDate: String
     )
 }
