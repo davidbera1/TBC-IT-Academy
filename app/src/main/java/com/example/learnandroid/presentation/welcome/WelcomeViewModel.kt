@@ -37,8 +37,11 @@ class WelcomeViewModel @Inject constructor(
         }
     }
 
-    fun setLanguage(language: String) {
+    fun saveLanguage(language: String) {
         _language.value = language
+        viewModelScope.launch {
+            languagePreference.saveLanguage(language)
+        }
     }
 
     private fun checkUserSession() {

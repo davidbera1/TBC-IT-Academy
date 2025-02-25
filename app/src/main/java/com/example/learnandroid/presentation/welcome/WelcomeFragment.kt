@@ -1,7 +1,5 @@
 package com.example.learnandroid.presentation.welcome
 
-import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,9 +19,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
 
     private val viewModel: WelcomeViewModel by viewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun start() {
         checkUserSession()
         observeLanguage()
     }
@@ -45,12 +41,9 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
     }
 
     private fun changeLanguage() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            val newLanguage = if (viewModel.language.value == "en") "ka" else "en"
-            languagePreference.saveLanguage(newLanguage)
-            viewModel.setLanguage(newLanguage)
-            requireActivity().recreate()
-        }
+        val newLanguage = if (viewModel.language.value == "en") "ka" else "en"
+        viewModel.saveLanguage(newLanguage)
+        requireActivity().recreate()
     }
 
     private fun observeLanguage() {
