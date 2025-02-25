@@ -6,7 +6,11 @@
     <string name="register">რეგისტრაცია</string>
     <string name="email">ელ. ფოსტა</string>
     <string name="password">პაროლი</string>
-    <string name="login_successful">ავტორიზაცია შესრულდა</string>
-    <string name="registration_successful">რეგისტრაცია შესრულდა</string>
+    <string name="login_successful">ავტორიზაცია შესრულებულია</string>
+    <string name="registration_successful">რეგისტრაცია შესრულებულია</string>
     <string name="language">აირჩიეთ ენა:</string>
+    <string name="home">მთავარი</string>
+    <string name="favorites">რჩეულები</string>
+    <string name="profile">პროფილი</string>
+    <string name="logout">გამოსვლა</string>
 </resources>

@@ -5,6 +5,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs")
+    kotlin("plugin.serialization") version "2.1.10"
 }
 
 android {
@@ -21,6 +22,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://api.spoonacular.com/\"")
+            buildConfigField("String", "API_KEY", "\"0a9249e249164527ad40a488e10f58e6\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -38,6 +43,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -70,6 +76,9 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 
+    // serialization
+    implementation(libs.kotlinx.serialization.json)
+
     // datastore
     implementation(libs.androidx.datastore.preferences)
 
@@ -82,4 +91,7 @@ dependencies {
 
     // splash screen
     implementation(libs.androidx.core.splashscreen)
+
+    // viewPager2
+    implementation(libs.androidx.viewpager2)
 }

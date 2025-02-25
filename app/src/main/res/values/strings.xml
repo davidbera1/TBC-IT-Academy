@@ -8,4 +8,8 @@
     <string name="login_successful">Login Successful</string>
     <string name="registration_successful">Registration successful</string>
     <string name="language">Choose language:</string>
+    <string name="home">Home</string>
+    <string name="favorites">Favorites</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -36,7 +36,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 binding.progressBar.visibility = if (state.loader) View.VISIBLE else View.GONE
 
                 state.result?.onSuccess {
-                    val direction = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                    val direction = LoginFragmentDirections.actionLoginFragmentToBottomNavBarContainerFragment()
                     findNavController().navigate(direction)
                     Toast.makeText(
                         requireContext(),

@@ -2,8 +2,8 @@ package com.example.learnandroid.presentation.welcome
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.learnandroid.data.datastore.LanguagePreference
-import com.example.learnandroid.data.repository.AuthRepository
+import com.example.learnandroid.data.local.datastore.DataStoreManager
+import com.example.learnandroid.data.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuthException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,8 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WelcomeViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val languagePreference: LanguagePreference
+    private val firebaseRepository: FirebaseRepository,
+    private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
     private val _isLoggedIn = MutableStateFlow(false)
@@ -32,7 +32,7 @@ class WelcomeViewModel @Inject constructor(
 
     private fun getLanguage() {
         viewModelScope.launch {
-            val language = languagePreference.getLanguage().first()
+            val language = dataStoreManager.getLanguage().first()
             _language.value = language
         }
     }
@@ -40,20 +40,20 @@ class WelcomeViewModel @Inject constructor(
     fun saveLanguage(language: String) {
         _language.value = language
         viewModelScope.launch {
-            languagePreference.saveLanguage(language)
+            dataStoreManager.saveLanguage(language)
         }
     }
 
     private fun checkUserSession() {
         viewModelScope.launch {
-            val currentUser = authRepository.getUserSession()
+            val currentUser = firebaseRepository.getUserSession()
 
             if (currentUser != null) {
                 try {
                     currentUser.reload().await()
                     _isLoggedIn.value = true
                 } catch (e: FirebaseAuthException) {
-                    authRepository.clearUserSession()
+                    firebaseRepository.clearUserSession()
                     _isLoggedIn.value = false
                 }
             } else {

@@ -2,7 +2,7 @@ package com.example.learnandroid.presentation.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.learnandroid.data.repository.AuthRepository
+import com.example.learnandroid.data.repository.FirebaseRepository
 import com.example.learnandroid.data.model.AuthResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
+class RegisterViewModel @Inject constructor(private val firebaseRepository: FirebaseRepository) : ViewModel() {
 
     private val _registerState = MutableSharedFlow<AuthResult>(0)
     val registerState: SharedFlow<AuthResult> = _registerState
@@ -21,7 +21,7 @@ class RegisterViewModel @Inject constructor(private val authRepository: AuthRepo
             _registerState.emit(AuthResult(loader = true))
 
             try {
-                val result = authRepository.register(email, password)
+                val result = firebaseRepository.register(email, password)
                 _registerState.emit(AuthResult(result = result, loader = false))
             } catch (e: Throwable) {
                 _registerState.emit(AuthResult(result = Result.failure(e), loader = false))
