@@ -6,6 +6,8 @@ import androidx.datastore.preferences.core.Preferences
 import com.example.learnandroid.BuildConfig
 import com.example.learnandroid.data.local.datastore.dataStore
 import com.example.learnandroid.data.remote.SpoonacularApiService
+import com.example.learnandroid.data.remote.common.ApiHelper
+import com.example.learnandroid.data.repository.SpoonacularRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -39,7 +41,7 @@ object AppModule {
     fun provideRetrofit(): Retrofit {
         val json = Json { ignoreUnknownKeys = true }
         return Retrofit.Builder()
-            .baseUrl("${BuildConfig.BASE_URL}?apiKey=${BuildConfig.API_KEY}")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
@@ -48,5 +50,11 @@ object AppModule {
     @Singleton
     fun provideSpoonacularApiService(retrofit: Retrofit): SpoonacularApiService {
         return retrofit.create(SpoonacularApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSpoonacularRepository(spoonacularApiService: SpoonacularApiService): SpoonacularRepositoryImpl {
+        return SpoonacularRepositoryImpl(spoonacularApiService, ApiHelper())
     }
 }

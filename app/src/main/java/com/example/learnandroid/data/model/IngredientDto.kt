@@ -6,5 +6,18 @@ import kotlinx.serialization.Serializable
 data class IngredientDto(
     val name: String,
     val amount: Double,
-    val measure: String
-)
+    val measures: MeasuresDto
+) {
+    @Serializable
+    data class MeasuresDto(
+        val us: MeasureDto,
+        val metric: MeasureDto
+    )
+
+    @Serializable
+    data class MeasureDto(
+        val amount: Double,
+        val unitShort: String,
+        val unitLong: String
+    )
+}

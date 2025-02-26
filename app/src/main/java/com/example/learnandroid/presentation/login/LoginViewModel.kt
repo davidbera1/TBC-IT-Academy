@@ -3,7 +3,7 @@ package com.example.learnandroid.presentation.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.learnandroid.data.model.AuthResult
-import com.example.learnandroid.data.repository.FirebaseRepository
+import com.example.learnandroid.data.repository.FirebaseRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val firebaseRepository: FirebaseRepository) : ViewModel() {
+class LoginViewModel @Inject constructor(private val firebaseRepositoryImpl: FirebaseRepositoryImpl) : ViewModel() {
 
     private val _loginState = MutableSharedFlow<AuthResult>(0)
     val loginState: SharedFlow<AuthResult> = _loginState
@@ -21,7 +21,7 @@ class LoginViewModel @Inject constructor(private val firebaseRepository: Firebas
             _loginState.emit(AuthResult(loader = true))
 
             try {
-                val result = firebaseRepository.login(email, password)
+                val result = firebaseRepositoryImpl.login(email, password)
                 _loginState.emit(AuthResult(result = result, loader = false))
             } catch (e: Throwable) {
                 _loginState.emit(AuthResult(result = Result.failure(e), loader = false))

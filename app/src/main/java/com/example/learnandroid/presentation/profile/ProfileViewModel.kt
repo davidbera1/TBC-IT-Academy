@@ -3,7 +3,7 @@ package com.example.learnandroid.presentation.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.learnandroid.data.local.datastore.DataStoreManager
-import com.example.learnandroid.data.repository.FirebaseRepository
+import com.example.learnandroid.data.repository.FirebaseRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val firebaseRepository: FirebaseRepository,
+    private val firebaseRepositoryImpl: FirebaseRepositoryImpl,
     private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
@@ -32,6 +32,6 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun logout() {
-        firebaseRepository.logout()
+        firebaseRepositoryImpl.logout()
     }
 }
