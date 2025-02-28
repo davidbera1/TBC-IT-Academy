@@ -14,7 +14,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val viewModel: HomeViewModel by viewModels()
 
     override fun start() {
-        viewModel.getRandomRecipes(10)
+        viewModel.getRandomRecipes(1)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.randomRecipes.collect {
                 Log.d("!!!", it.toString())

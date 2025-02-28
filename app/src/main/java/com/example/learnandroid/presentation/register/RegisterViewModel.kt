@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.learnandroid.data.repository.FirebaseRepositoryImpl
 import com.example.learnandroid.data.model.AuthResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
@@ -17,7 +18,7 @@ class RegisterViewModel @Inject constructor(private val firebaseRepositoryImpl: 
     val registerState: SharedFlow<AuthResult> = _registerState
 
     fun register(email: String, password: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _registerState.emit(AuthResult(loader = true))
 
             try {

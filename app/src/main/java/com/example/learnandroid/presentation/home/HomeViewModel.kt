@@ -7,6 +7,7 @@ import com.example.learnandroid.data.model.RandomRecipesDto
 import com.example.learnandroid.data.remote.common.Resource
 import com.example.learnandroid.data.repository.SpoonacularRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -21,7 +22,7 @@ class HomeViewModel @Inject constructor(
     val randomRecipes: StateFlow<List<RandomRecipesDto>> = _randomRecipes
 
     fun getRandomRecipes(amount: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = spoonacularRepository.getRandomRecipes(amount)
             when (response) {
                 is Resource.Success -> {

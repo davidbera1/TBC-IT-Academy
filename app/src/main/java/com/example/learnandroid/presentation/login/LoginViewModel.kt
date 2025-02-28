@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.learnandroid.data.model.AuthResult
 import com.example.learnandroid.data.repository.FirebaseRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
@@ -17,7 +18,7 @@ class LoginViewModel @Inject constructor(private val firebaseRepositoryImpl: Fir
     val loginState: SharedFlow<AuthResult> = _loginState
 
     fun login(email: String, password: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _loginState.emit(AuthResult(loader = true))
 
             try {
