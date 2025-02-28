@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.learnandroid.presentation.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_placeDetailBottomSheetFragment"
+            app:destination="@id/placeDetailBottomSheetFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/placeDetailBottomSheetFragment"
+        android:name="com.example.learnandroid.presentation.place_detail.PlaceDetailBottomSheetFragment"
+        android:label="fragment_place_detail_bottom_sheet"
+        tools:layout="@layout/fragment_place_detail_bottom_sheet" >
+        <argument
+            android:name="place"
+            app:argType="com.example.learnandroid.presentation.model.ParcelablePlace" />
+    </dialog>
 </navigation>

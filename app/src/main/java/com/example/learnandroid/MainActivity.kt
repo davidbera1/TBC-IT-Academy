@@ -3,7 +3,9 @@ package com.example.learnandroid
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.learnandroid.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="locations">Locations</string>
+    <string name="zoom_in">+</string>
+    <string name="zoom_out">-</string>
+    <string name="please_enable_location_in_settings">Please enable location in settings</string>
 </resources>

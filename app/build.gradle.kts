@@ -5,6 +5,8 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs")
     kotlin("plugin.serialization") version "2.1.10"
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -22,7 +24,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"\"")
+            buildConfigField("String", "BASE_URL", "\"https://run.mocky.io/v3/\"")
         }
         release {
             isMinifyEnabled = false
@@ -41,6 +43,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -72,16 +75,12 @@ dependencies {
     // serialization
     implementation(libs.kotlinx.serialization.json)
 
-    // datastore
-    implementation(libs.androidx.datastore.preferences)
-
-    // glide
-    implementation(libs.glide)
-
     // hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
-    // splash screen
-    implementation(libs.androidx.core.splashscreen)
+    // maps
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
+    implementation(libs.android.maps.utils)
 }
