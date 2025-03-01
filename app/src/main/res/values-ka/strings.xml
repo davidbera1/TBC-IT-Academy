@@ -13,4 +13,6 @@
     <string name="favorites">რჩეულები</string>
     <string name="profile">პროფილი</string>
     <string name="logout">გამოსვლა</string>
+    <string name="search">ძიება</string>
+    <string name="search_query_is_empty">საძიებო ველი ცარიელია</string>
 </resources>

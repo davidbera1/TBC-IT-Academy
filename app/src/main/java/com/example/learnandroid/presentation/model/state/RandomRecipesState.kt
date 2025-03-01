@@ -1,4 +1,6 @@
-package com.example.learnandroid.presentation.model
+package com.example.learnandroid.presentation.model.state
+
+import com.example.learnandroid.presentation.model.RandomRecipes
 
 data class RandomRecipesState(
     val loader: Boolean = false,

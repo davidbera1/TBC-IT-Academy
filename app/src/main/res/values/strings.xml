@@ -13,4 +13,5 @@
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
     <string name="search">Search</string>
+    <string name="search_query_is_empty">Search query is empty</string>
 </resources>

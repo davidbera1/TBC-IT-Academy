@@ -1,12 +1,12 @@
 package com.example.learnandroid.presentation.ui.register
 
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentRegisterBinding
 import com.example.learnandroid.presentation.base.BaseFragment
+import com.example.learnandroid.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -35,18 +35,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                 binding.progressBar.visibility = if (state.loader) View.VISIBLE else View.GONE
 
                 state.result?.onSuccess {
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.registration_successful),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireContext().showToast(getString(R.string.registration_successful))
                     parentFragmentManager.popBackStack()
                 }?.onFailure { error ->
-                    Toast.makeText(
-                        requireContext(),
-                        error.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireContext().showToast(error.message)
                 }
             }
         }

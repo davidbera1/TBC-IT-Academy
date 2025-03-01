@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.learnandroid.data.repository.SpoonacularRepositoryImpl
 import com.example.learnandroid.presentation.mapper.toRandomRecipes
-import com.example.learnandroid.presentation.model.RandomRecipesState
+import com.example.learnandroid.presentation.mapper.toSearch
+import com.example.learnandroid.presentation.model.state.RandomRecipesState
+import com.example.learnandroid.presentation.model.state.SearchState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,11 +22,14 @@ class HomeViewModel @Inject constructor(
     private val _randomRecipes = MutableStateFlow(RandomRecipesState())
     val randomRecipes: StateFlow<RandomRecipesState> = _randomRecipes
 
+    private val _searchResult = MutableStateFlow(SearchState())
+    val searchResult: StateFlow<SearchState> = _searchResult
+
     init {
+        // get 10 random recipes when home page starts
         getRandomRecipes()
     }
 
-    // get 10 random recipes when home page starts
     private fun getRandomRecipes() {
         viewModelScope.launch(Dispatchers.IO) {
             _randomRecipes.value = RandomRecipesState(loader = true)
@@ -33,6 +38,18 @@ class HomeViewModel @Inject constructor(
                 _randomRecipes.value = RandomRecipesState(randomRecipes = result, loader = false)
             } catch (e: Throwable) {
                 _randomRecipes.value = RandomRecipesState(error = e.message, loader = false)
+            }
+        }
+    }
+
+    fun searchFoodByName(query: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _searchResult.value = SearchState(loader = true)
+            try {
+                val result = spoonacularRepository.searchFoodByName(query).toSearch()
+                _searchResult.value = SearchState(search = result, loader = false)
+            } catch (e: Throwable) {
+                _searchResult.value = SearchState(error = e.message, loader = false)
             }
         }
     }

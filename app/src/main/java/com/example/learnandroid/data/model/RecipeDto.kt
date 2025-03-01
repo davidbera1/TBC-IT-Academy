@@ -18,8 +18,8 @@ data class RecipeDto(
     val veryPopular: Boolean? = null,
     val healthScore: Double? = null,
     val pricePerServing: Double? = null,
-    val extendedIngredients: List<IngredientDto>,
+    val extendedIngredients: List<IngredientDto>? = null,
     val summary: String? = null,
-    val cuisines: List<String>,
+    val cuisines: List<String>? = null,
     val instructions: String? = null
 )

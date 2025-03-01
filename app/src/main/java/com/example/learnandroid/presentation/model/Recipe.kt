@@ -15,8 +15,8 @@ data class Recipe(
     val veryPopular: Boolean? = null,
     val healthScore: Double? = null,
     val pricePerServing: Double? = null,
-    val extendedIngredients: List<Ingredient>,
+    val extendedIngredients: List<Ingredient>? = null,
     val summary: String? = null,
-    val cuisines: List<String>,
+    val cuisines: List<String>? = null,
     val instructions: String? = null
 )

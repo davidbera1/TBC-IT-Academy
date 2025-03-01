@@ -1,13 +1,13 @@
 package com.example.learnandroid.presentation.ui.login
 
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentLoginBinding
 import com.example.learnandroid.presentation.base.BaseFragment
+import com.example.learnandroid.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,17 +39,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     val direction =
                         LoginFragmentDirections.actionLoginFragmentToBottomNavBarContainerFragment()
                     findNavController().navigate(direction)
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.login_successful),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireContext().showToast(getString(R.string.login_successful))
+
                 }?.onFailure { error ->
-                    Toast.makeText(
-                        requireContext(),
-                        error.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireContext().showToast(error.message)
                 }
             }
         }
