@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.favorites
+package com.example.learnandroid.presentation.ui.favorites
 
 import androidx.lifecycle.ViewModel
 

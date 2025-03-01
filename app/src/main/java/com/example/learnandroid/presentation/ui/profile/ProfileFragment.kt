@@ -1,11 +1,11 @@
-package com.example.learnandroid.presentation.profile
+package com.example.learnandroid.presentation.ui.profile
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.databinding.FragmentProfileBinding
 import com.example.learnandroid.presentation.base.BaseFragment
-import com.example.learnandroid.presentation.bottom_nav_bar_container.BottomNavBarContainerFragmentDirections
+import com.example.learnandroid.presentation.ui.bottom_nav_bar_container.BottomNavBarContainerFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

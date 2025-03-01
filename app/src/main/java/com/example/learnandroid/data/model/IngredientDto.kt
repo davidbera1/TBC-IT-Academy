@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class IngredientDto(
     val name: String,
-    val amount: Double,
+    val amount: Double? = null,
     val measures: MeasuresDto
 ) {
     @Serializable
@@ -16,8 +16,8 @@ data class IngredientDto(
 
     @Serializable
     data class MeasureDto(
-        val amount: Double,
-        val unitShort: String,
-        val unitLong: String
+        val amount: Double? = null,
+        val unitShort: String? = null,
+        val unitLong: String? = null
     )
 }

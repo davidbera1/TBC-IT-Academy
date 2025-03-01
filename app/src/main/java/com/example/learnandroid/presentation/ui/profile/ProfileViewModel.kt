@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.profile
+package com.example.learnandroid.presentation.ui.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

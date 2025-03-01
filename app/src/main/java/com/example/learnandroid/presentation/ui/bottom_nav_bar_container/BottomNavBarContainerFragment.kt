@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.bottom_nav_bar_container
+package com.example.learnandroid.presentation.ui.bottom_nav_bar_container
 
 import androidx.viewpager2.widget.ViewPager2
 import com.example.learnandroid.R

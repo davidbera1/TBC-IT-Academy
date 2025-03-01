@@ -11,7 +11,11 @@ class SpoonacularRepositoryImpl @Inject constructor(
     private val apiHelper: ApiHelper
 ) : SpoonacularRepository {
 
-    override suspend fun getRandomRecipes(number: Int): Resource<RandomRecipesDto> {
-        return apiHelper.handleHttpRequest { spoonacularApiService.getRandomRecipes(number) }
+    override suspend fun getRandomRecipes(number: Int): RandomRecipesDto {
+        val result = apiHelper.handleHttpRequest { spoonacularApiService.getRandomRecipes(number) }
+        return when (result) {
+            is Resource.Success -> result.data
+            is Resource.Error -> throw Throwable(result.error)
+        }
     }
 }

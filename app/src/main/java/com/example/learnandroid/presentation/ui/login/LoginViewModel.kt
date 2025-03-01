@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.login
+package com.example.learnandroid.presentation.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

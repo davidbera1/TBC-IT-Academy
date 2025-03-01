@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.register
+package com.example.learnandroid.presentation.ui.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

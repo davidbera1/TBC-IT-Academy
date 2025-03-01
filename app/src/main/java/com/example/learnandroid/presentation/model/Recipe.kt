@@ -1,9 +1,6 @@
-package com.example.learnandroid.data.model
+package com.example.learnandroid.presentation.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class RecipeDto(
+data class Recipe(
     val id: Int,
     val image: String? = null,
     val title: String? = null,
@@ -18,7 +15,7 @@ data class RecipeDto(
     val veryPopular: Boolean? = null,
     val healthScore: Double? = null,
     val pricePerServing: Double? = null,
-    val extendedIngredients: List<IngredientDto>,
+    val extendedIngredients: List<Ingredient>,
     val summary: String? = null,
     val cuisines: List<String>,
     val instructions: String? = null

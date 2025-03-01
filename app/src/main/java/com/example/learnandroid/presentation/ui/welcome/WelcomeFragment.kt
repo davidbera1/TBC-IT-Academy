@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.welcome
+package com.example.learnandroid.presentation.ui.welcome
 
 import android.view.View
 import androidx.fragment.app.viewModels

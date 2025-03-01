@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.home
+package com.example.learnandroid.presentation.ui.home
 
 import android.util.Log
 import androidx.fragment.app.viewModels
@@ -14,10 +14,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val viewModel: HomeViewModel by viewModels()
 
     override fun start() {
-        viewModel.getRandomRecipes(1)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.randomRecipes.collect {
-                Log.d("!!!", it.toString())
+                Log.d("!!!", it.randomRecipes.recipes.toString())
             }
         }
     }

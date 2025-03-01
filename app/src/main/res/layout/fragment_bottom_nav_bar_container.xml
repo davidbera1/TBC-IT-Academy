@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/bottomNavBarContainer"
     android:background="@color/background_color"
-    tools:context=".presentation.bottom_nav_bar_container.BottomNavBarContainerFragment">
+    tools:context=".presentation.ui.bottom_nav_bar_container.BottomNavBarContainerFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"

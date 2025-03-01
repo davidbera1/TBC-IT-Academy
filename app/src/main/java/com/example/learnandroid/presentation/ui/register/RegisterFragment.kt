@@ -1,48 +1,46 @@
-package com.example.learnandroid.presentation.login
+package com.example.learnandroid.presentation.ui.register
 
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
-import com.example.learnandroid.databinding.FragmentLoginBinding
+import com.example.learnandroid.databinding.FragmentRegisterBinding
 import com.example.learnandroid.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
+class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun start() {
-        observeLoginState()
+        observeRegisterState()
     }
 
     override fun setUpListeners() {
-        binding.btnLogin.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
-            viewModel.login(email, password)
+            viewModel.register(email, password)
         }
     }
 
-    private fun observeLoginState() {
+    private fun observeRegisterState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.loginState.collect { state ->
-                binding.btnLogin.isEnabled = !state.loader
+            viewModel.registerState.collect { state ->
+                binding.btnRegister.isEnabled = !state.loader
 
                 binding.progressBar.visibility = if (state.loader) View.VISIBLE else View.GONE
 
                 state.result?.onSuccess {
-                    val direction = LoginFragmentDirections.actionLoginFragmentToBottomNavBarContainerFragment()
-                    findNavController().navigate(direction)
                     Toast.makeText(
                         requireContext(),
-                        getString(R.string.login_successful),
+                        getString(R.string.registration_successful),
                         Toast.LENGTH_SHORT
                     ).show()
+                    parentFragmentManager.popBackStack()
                 }?.onFailure { error ->
                     Toast.makeText(
                         requireContext(),
