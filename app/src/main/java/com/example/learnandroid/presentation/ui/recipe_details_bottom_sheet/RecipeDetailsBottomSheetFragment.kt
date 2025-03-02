@@ -1,6 +1,7 @@
 package com.example.learnandroid.presentation.ui.recipe_details_bottom_sheet
 
 import android.annotation.SuppressLint
+import android.text.util.Linkify
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -86,7 +87,10 @@ class RecipeDetailsBottomSheetFragment :
             }
 
             setTextOrHideView(tvServings, recipe.servings)
+
             setTextOrHideView(tvSourceUrl, recipe.sourceUrl)
+            Linkify.addLinks(binding.tvSourceUrl, Linkify.WEB_URLS)
+
             setTextOrHideView(tvVegetarian, recipe.vegetarian)
             setTextOrHideView(tvVegan, recipe.vegan)
             setTextOrHideView(tvGlutenFree, recipe.glutenFree)
