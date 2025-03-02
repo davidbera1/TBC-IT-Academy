@@ -7,6 +7,7 @@ plugins {
     id("androidx.navigation.safeargs")
     kotlin("plugin.serialization") version "2.1.10"
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -25,7 +26,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://api.spoonacular.com/\"")
-            buildConfigField("String", "API_KEY", "\"0a9249e249164527ad40a488e10f58e6\"")
+            buildConfigField("String", "API_KEY", "\"8858817950cb447fbc867f52fb092c7a\"")
         }
         release {
             isMinifyEnabled = false

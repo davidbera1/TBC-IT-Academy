@@ -1,31 +1,30 @@
-package com.example.learnandroid.presentation.ui.home
+package com.example.learnandroid.presentation.common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.learnandroid.databinding.RandomRecipeItemBinding
+import com.example.learnandroid.databinding.RecipeItemBinding
 import com.example.learnandroid.presentation.model.Recipe
 import com.example.learnandroid.utils.loadImage
 import com.example.learnandroid.utils.setHtmlText
 
-// add lambda callback click listener in constructor
-class RandomRecipesAdapter(val onItemClicked: (Int) -> Unit) :
-    ListAdapter<Recipe, RandomRecipesAdapter.RandomRecipesViewHolder>(RandomRecipesDiffUtil()) {
+class RecipesAdapter(val onItemClicked: (Recipe) -> Unit) :
+    ListAdapter<Recipe, RecipesAdapter.RecipesViewHolder>(RecipesDiffUtil()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RandomRecipesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder {
         val binding =
-            RandomRecipeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return RandomRecipesViewHolder(binding)
+            RecipeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return RecipesViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: RandomRecipesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
         val recipe = getItem(position)
         holder.onBind(recipe)
     }
 
-    inner class RandomRecipesViewHolder(private val binding: RandomRecipeItemBinding) :
+    inner class RecipesViewHolder(private val binding: RecipeItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(recipe: Recipe) {
             binding.tvTitle.text = recipe.title
@@ -38,14 +37,14 @@ class RandomRecipesAdapter(val onItemClicked: (Int) -> Unit) :
             binding.tvSummary.setHtmlText(first3Sentences)
             binding.image.loadImage(recipe.image)
 
-            binding.root.setOnClickListener {
-                onItemClicked.invoke(recipe.id)
+            binding.clickOverlay.setOnClickListener {
+                onItemClicked.invoke(recipe)
             }
         }
     }
 }
 
-class RandomRecipesDiffUtil : DiffUtil.ItemCallback<Recipe>() {
+class RecipesDiffUtil : DiffUtil.ItemCallback<Recipe>() {
     override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
         return oldItem.id == newItem.id
     }

@@ -14,4 +14,21 @@
     <string name="logout">Logout</string>
     <string name="search">Search</string>
     <string name="search_query_is_empty">Search query is empty</string>
+    <string name="change_language">Change language</string>
+    <string name="cuisines" translatable="false">Cuisines: </string>
+    <string name="ingredients" translatable="false">Ingredients</string>
+    <string name="ready_in_minutes" translatable="false">Ready in: </string>
+    <string name="servings" translatable="false">Servings:</string>
+    <string name="source_url" translatable="false">Source URL:</string>
+    <string name="vegetarian" translatable="false">Vegetarian:</string>
+    <string name="vegan" translatable="false">Vegan:</string>
+    <string name="gluten_free" translatable="false">Gluten free:</string>
+    <string name="dairy_free" translatable="false">Dairy free:</string>
+    <string name="cheap" translatable="false">Cheap:</string>
+    <string name="very_popular" translatable="false">Very popular:</string>
+    <string name="health_score" translatable="false">Health score:</string>
+    <string name="price_per_serving" translatable="false">Price per serving:</string>
+    <string name="instructions">Instructions</string>
+    <string name="summary">Summary</string>
+
 </resources>

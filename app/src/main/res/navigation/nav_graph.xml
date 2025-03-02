@@ -45,5 +45,18 @@
             android:id="@+id/action_bottomNavBarContainerFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment"
             app:popUpTo="@id/nav_graph" />
+        <action
+            android:id="@+id/action_bottomNavBarContainerFragment_to_recipeDetailsBottomSheetFragment"
+            app:destination="@id/recipeDetailsBottomSheetFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/recipeDetailsBottomSheetFragment"
+        android:name="com.example.learnandroid.presentation.ui.recipe_details_bottom_sheet.RecipeDetailsBottomSheetFragment"
+        android:label="fragment_recipe_details_bottom_sheet"
+        tools:layout="@layout/fragment_recipe_details_bottom_sheet" >
+        <argument
+            android:name="recipe"
+            app:argType="com.example.learnandroid.presentation.model.Recipe" />
+    </dialog>
+
 </navigation>

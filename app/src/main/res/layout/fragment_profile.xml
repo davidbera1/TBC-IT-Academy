@@ -33,4 +33,29 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvChangeLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/change_language"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEmail" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgLanguage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="30dp"
+        android:clickable="true"
+        android:src="@drawable/usa"
+        app:layout_constraintTop_toTopOf="@id/tvChangeLanguage"
+        app:layout_constraintBottom_toBottomOf="@id/tvChangeLanguage"
+        app:layout_constraintStart_toEndOf="@id/tvChangeLanguage"
+        app:layout_goneMarginStart="10dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,10 +3,13 @@ package com.example.learnandroid.presentation.ui.home
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentHomeBinding
 import com.example.learnandroid.presentation.base.BaseFragment
+import com.example.learnandroid.presentation.common.RecipesAdapter
 import com.example.learnandroid.presentation.mapper.toRecipe
+import com.example.learnandroid.presentation.ui.bottom_nav_bar_container.BottomNavBarContainerFragmentDirections
 import com.example.learnandroid.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -15,9 +18,10 @@ import kotlinx.coroutines.launch
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var adapter: RandomRecipesAdapter
+    private lateinit var adapter: RecipesAdapter
 
     override fun start() {
+        viewModel.getRandomRecipes(2) // get 10 random recipes upon start
         setUpRecyclerView()
         observeRandomRecipes()
         observeSearchResult()
@@ -37,7 +41,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun observeSearchResult() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.searchResult.collect { searchResult ->
-                binding.progressBar.visibility = if (searchResult.loader) View.VISIBLE else View.GONE
+                binding.progressBar.visibility =
+                    if (searchResult.loader) View.VISIBLE else View.GONE
                 if (searchResult.error != null) {
                     requireContext().showToast(searchResult.error)
                 }
@@ -59,8 +64,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setUpRecyclerView() {
-        adapter = RandomRecipesAdapter(onItemClicked = {
-            // open detailed info fragment
+        adapter = RecipesAdapter(onItemClicked = { recipe ->
+            val direction =
+                BottomNavBarContainerFragmentDirections.actionBottomNavBarContainerFragmentToRecipeDetailsBottomSheetFragment(recipe)
+            findNavController().navigate(direction)
         })
         binding.recyclerView.adapter = adapter
     }

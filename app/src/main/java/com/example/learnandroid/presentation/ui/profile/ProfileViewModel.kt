@@ -20,8 +20,26 @@ class ProfileViewModel @Inject constructor(
     private val _email = MutableStateFlow("")
     val email: StateFlow<String> = _email
 
+    private val _language = MutableStateFlow("")
+    val language: StateFlow<String> = _language
+
     init {
+        getLanguage()
         getEmail()
+    }
+
+    private fun getLanguage() {
+        viewModelScope.launch {
+            val language = dataStoreManager.getLanguage().first()
+            _language.value = language
+        }
+    }
+
+    fun saveLanguage(language: String) {
+        _language.value = language
+        viewModelScope.launch {
+            dataStoreManager.saveLanguage(language)
+        }
     }
 
     private fun getEmail() {
