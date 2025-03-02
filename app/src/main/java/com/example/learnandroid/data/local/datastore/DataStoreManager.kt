@@ -6,6 +6,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -21,6 +22,7 @@ class DataStoreManager @Inject constructor(
 ) {
     private val LANGUAGE_KEY = stringPreferencesKey("language_key")
     private val EMAIL = stringPreferencesKey("email")
+    private val INT_LIST_KEY = stringSetPreferencesKey("int_list_key")
 
     suspend fun saveLanguage(language: String) {
         dataStore.edit { preferences ->
@@ -43,6 +45,42 @@ class DataStoreManager @Inject constructor(
     fun getEmail(): Flow<String> {
         return dataStore.data.map { preferences ->
             preferences[EMAIL] ?: ""
+        }
+    }
+
+    suspend fun saveFavoriteId(favoriteId: Int) {
+        initializeIntListIfDoesNotExist()
+
+        dataStore.edit { preferences ->
+            val existingSet = preferences[INT_LIST_KEY] ?: emptySet()
+            val updatedSet = existingSet.toMutableSet().apply {
+                add(favoriteId.toString())
+            }
+            preferences[INT_LIST_KEY] = updatedSet
+        }
+    }
+
+    suspend fun removeFavoriteId(favoriteId: Int) {
+        dataStore.edit { preferences ->
+            val existingSet = preferences[INT_LIST_KEY] ?: emptySet()
+            val updatedSet = existingSet.toMutableSet().apply {
+                remove(favoriteId.toString())
+            }
+            preferences[INT_LIST_KEY] = updatedSet
+        }
+    }
+
+    suspend fun getFavoriteIdList(): List<Int> {
+        val preferences = dataStore.data.first()
+        val stringSet = preferences[INT_LIST_KEY] ?: emptySet()
+        return stringSet.map { it.toInt() }
+    }
+
+    private suspend fun initializeIntListIfDoesNotExist() {
+        dataStore.edit { preferences ->
+            if (preferences[INT_LIST_KEY] == null) {
+                preferences[INT_LIST_KEY] = emptySet()
+            }
         }
     }
 }

@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue">#03A9F4</color>
+    <color name="red">#CA1515</color>
     <color name="background_color">#D9914A</color>
-    <color name="random_recipe_item_bg_color">#2B958A</color>
+    <color name="recipe_item_bg_color">#2B958A</color>
 </resources>

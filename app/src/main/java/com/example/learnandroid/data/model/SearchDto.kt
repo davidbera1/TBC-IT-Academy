@@ -14,7 +14,7 @@ data class SearchDto(
 
     @Serializable
     data class FoodDto(
-        val id: Int? = null, // some foods from spoonacular don't return IDs :(
+        val id: Int? = null, // some foods from spoonacular search don't return IDs :(
         val name: String? = null,
         val image: String? = null,
         @SerialName("content") val summary: String? = null

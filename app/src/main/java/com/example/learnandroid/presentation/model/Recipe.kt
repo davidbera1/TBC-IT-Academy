@@ -1,5 +1,9 @@
 package com.example.learnandroid.presentation.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Recipe(
     val id: Int,
     val image: String? = null,
@@ -19,4 +23,4 @@ data class Recipe(
     val summary: String? = null,
     val cuisines: List<String>? = null,
     val instructions: String? = null
-)
+) : Parcelable

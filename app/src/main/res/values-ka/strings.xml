@@ -15,4 +15,5 @@
     <string name="logout">გამოსვლა</string>
     <string name="search">ძიება</string>
     <string name="search_query_is_empty">საძიებო ველი ცარიელია</string>
+    <string name="change_language">ენის შეცვლა</string>
 </resources>

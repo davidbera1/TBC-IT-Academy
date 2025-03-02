@@ -25,16 +25,11 @@ class HomeViewModel @Inject constructor(
     private val _searchResult = MutableStateFlow(SearchState())
     val searchResult: StateFlow<SearchState> = _searchResult
 
-    init {
-        // get 10 random recipes when home page starts
-        getRandomRecipes()
-    }
-
-    private fun getRandomRecipes() {
+    fun getRandomRecipes(amount: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             _randomRecipes.value = RandomRecipesState(loader = true)
             try {
-                val result = spoonacularRepository.getRandomRecipes(10).toRandomRecipes()
+                val result = spoonacularRepository.getRandomRecipes(amount).toRandomRecipes()
                 _randomRecipes.value = RandomRecipesState(randomRecipes = result, loader = false)
             } catch (e: Throwable) {
                 _randomRecipes.value = RandomRecipesState(error = e.message, loader = false)
