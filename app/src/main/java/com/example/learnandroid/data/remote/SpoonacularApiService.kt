@@ -27,4 +27,10 @@ interface SpoonacularApiService {
         @Path("id") id: Int,
         @Query("apiKey") apiKey: String = BuildConfig.API_KEY
     ) : Response<RecipeDto>
+
+    @GET("recipes/informationBulk")
+    suspend fun searchFoodsByIds(
+        @Query("ids") ids: String,
+        @Query("apiKey") apiKey: String = BuildConfig.API_KEY
+    ) : Response<List<RecipeDto>>
 }

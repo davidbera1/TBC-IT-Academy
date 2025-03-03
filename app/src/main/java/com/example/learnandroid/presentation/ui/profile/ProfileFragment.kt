@@ -31,6 +31,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         binding.imgLanguage.setOnClickListener {
             changeLanguage()
         }
+
+        binding.tvChangeLanguage.setOnClickListener {
+            changeLanguage()
+        }
     }
 
     private fun observeEmailAndUpdateUI() {

@@ -2,12 +2,12 @@ package com.example.learnandroid.presentation.ui.recipe_details_bottom_sheet
 
 import android.annotation.SuppressLint
 import android.text.util.Linkify
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentRecipeDetailsBottomSheetBinding
 import com.example.learnandroid.presentation.base.BaseBottomSheetDialogFragment
@@ -27,12 +27,14 @@ class RecipeDetailsBottomSheetFragment :
 
     private val viewModel: RecipeDetailsViewModel by viewModels()
     private val args: RecipeDetailsBottomSheetFragmentArgs by navArgs()
+    private var recipeId: Int = 0
+    private lateinit var ingredientsAdapter: IngredientsAdapter
     private lateinit var recipe: Recipe
     private lateinit var favoriteIds: List<Int>
 
     override fun start() {
-        recipe = args.recipe
-        viewModel.searchFoodById(recipe.id)
+        recipeId = args.recipeId
+        viewModel.searchFoodById(recipeId)
         observeSearchByIdResult()
         observeFavoriteIdList()
         disableBottomSheetDragging()
@@ -57,10 +59,14 @@ class RecipeDetailsBottomSheetFragment :
             dismiss()
         }
         binding.imgFavorite.setOnClickListener {
-            if (favoriteIds.contains(recipe.id)) {
-                viewModel.removeFavoriteId(recipe.id)
-            } else {
-                viewModel.saveFavoriteId(recipe.id)
+            if(::recipe.isInitialized) {
+                if (favoriteIds.contains(recipe.id)) {
+                    viewModel.removeFavoriteId(recipe.id)
+                    requireContext().showToast(getString(R.string.removed_from_favorites))
+                } else {
+                    viewModel.saveFavoriteId(recipe.id)
+                    requireContext().showToast(getString(R.string.added_in_favorites))
+                }
             }
         }
     }
@@ -74,8 +80,7 @@ class RecipeDetailsBottomSheetFragment :
             tvInstructions.setHtmlText(recipe.instructions)
 
             if (recipe.cuisines?.isNotEmpty() == true) {
-                tvCuisines.text =
-                    getString(R.string.cuisines).plus(recipe.cuisines?.joinToString(", ").plus('.'))
+                tvCuisines.text = "${tvCuisines.text} ${recipe.cuisines?.joinToString(", ")}"
             } else {
                 tvCuisines.visibility = View.GONE
             }
@@ -100,6 +105,12 @@ class RecipeDetailsBottomSheetFragment :
             setTextOrHideView(tvHealthScore, recipe.healthScore)
             setTextOrHideView(tvPricePerServing, recipe.pricePerServing)
         }
+    }
+
+    private fun setUpRecyclerView() {
+        ingredientsAdapter = IngredientsAdapter()
+        binding.recyclerView.adapter = ingredientsAdapter
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 
     @SuppressLint("SetTextI18n")
@@ -142,8 +153,9 @@ class RecipeDetailsBottomSheetFragment :
 
                 if (it.searchByIdResult != null) {
                     recipe = it.searchByIdResult
-                    Log.d("!!!", "recipe fragment: $recipe")
                     setUpViews()
+                    setUpRecyclerView()
+                    ingredientsAdapter.submitList(recipe.extendedIngredients)
                 }
             }
         }
@@ -153,7 +165,7 @@ class RecipeDetailsBottomSheetFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.favoriteIdList.collect { favoriteIdList ->
                 favoriteIds = favoriteIdList
-                if (favoriteIdList.contains(recipe.id)) {
+                if (favoriteIdList.contains(recipeId)) {
                     binding.imgFavorite.setImageResource(R.drawable.heart_red)
                 } else {
                     binding.imgFavorite.setImageResource(R.drawable.heart)

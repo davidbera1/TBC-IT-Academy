@@ -26,7 +26,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://api.spoonacular.com/\"")
-            buildConfigField("String", "API_KEY", "\"8858817950cb447fbc867f52fb092c7a\"")
+            buildConfigField("String", "API_KEY", "\"64702f7babf14ebdb2863b8047cf6338\"")
         }
         release {
             isMinifyEnabled = false

@@ -1,7 +1,6 @@
 package com.example.learnandroid.data.local.datastore
 
 import android.content.Context
-import android.util.Log.d
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -9,7 +8,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -70,10 +68,10 @@ class DataStoreManager @Inject constructor(
         }
     }
 
-    suspend fun getFavoriteIdList(): List<Int> {
-        val preferences = dataStore.data.first()
-        val stringSet = preferences[INT_LIST_KEY] ?: emptySet()
-        return stringSet.map { it.toInt() }
+    fun getFavoriteIdList(): Flow<List<Int>> {
+        return dataStore.data.map { preferences ->
+            (preferences[INT_LIST_KEY] ?: emptySet()).map { it.toInt() }
+        }
     }
 
     private suspend fun initializeIntListIfDoesNotExist() {

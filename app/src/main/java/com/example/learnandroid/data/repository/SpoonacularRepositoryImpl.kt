@@ -36,4 +36,12 @@ class SpoonacularRepositoryImpl @Inject constructor(
             is Resource.Error -> throw Throwable(result.error)
         }
     }
+
+    override suspend fun searchFoodsByIds(ids: String): List<RecipeDto> {
+        val result = apiHelper.handleHttpRequest { spoonacularApiService.searchFoodsByIds(ids) }
+        return when (result) {
+            is Resource.Success -> result.data
+            is Resource.Error -> throw Throwable(result.error)
+        }
+    }
 }

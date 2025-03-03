@@ -10,8 +10,10 @@ import com.example.learnandroid.presentation.model.Recipe
 import com.example.learnandroid.utils.loadImage
 import com.example.learnandroid.utils.setHtmlText
 
-class RecipesAdapter(val onItemClicked: (Recipe) -> Unit) :
-    ListAdapter<Recipe, RecipesAdapter.RecipesViewHolder>(RecipesDiffUtil()) {
+class RecipesAdapter(
+    val onItemClicked: (Int) -> Unit,
+    val onItemLongClicked: ((Int) -> Unit)? = null
+) : ListAdapter<Recipe, RecipesAdapter.RecipesViewHolder>(RecipesDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder {
         val binding =
@@ -38,7 +40,13 @@ class RecipesAdapter(val onItemClicked: (Recipe) -> Unit) :
             binding.image.loadImage(recipe.image)
 
             binding.clickOverlay.setOnClickListener {
-                onItemClicked.invoke(recipe)
+                onItemClicked.invoke(recipe.id)
+            }
+
+            // for long click on favorites fragment
+            binding.clickOverlay.setOnLongClickListener {
+                onItemLongClicked?.invoke(recipe.id)
+                onItemLongClicked != null
             }
         }
     }

@@ -7,7 +7,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentWelcomeBinding
 import com.example.learnandroid.presentation.base.BaseFragment
-import com.example.learnandroid.presentation.model.Recipe
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,6 +33,10 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
         }
 
         binding.imgLanguage.setOnClickListener {
+            changeLanguage()
+        }
+
+        binding.tvLanguage.setOnClickListener {
             changeLanguage()
         }
     }

@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private lateinit var adapter: RecipesAdapter
 
     override fun start() {
-        viewModel.getRandomRecipes(2) // get 10 random recipes upon start
+        viewModel.getRandomRecipes(10) // get 10 random recipes upon start
         setUpRecyclerView()
         observeRandomRecipes()
         observeSearchResult()
@@ -43,9 +43,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             viewModel.searchResult.collect { searchResult ->
                 binding.progressBar.visibility =
                     if (searchResult.loader) View.VISIBLE else View.GONE
-                if (searchResult.error != null) {
+
+                if (searchResult.error == "Nothing found") {
+                    requireContext().showToast(getString(R.string.nothing_found))
+                    viewModel.resetSearchError()
+                } else if (searchResult.error != null) {
                     requireContext().showToast(searchResult.error)
+                    viewModel.resetSearchError()
                 }
+
                 adapter.submitList(searchResult.search?.results?.map { it.toRecipe() })
             }
         }
@@ -64,9 +70,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setUpRecyclerView() {
-        adapter = RecipesAdapter(onItemClicked = { recipe ->
+        adapter = RecipesAdapter(onItemClicked = { id ->
             val direction =
-                BottomNavBarContainerFragmentDirections.actionBottomNavBarContainerFragmentToRecipeDetailsBottomSheetFragment(recipe)
+                BottomNavBarContainerFragmentDirections.actionBottomNavBarContainerFragmentToRecipeDetailsBottomSheetFragment(id)
             findNavController().navigate(direction)
         })
         binding.recyclerView.adapter = adapter

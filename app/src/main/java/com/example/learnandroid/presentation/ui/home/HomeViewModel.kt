@@ -42,10 +42,18 @@ class HomeViewModel @Inject constructor(
             _searchResult.value = SearchState(loader = true)
             try {
                 val result = spoonacularRepository.searchFoodByName(query).toSearch()
-                _searchResult.value = SearchState(search = result, loader = false)
+                if (result.results.isEmpty()) {
+                    _searchResult.value = SearchState(error = "Nothing found", loader = false)
+                } else {
+                    _searchResult.value = SearchState(search = result, loader = false)
+                }
             } catch (e: Throwable) {
                 _searchResult.value = SearchState(error = e.message, loader = false)
             }
         }
+    }
+
+    fun resetSearchError() {
+        _searchResult.value = _searchResult.value.copy(error = null)
     }
 }

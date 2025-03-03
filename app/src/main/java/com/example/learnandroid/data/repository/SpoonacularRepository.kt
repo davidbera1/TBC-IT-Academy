@@ -10,4 +10,6 @@ interface SpoonacularRepository {
     suspend fun searchFoodByName(query: String): SearchDto
 
     suspend fun searchFoodById(id: Int): RecipeDto
+
+    suspend fun searchFoodsByIds(ids: String) : List<RecipeDto>
 }

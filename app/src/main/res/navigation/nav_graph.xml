@@ -55,8 +55,8 @@
         android:label="fragment_recipe_details_bottom_sheet"
         tools:layout="@layout/fragment_recipe_details_bottom_sheet" >
         <argument
-            android:name="recipe"
-            app:argType="com.example.learnandroid.presentation.model.Recipe" />
+            android:name="recipeId"
+            app:argType="integer" />
     </dialog>
 
 </navigation>

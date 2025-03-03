@@ -16,4 +16,7 @@
     <string name="search">ძიება</string>
     <string name="search_query_is_empty">საძიებო ველი ცარიელია</string>
     <string name="change_language">ენის შეცვლა</string>
+    <string name="removed_from_favorites">რჩეულებიდან წაიშალა</string>
+    <string name="added_in_favorites">რჩეულებში დაემატა</string>
+    <string name="nothing_found">ვერაფერი მოიძებნა</string>
 </resources>

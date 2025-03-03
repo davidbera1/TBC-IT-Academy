@@ -28,7 +28,11 @@
     <string name="very_popular" translatable="false">Very popular:</string>
     <string name="health_score" translatable="false">Health score:</string>
     <string name="price_per_serving" translatable="false">Price per serving:</string>
-    <string name="instructions">Instructions</string>
-    <string name="summary">Summary</string>
-
+    <string name="instructions" translatable="false">Instructions</string>
+    <string name="summary" translatable="false">Summary</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
+    <string name="added_in_favorites">Added in favorites</string>
+    <string name="nothing_found">Nothing found</string>
+    <string name="name" translatable="false">Name:</string>
+    <string name="amount" translatable="false">Amount:</string>
 </resources>
