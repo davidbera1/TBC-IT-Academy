@@ -25,10 +25,6 @@ class FavoritesFragment :
         observeFavoriteRecipes()
     }
 
-    override fun setUpListeners() {
-
-    }
-
     private fun setUpRecyclerView() {
         adapter = RecipesAdapter(
             onItemClicked = { id ->
