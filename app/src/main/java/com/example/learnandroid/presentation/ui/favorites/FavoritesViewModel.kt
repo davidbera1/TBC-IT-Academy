@@ -2,7 +2,7 @@ package com.example.learnandroid.presentation.ui.favorites
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.learnandroid.data.local.datastore.DataStoreManager
+import com.example.learnandroid.data.local.datastore.FavoritesManager
 import com.example.learnandroid.data.repository.SpoonacularRepositoryImpl
 import com.example.learnandroid.presentation.mapper.toRecipe
 import com.example.learnandroid.presentation.model.state.FavoriteRecipesState
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
     private val spoonacularRepository: SpoonacularRepositoryImpl,
-    private val dataStoreManager: DataStoreManager
+    private val favoritesManager: FavoritesManager
 ) : ViewModel() {
 
     private var favoriteIdList = emptyList<Int>()
@@ -30,7 +30,7 @@ class FavoritesViewModel @Inject constructor(
 
     private fun getFavoriteIds() {
         viewModelScope.launch(Dispatchers.IO) {
-            dataStoreManager.getFavoriteIdList().collect { ids ->
+            favoritesManager.getFavoriteIdList().collect { ids ->
                 favoriteIdList = ids
                 searchFoodsByIds()
             }
@@ -39,7 +39,7 @@ class FavoritesViewModel @Inject constructor(
 
     fun removeFavoriteId(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            dataStoreManager.removeFavoriteId(id)
+            favoritesManager.removeFavoriteId(id)
             searchFoodsByIds()
         }
     }

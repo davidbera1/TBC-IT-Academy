@@ -2,7 +2,7 @@ package com.example.learnandroid.presentation.ui.recipe_details_bottom_sheet
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.learnandroid.data.local.datastore.DataStoreManager
+import com.example.learnandroid.data.local.datastore.FavoritesManager
 import com.example.learnandroid.data.repository.SpoonacularRepositoryImpl
 import com.example.learnandroid.presentation.mapper.toRecipe
 import com.example.learnandroid.presentation.model.state.SearchByIdState
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipeDetailsViewModel @Inject constructor(
     private val spoonacularRepository: SpoonacularRepositoryImpl,
-    private val dataStoreManager: DataStoreManager
+    private val favoritesManager: FavoritesManager
 ) : ViewModel() {
 
     private val _searchByIdResult = MutableStateFlow(SearchByIdState())
@@ -32,21 +32,21 @@ class RecipeDetailsViewModel @Inject constructor(
 
     private fun getFavoriteIds() {
         viewModelScope.launch {
-            val favoriteIds = dataStoreManager.getFavoriteIdList().first()
+            val favoriteIds = favoritesManager.getFavoriteIdList().first()
             _favoriteIdList.value = favoriteIds
         }
     }
 
     fun saveFavoriteId(id: Int) {
         viewModelScope.launch {
-            dataStoreManager.saveFavoriteId(id)
+            favoritesManager.saveFavoriteId(id)
             getFavoriteIds()
         }
     }
 
     fun removeFavoriteId(id: Int) {
         viewModelScope.launch {
-            dataStoreManager.removeFavoriteId(id)
+            favoritesManager.removeFavoriteId(id)
             getFavoriteIds()
         }
     }

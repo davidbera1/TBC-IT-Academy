@@ -2,7 +2,8 @@ package com.example.learnandroid.presentation.ui.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.learnandroid.data.local.datastore.DataStoreManager
+import com.example.learnandroid.data.local.datastore.EmailPreferencesManager
+import com.example.learnandroid.data.local.datastore.LanguagePreferencesManager
 import com.example.learnandroid.data.repository.FirebaseRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val firebaseRepositoryImpl: FirebaseRepositoryImpl,
-    private val dataStoreManager: DataStoreManager
+    private val emailPreferencesManager: EmailPreferencesManager,
+    private val languagePreferencesManager: LanguagePreferencesManager
 ) : ViewModel() {
 
     private val _email = MutableStateFlow("")
@@ -30,7 +32,7 @@ class ProfileViewModel @Inject constructor(
 
     private fun getLanguage() {
         viewModelScope.launch {
-            val language = dataStoreManager.getLanguage().first()
+            val language = languagePreferencesManager.getLanguage().first()
             _language.value = language
         }
     }
@@ -38,13 +40,13 @@ class ProfileViewModel @Inject constructor(
     fun saveLanguage(language: String) {
         _language.value = language
         viewModelScope.launch {
-            dataStoreManager.saveLanguage(language)
+            languagePreferencesManager.saveLanguage(language)
         }
     }
 
     private fun getEmail() {
         viewModelScope.launch {
-            val email = dataStoreManager.getEmail().first()
+            val email = emailPreferencesManager.getEmail().first()
             _email.value = email
         }
     }

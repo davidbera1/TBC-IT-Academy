@@ -1,6 +1,6 @@
 package com.example.learnandroid.data.repository
 
-import com.example.learnandroid.data.local.datastore.DataStoreManager
+import com.example.learnandroid.data.local.datastore.EmailPreferencesManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.tasks.await
@@ -10,13 +10,13 @@ import javax.inject.Singleton
 @Singleton
 class FirebaseRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
-    private val dataStoreManager: DataStoreManager
+    private val emailPreferencesManager: EmailPreferencesManager
 ) : FirebaseRepository {
 
     override suspend fun login(email: String, password: String): Result<FirebaseUser> {
         return try {
             val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
-            dataStoreManager.saveEmail(email)
+            emailPreferencesManager.saveEmail(email)
             Result.success(result.user!!)
         } catch (e: Throwable) {
             Result.failure(e)
