@@ -24,6 +24,7 @@ abstract class BaseFragment<VB : ViewBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        start()
         setUpListeners()
     }
 
@@ -32,5 +33,6 @@ abstract class BaseFragment<VB : ViewBinding>(
         _binding = null
     }
 
-    abstract fun setUpListeners()
+    abstract fun start()
+    open fun setUpListeners() {}
 }

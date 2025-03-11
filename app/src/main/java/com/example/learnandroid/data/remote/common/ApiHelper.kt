@@ -1,27 +1,35 @@
 package com.example.learnandroid.data.remote.common
 
+import com.example.learnandroid.domain.common.Resource
 import okio.IOException
+import org.json.JSONObject
 import retrofit2.HttpException
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
-object ApiHelper {
+@Singleton
+class ApiHelper @Inject constructor() {
+
     suspend fun <T> handleHttpRequest(apiCall: suspend () -> Response<T>): Resource<T> {
-        val response = apiCall.invoke()
-        try {
-            return if (response.isSuccessful) {
+        return try {
+            val response = apiCall.invoke()
+            if (response.isSuccessful) {
                 response.body()?.let {
                     Resource.Success(data = it)
                 } ?: Resource.Error(error = "Something went wrong")
             } else {
-                Resource.Error(error = response.errorBody()?.string() ?: "Something went wrong")
+                val errorBody = response.errorBody()?.string()
+                val jsonObject = JSONObject(errorBody ?: "")
+                val errorMessage = jsonObject.optString("error", "An unknown error occurred")
+                Resource.Error(error = errorMessage)
             }
-        } catch (e: Throwable) {
-            return when (e) {
-                is IOException -> Resource.Error(error = e.message ?: "IO Error")
-                is HttpException -> Resource.Error(error = e.message ?: "HTTP Error")
-                is IllegalStateException -> Resource.Error(error = e.message ?: "Illegal State Error")
-                else -> Resource.Error(error = e.message ?: "Error")
-            }
+        } catch (e: IOException) {
+            Resource.Error(error = "Network error. Please check your internet connection.")
+        } catch (e: HttpException) {
+            Resource.Error(error = "Server error: ${e.code()}")
+        } catch (e: Exception) {
+            Resource.Error(error = e.message ?: "Unexpected error occurred")
         }
     }
 }
