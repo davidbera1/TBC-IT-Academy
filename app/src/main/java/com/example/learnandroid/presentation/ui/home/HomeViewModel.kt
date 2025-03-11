@@ -8,27 +8,20 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.learnandroid.data.local.room.AppDatabase
-import com.example.learnandroid.data.local.room.entity.User
+import com.example.learnandroid.data.local.room.entity.UserEntity
 import com.example.learnandroid.data.remote.UserRemoteMediator
 import com.example.learnandroid.data.remote.UserService
+import com.example.learnandroid.domain.model.User
+import com.example.learnandroid.domain.use_case.GetUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val database: AppDatabase,
-    private val userService: UserService
+    private val getUsersUseCase: GetUsersUseCase
 ) : ViewModel() {
 
     @OptIn(ExperimentalPagingApi::class)
-    val usersPager: Flow<PagingData<User>> = Pager(
-        config = PagingConfig(
-            pageSize = 6,
-            initialLoadSize = 6,
-            prefetchDistance = 0
-        ),
-        remoteMediator = UserRemoteMediator(userService, database.userDao()),
-        pagingSourceFactory = { database.userDao().getUsers() }
-    ).flow.cachedIn(viewModelScope)
+    val users: Flow<PagingData<User>> = getUsersUseCase().cachedIn(viewModelScope)
 }

@@ -2,8 +2,10 @@ package com.example.learnandroid.di
 
 import com.example.learnandroid.data.repository.LoginRepositoryImpl
 import com.example.learnandroid.data.repository.RegisterRepositoryImpl
+import com.example.learnandroid.data.repository.UsersRepositoryImpl
 import com.example.learnandroid.domain.repository.LoginRepository
 import com.example.learnandroid.domain.repository.RegisterRepository
+import com.example.learnandroid.domain.repository.UsersRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +23,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindRegisterRepository(registerRepositoryImpl: RegisterRepositoryImpl): RegisterRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindUsersRepository(usersRepositoryImpl: UsersRepositoryImpl): UsersRepository
 }

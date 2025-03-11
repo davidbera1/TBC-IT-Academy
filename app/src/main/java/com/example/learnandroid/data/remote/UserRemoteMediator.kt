@@ -5,18 +5,18 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import com.example.learnandroid.data.local.room.UserDao
-import com.example.learnandroid.data.local.room.entity.User
+import com.example.learnandroid.data.local.room.entity.UserEntity
 
 @OptIn(ExperimentalPagingApi::class)
 class UserRemoteMediator(
     private val userService: UserService,
     private val userDao: UserDao,
     private val perPage: Int = 6
-) : RemoteMediator<Int, User>() {
+) : RemoteMediator<Int, UserEntity>() {
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, User>
+        state: PagingState<Int, UserEntity>
     ): MediatorResult {
         return try {
             val page = when (loadType) {
@@ -34,7 +34,7 @@ class UserRemoteMediator(
             }
 
             val users = response.body()?.data?.map { user ->
-                User(
+                UserEntity(
                     id = user.id,
                     email = user.email,
                     firstName = user.firstName,

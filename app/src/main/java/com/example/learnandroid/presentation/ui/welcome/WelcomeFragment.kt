@@ -5,6 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.databinding.FragmentWelcomeBinding
 import com.example.learnandroid.presentation.base.BaseFragment
+import com.example.learnandroid.presentation.util.launchViewLifecycleOwnerScopeWithStartedState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -31,7 +32,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
 
     private fun checkSavedUserSession() {
         val flow = viewModel.getUserSession()
-        viewLifecycleOwner.lifecycleScope.launch {
+        launchViewLifecycleOwnerScopeWithStartedState {
             flow.collect { userSession ->
                 if (userSession?.isLoggedIn == true) {
                     val direction = WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()

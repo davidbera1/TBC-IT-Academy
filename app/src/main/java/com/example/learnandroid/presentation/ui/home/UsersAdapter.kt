@@ -7,8 +7,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.learnandroid.R
-import com.example.learnandroid.data.local.room.entity.User
+import com.example.learnandroid.data.local.room.entity.UserEntity
 import com.example.learnandroid.databinding.RecyclerItemBinding
+import com.example.learnandroid.domain.model.User
 import com.example.learnandroid.presentation.util.loadImage
 
 class UsersAdapter :
