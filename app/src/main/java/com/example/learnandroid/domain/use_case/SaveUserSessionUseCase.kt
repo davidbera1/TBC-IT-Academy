@@ -1,6 +1,6 @@
 package com.example.learnandroid.domain.use_case
 
-import com.example.learnandroid.domain.common.DataStoreKeys
+import com.example.learnandroid.domain.datastore.DataStoreKeys
 import com.example.learnandroid.domain.model.UserSession
 import com.example.learnandroid.domain.repository.DataStoreRepository
 import kotlinx.coroutines.Dispatchers
