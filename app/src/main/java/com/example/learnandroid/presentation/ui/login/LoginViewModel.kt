@@ -2,12 +2,12 @@ package com.example.learnandroid.presentation.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.learnandroid.data.local.datastore.UserSessionManager
 import com.example.learnandroid.domain.common.Resource
+import com.example.learnandroid.domain.model.UserSession
 import com.example.learnandroid.domain.use_case.LoginUseCase
+import com.example.learnandroid.domain.use_case.SaveUserSessionUseCase
 import com.example.learnandroid.presentation.model.LoginResultUiActions
 import com.example.learnandroid.presentation.model.LoginState
-import com.example.learnandroid.presentation.model.UserSession
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val userSessionManager: UserSessionManager,
+    private val saveUserSessionUseCase: SaveUserSessionUseCase,
     private val loginUseCase: LoginUseCase
 ) : ViewModel() {
 
@@ -59,7 +59,7 @@ class LoginViewModel @Inject constructor(
 
     fun saveUserSession(userSession: UserSession) {
         viewModelScope.launch {
-            userSessionManager.saveUserSession(userSession)
+            saveUserSessionUseCase(userSession)
         }
     }
 }

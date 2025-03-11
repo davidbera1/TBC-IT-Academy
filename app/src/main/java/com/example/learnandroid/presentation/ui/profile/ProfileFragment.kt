@@ -34,7 +34,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         val flow = viewModel.getUserSession()
         viewLifecycleOwner.lifecycleScope.launch {
             flow.collect { userSession ->
-                binding.tvEmail.text = getString(R.string.welcome_email, userSession.email)
+                binding.tvEmail.text = getString(R.string.welcome_email, userSession?.email)
             }
         }
     }

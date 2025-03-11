@@ -6,14 +6,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentLoginBinding
 import com.example.learnandroid.presentation.base.BaseFragment
-import com.example.learnandroid.presentation.model.LoginResultUiActions
-import com.example.learnandroid.presentation.model.UserSession
+import com.example.learnandroid.domain.model.UserSession
 import com.example.learnandroid.presentation.util.UiUtils
-import com.example.learnandroid.presentation.util.disable
-import com.example.learnandroid.presentation.util.enable
-import com.example.learnandroid.presentation.util.hide
 import com.example.learnandroid.presentation.util.launchViewLifecycleOwnerScopeWithStartedState
-import com.example.learnandroid.presentation.util.show
 import com.example.learnandroid.presentation.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -62,12 +57,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
                 // save session only when login was successful
                 if (loginState.loginResult == true) {
+                    val token = loginState.data?.token ?: ""
                     if (binding.cbRememberMe.isChecked) {
                         viewModel.saveUserSession(
                             UserSession(
                                 isLoggedIn = true,
                                 email = binding.etEmail.text.toString(),
-                                token = loginState.data?.token
+                                token = token
                             )
                         )
                     } else {
@@ -75,6 +71,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         viewModel.saveUserSession(
                             UserSession(
                                 email = binding.etEmail.text.toString(),
+                                token = ""
                             )
                         )
                     }

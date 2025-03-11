@@ -33,7 +33,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
         val flow = viewModel.getUserSession()
         viewLifecycleOwner.lifecycleScope.launch {
             flow.collect { userSession ->
-                if (userSession.isLoggedIn) {
+                if (userSession?.isLoggedIn == true) {
                     val direction = WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
                     findNavController().navigate(direction)
                 }
