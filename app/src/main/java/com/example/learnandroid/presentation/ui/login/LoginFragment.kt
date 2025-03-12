@@ -71,7 +71,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         viewModel.saveUserSession(
                             UserSession(
                                 email = binding.etEmail.text.toString(),
-                                token = ""
+                                token = token,
+                                isLoggedIn = false
                             )
                         )
                     }
@@ -80,7 +81,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
                     val direction = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
                     findNavController().navigate(direction)
-
                 }
             }
         }
