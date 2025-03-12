@@ -19,8 +19,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val adapter: UsersAdapter by lazy { UsersAdapter() }
 
     override fun start() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        setUpRecyclerView()
         observePaging()
+    }
+
+    private fun setUpRecyclerView() {
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
     }
 
     override fun setUpListeners() {
