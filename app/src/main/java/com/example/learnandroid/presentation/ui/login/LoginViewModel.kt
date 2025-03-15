@@ -1,65 +1,54 @@
 package com.example.learnandroid.presentation.ui.login
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.learnandroid.domain.common.Resource
-import com.example.learnandroid.domain.model.UserSession
 import com.example.learnandroid.domain.use_case.LoginUseCase
-import com.example.learnandroid.domain.use_case.SaveUserSessionUseCase
-import com.example.learnandroid.presentation.model.LoginResultUiActions
-import com.example.learnandroid.presentation.model.LoginState
+import com.example.learnandroid.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.learnandroid.presentation.ui.login.LoginIntent.*
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val saveUserSessionUseCase: SaveUserSessionUseCase,
     private val loginUseCase: LoginUseCase
-) : ViewModel() {
+) : BaseViewModel<LoginState, LoginIntent, LoginEffect>(LoginState()) {
 
-    private val _loginState = MutableSharedFlow<LoginState>()
-    val loginState: SharedFlow<LoginState> = _loginState
+    override suspend fun handleIntent(intent: LoginIntent) {
+        when (intent) {
+            is SendUpdatedEmail -> updateState { copy(email = intent.email) }
 
-    fun login(email: String, password: String) {
-        viewModelScope.launch {
-            _loginState.emit(
-                LoginState(
-                    loader = true,
-                    action = LoginResultUiActions.DISABLE_LOGIN_BUTTON
-                )
-            )
+            is SendUpdatedPassword -> updateState { copy(password = intent.password) }
 
-            when (val result = loginUseCase(email, password)) {
-                is Resource.Success -> {
-                    _loginState.emit(
-                        LoginState(
-                            loginResult = true,
-                            action = LoginResultUiActions.ENABLE_LOGIN_BUTTON,
-                            loader = false
-                        )
-                    )
-                }
+            is LoginButtonClicked -> login()
 
-                is Resource.Error -> {
-                    _loginState.emit(
-                        LoginState(
-                            loginResult = false,
-                            errorMessage = result.error,
-                            action = LoginResultUiActions.ENABLE_LOGIN_BUTTON,
-                            loader = false
-                        )
-                    )
-                }
-            }
+            is RememberMeChecked -> updateState { copy(isRememberMeChecked = intent.isChecked) }
         }
     }
 
-    fun saveUserSession(userSession: UserSession) {
+    private fun login() {
+        val email = state.value.email
+        val password = state.value.password
+        val rememberMe = state.value.isRememberMeChecked
         viewModelScope.launch {
-            saveUserSessionUseCase(userSession)
+            loginUseCase(email, password, rememberMe).collect { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        updateState { copy(isLoading = false) }
+                        emitEffect(LoginEffect.ShowToast("Login successful"))
+                        emitEffect(LoginEffect.NavigateToHome)
+                    }
+
+                    is Resource.Loader -> {
+                        updateState { copy(isLoading = result.isLoading) }
+                    }
+
+                    is Resource.Error -> {
+                        updateState { copy(isLoading = false) }
+                        emitEffect(LoginEffect.ShowToast(result.errorMessage))
+                    }
+                }
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
 package com.example.learnandroid.presentation.ui.register
 
 import android.os.Bundle
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.learnandroid.R
 import com.example.learnandroid.databinding.FragmentRegisterBinding
 import com.example.learnandroid.presentation.base.BaseFragment
 import com.example.learnandroid.presentation.util.UiUtils
@@ -22,45 +22,65 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     lateinit var uiUtils: UiUtils
 
     override fun start() {
-        handleRegisterResult()
+        observeUiFields()
+        observeState()
+        observeEffects()
     }
 
     override fun setUpListeners() {
-        binding.btnRegister.setOnClickListener { register() }
+        binding.btnRegister.setOnClickListener { viewModel.sendIntent(RegisterIntent.RegisterButtonClicked) }
 
-        binding.imgBtnBack.setOnClickListener { findNavController().navigateUp() }
+        binding.imgBtnBack.setOnClickListener { viewModel.sendIntent(RegisterIntent.BackButtonClicked) }
     }
 
-    // only allowed email: eve.holt@reqres.in
-    private fun register() {
-        val email = binding.etEmail.text.toString()
-        val password = binding.etPassword.text.toString()
-        val repeatPassword = binding.etRepeatPassword.text.toString()
-
-        viewModel.register(email = email, password = password, repeatPassword = repeatPassword)
+    private fun navigateToLoginFragment() {
+        val direction = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+        findNavController().navigate(direction)
     }
 
-    private fun handleRegisterResult() {
+    private fun observeUiFields() {
+        binding.etEmail.addTextChangedListener {
+            viewModel.sendIntent(RegisterIntent.SendUpdatedEmail(it.toString()))
+        }
+        binding.etPassword.addTextChangedListener {
+            viewModel.sendIntent(RegisterIntent.SendUpdatedPassword(password = it.toString()))
+        }
+
+        binding.etRepeatPassword.addTextChangedListener {
+            viewModel.sendIntent(
+                RegisterIntent.SendUpdatedRepeatPassword(repeatPassword = it.toString())
+            )
+        }
+    }
+
+    private fun observeState() {
         launchViewLifecycleOwnerScopeWithStartedState {
-            viewModel.registerState.collect { registerState ->
+            viewModel.state.collect { state ->
+                uiUtils.handleLoader(
+                    binding.progressBar,
+                    binding.loadingView,
+                    binding.btnRegister,
+                    state.isLoading
+                )
+            }
+        }
+    }
 
-                uiUtils.handleLoader(binding.progressBar, binding.loadingView, registerState.loader)
-                uiUtils.handleErrorMessage(requireContext(), registerState.errorMessage)
-                uiUtils.handleAction(binding.btnRegister, registerState.action)
+    private fun observeEffects() {
+        launchViewLifecycleOwnerScopeWithStartedState {
+            viewModel.effects.collect { effects ->
+                when (effects) {
+                    is RegisterEffect.ShowToast -> requireContext().showToast(effects.message)
 
-                if (registerState.registerResult == true) {
-                    requireContext().showToast(getString(R.string.registration_was_successful))
+                    is RegisterEffect.NavigateToLogin -> {
+                        val bundle = Bundle().apply {
+                            putString("email", binding.etEmail.text.toString())
+                            putString("password", binding.etPassword.text.toString())
+                        }
+                        setFragmentResult("credentials", bundle)
 
-                    val bundle = Bundle().apply {
-                        putString("email", binding.etEmail.text.toString())
-                        putString("password", binding.etPassword.text.toString())
+                        navigateToLoginFragment()
                     }
-
-                    setFragmentResult("credentials", bundle)
-
-                    val direction =
-                        RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
-                    findNavController().navigate(direction)
                 }
             }
         }

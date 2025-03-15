@@ -1,54 +1,52 @@
 package com.example.learnandroid.presentation.ui.register
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.learnandroid.domain.common.Resource
 import com.example.learnandroid.domain.use_case.RegisterUseCase
-import com.example.learnandroid.presentation.model.RegisterResultUiActions
-import com.example.learnandroid.presentation.model.RegisterState
+import com.example.learnandroid.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.learnandroid.presentation.ui.register.RegisterIntent.*
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase
-) : ViewModel() {
+) : BaseViewModel<RegisterState, RegisterIntent, RegisterEffect>(RegisterState()) {
 
-    private val _registerState = MutableSharedFlow<RegisterState>()
-    val registerState: SharedFlow<RegisterState> = _registerState
+    override suspend fun handleIntent(intent: RegisterIntent) {
+        when (intent) {
+            is SendUpdatedEmail -> updateState { copy(email = intent.email) }
 
-    fun register(email: String, password: String, repeatPassword: String) {
+            is SendUpdatedPassword -> updateState { copy(password = intent.password) }
+
+            is SendUpdatedRepeatPassword -> updateState { copy(repeatPassword = intent.repeatPassword) }
+
+            is RegisterButtonClicked -> register()
+
+            BackButtonClicked -> emitEffect(RegisterEffect.NavigateToLogin)
+        }
+    }
+
+    private fun register() {
+        val email = state.value.email
+        val password = state.value.password
+        val repeatPassword = state.value.repeatPassword
         viewModelScope.launch {
-            _registerState.emit(
-                RegisterState(
-                    loader = true,
-                    action = RegisterResultUiActions.DISABLE_LOGIN_BUTTON
-                )
-            )
+            registerUseCase(email, password, repeatPassword).collect { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        updateState { copy(isLoading = false) }
+                        emitEffect(RegisterEffect.ShowToast("Registration successful"))
+                        emitEffect(RegisterEffect.NavigateToLogin)
+                    }
 
-            when (val result = registerUseCase(email, password, repeatPassword)) {
-                is Resource.Success -> {
-                    _registerState.emit(
-                        RegisterState(
-                            registerResult = true,
-                            action = RegisterResultUiActions.ENABLE_LOGIN_BUTTON,
-                            loader = false
-                        )
-                    )
-                }
+                    is Resource.Loader -> updateState { copy(isLoading = result.isLoading) }
 
-                is Resource.Error -> {
-                    _registerState.emit(
-                        RegisterState(
-                            registerResult = false,
-                            errorMessage = result.error,
-                            action = RegisterResultUiActions.ENABLE_LOGIN_BUTTON,
-                            loader = false
-                        )
-                    )
+                    is Resource.Error -> {
+                        updateState { copy(isLoading = false) }
+                        emitEffect(RegisterEffect.ShowToast(result.errorMessage))
+                    }
                 }
             }
         }

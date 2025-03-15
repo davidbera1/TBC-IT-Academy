@@ -6,7 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.example.learnandroid.data.local.room.AppDatabase
-import com.example.learnandroid.data.mapper.toUser
+import com.example.learnandroid.data.mapper.toDomain
 import com.example.learnandroid.data.remote.UserRemoteMediator
 import com.example.learnandroid.data.remote.UserService
 import com.example.learnandroid.domain.model.User
@@ -30,6 +30,6 @@ class UsersRepositoryImpl @Inject constructor(
             ),
             remoteMediator = UserRemoteMediator(userService, database.userDao()),
             pagingSourceFactory = { database.userDao().getUsers() }
-        ).flow.map { pagingData -> pagingData.map { it.toUser() } }
+        ).flow.map { pagingData -> pagingData.map { it.toDomain() } }
     }
 }
