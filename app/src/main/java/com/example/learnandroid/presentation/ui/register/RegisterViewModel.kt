@@ -24,7 +24,7 @@ class RegisterViewModel @Inject constructor(
 
             is RegisterButtonClicked -> register()
 
-            BackButtonClicked -> emitEffect(RegisterEffect.NavigateToLogin)
+            is BackButtonClicked -> emitEffect(RegisterEffect.NavigateToHome)
         }
     }
 

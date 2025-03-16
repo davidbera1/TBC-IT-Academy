@@ -81,6 +81,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
                         navigateToLoginFragment()
                     }
+
+                    is RegisterEffect.NavigateToHome -> findNavController().navigateUp()
                 }
             }
         }

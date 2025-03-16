@@ -26,9 +26,12 @@ class WelcomeViewModel @Inject constructor(
             updateState { copy(isLoading = true) }
             val userSession = readUserSessionUseCase().first()
             if (userSession.isLoggedIn) {
+                updateState { copy(isLoading = false) }
                 emitEffect(WelcomeEffect.NavigateToHome)
+            } else {
+                updateState { copy(isLoading = false) }
+                return@launch
             }
-            updateState { copy(isLoading = false) }
         }
     }
 }

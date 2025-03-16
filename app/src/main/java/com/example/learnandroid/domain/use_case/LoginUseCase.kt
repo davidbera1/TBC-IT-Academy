@@ -48,7 +48,7 @@ class LoginUseCase @Inject constructor(
     }
 
     private suspend fun saveUserSession(email: String, token: String, rememberMe: Boolean) {
-        val userSession = UserSession(
+        var userSession = UserSession(
             email = email,
             token = token,
             isLoggedIn = true
@@ -56,7 +56,8 @@ class LoginUseCase @Inject constructor(
         if (rememberMe) {
             saveUserSessionUseCase(userSession)
         } else {
-            saveUserSessionUseCase(userSession.copy(isLoggedIn = false))
+            userSession = userSession.copy(isLoggedIn = false)
+            saveUserSessionUseCase(userSession)
         }
     }
 }
