@@ -10,18 +10,28 @@ import javax.inject.Singleton
 @Singleton
 class UiUtils @Inject constructor() {
 
-    fun handleLoader(progressBar: ProgressBar, loadingView: View, button: Button, loader: Boolean?) {
-        if (loader == true) {
+    fun handleLoader(
+        progressBar: ProgressBar,
+        loadingView: View? = null,
+        button: Button,
+        loader: Boolean,
+        button2: Button? = null // for welcome page login button
+    ) {
+        if (loader) {
             progressBar.show()
-            loadingView.show()
+            loadingView?.show()
             button.disable()
             button.setBackgroundResource(R.drawable.gray_button_background)
+            button2?.disable()
+            button2?.setBackgroundResource(R.drawable.gray_button_background)
 
-        } else if (loader == false) {
+        } else {
             progressBar.hide()
-            loadingView.hide()
+            loadingView?.hide()
             button.enable()
             button.setBackgroundResource(R.drawable.purple_button_background)
+            button2?.enable()
+            button2?.setBackgroundResource(R.drawable.light_purple_button_background)
         }
     }
 }

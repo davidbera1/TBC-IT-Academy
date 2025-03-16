@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UsersDto(
-    val data: List<Data>
+    val users: List<UserDto>
 ) {
     @Serializable
-    data class Data(
+    data class UserDto(
         val id: Int,
         val email: String,
         @SerialName("first_name")

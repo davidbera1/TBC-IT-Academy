@@ -18,6 +18,6 @@
     <string name="registered_users">Registered users:</string>
     <string name="welcome_email">Welcome %1$s</string>
     <string name="user_id">User ID: %1$s</string>
-    <string name="full_name">Full name: %1$s %2$s</string>
+    <string name="full_name">Full name: %1$s</string>
 
 </resources>

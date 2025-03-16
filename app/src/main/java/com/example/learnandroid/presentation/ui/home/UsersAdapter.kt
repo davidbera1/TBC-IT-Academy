@@ -7,13 +7,12 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.learnandroid.R
-import com.example.learnandroid.data.local.room.entity.UserEntity
 import com.example.learnandroid.databinding.RecyclerItemBinding
-import com.example.learnandroid.domain.model.User
+import com.example.learnandroid.presentation.model.UserUi
 import com.example.learnandroid.presentation.util.loadImage
 
 class UsersAdapter :
-    PagingDataAdapter<User, UsersAdapter.UsersViewHolder>(UsersDiffUtil()) {
+    PagingDataAdapter<UserUi, UsersAdapter.UsersViewHolder>(UsersDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val binding = RecyclerItemBinding.inflate(
@@ -30,32 +29,31 @@ class UsersAdapter :
     inner class UsersViewHolder(private val binding: RecyclerItemBinding) :
         ViewHolder(binding.root) {
         @SuppressLint("StringFormatMatches")
-        fun onBind(data: User) {
+        fun onBind(user: UserUi) {
             with(binding) {
-                imgAvatar.loadImage(data.avatar)
-                tvId.text = itemView.context.getString(R.string.user_id, data.id)
-                tvEmail.text = data.email
+                imgAvatar.loadImage(user.avatar)
+                tvId.text = itemView.context.getString(R.string.user_id, user.id)
+                tvEmail.text = user.email
                 tvFullName.text = itemView.context.getString(
                     R.string.full_name,
-                    data.firstName,
-                    data.lastName
+                    user.fullName
                 )
             }
         }
     }
 }
 
-class UsersDiffUtil : DiffUtil.ItemCallback<User>() {
+class UsersDiffUtil : DiffUtil.ItemCallback<UserUi>() {
     override fun areItemsTheSame(
-        oldItem: User,
-        newItem: User
+        oldItem: UserUi,
+        newItem: UserUi
     ): Boolean {
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItem: User,
-        newItem: User
+        oldItem: UserUi,
+        newItem: UserUi
     ): Boolean {
         return oldItem == newItem
     }

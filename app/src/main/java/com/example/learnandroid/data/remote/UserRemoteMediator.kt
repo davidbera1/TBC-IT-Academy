@@ -33,7 +33,7 @@ class UserRemoteMediator(
                 return MediatorResult.Error(Throwable("Error"))
             }
 
-            val users = response.body()?.data?.map { user ->
+            val users = response.body()?.users?.map { user ->
                 UserEntity(
                     id = user.id,
                     email = user.email,

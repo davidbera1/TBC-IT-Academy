@@ -11,18 +11,18 @@ import javax.inject.Inject
 class ReadUserSessionUseCase @Inject constructor(
     private val dataStoreRepository: DataStoreRepository
 ) {
-    operator fun invoke(): Flow<UserSession?> {
-        return dataStoreRepository.readValue(key = DataStoreKeys.EMAIL, defaultValue = "")
-            .map { email ->
-                if (email.isNotEmpty()) {
-
-                    val isLoggedIn = dataStoreRepository.readValue(
-                        key = DataStoreKeys.IS_LOGGED_IN,
-                        defaultValue = false
+    operator fun invoke(): Flow<UserSession> {
+        return dataStoreRepository.readValue(key = DataStoreKeys.IS_LOGGED_IN, defaultValue = false)
+            .map { isLoggedIn ->
+                if (isLoggedIn) {
+                    val email = dataStoreRepository.readValue(
+                        key = DataStoreKeys.EMAIL,
+                        defaultValue = ""
                     ).first()
-                    val token =
-                        dataStoreRepository.readValue(key = DataStoreKeys.TOKEN, defaultValue = "")
-                            .first()
+                    val token = dataStoreRepository.readValue(
+                        key = DataStoreKeys.TOKEN,
+                        defaultValue = ""
+                    ).first()
 
                     UserSession(
                         email = email,
@@ -30,7 +30,11 @@ class ReadUserSessionUseCase @Inject constructor(
                         token = token
                     )
                 } else {
-                    null
+                    UserSession(
+                        email = "",
+                        isLoggedIn = false,
+                        token = ""
+                    )
                 }
             }
     }
