@@ -10,6 +10,11 @@ class HomeViewModel : BaseViewModel<HomeState, HomeEvent, HomeEffect>(HomeState(
         viewModelScope.launch {
             when (event) {
                 is HomeEvent.AddImageButtonClicked -> emitEffect(HomeEffect.NavigateToImagePicker)
+                is HomeEvent.ImageAdded -> {
+                    updateState {
+                        copy(imageList = imageList + event.uri)
+                    }
+                }
             }
         }
     }

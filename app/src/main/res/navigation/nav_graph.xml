@@ -13,10 +13,30 @@
         <action
             android:id="@+id/action_homeFragment_to_imagePickerBottomSheetDialogFragment"
             app:destination="@id/imagePickerBottomSheetDialogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_imagePreviewFragment"
+            app:destination="@id/imagePreviewFragment" />
     </fragment>
     <dialog
         android:id="@+id/imagePickerBottomSheetDialogFragment"
         android:name="com.example.learnandroid.presentation.screens.image_picker_bottom_sheet.ImagePickerBottomSheetDialogFragment"
         android:label="fragment_image_picker_bottom_sheet_dialog"
-        tools:layout="@layout/fragment_image_picker_bottom_sheet_dialog" />
+        tools:layout="@layout/fragment_image_picker_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_imagePickerBottomSheetDialogFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.learnandroid.presentation.screens.camera.CameraFragment"
+        android:label="CameraFragment" />
+    <fragment
+        android:id="@+id/imagePreviewFragment"
+        android:name="com.example.learnandroid.presentation.screens.image_preview.ImagePreviewFragment"
+        android:label="fragment_image_preview"
+        tools:layout="@layout/fragment_image_preview" >
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
+    </fragment>
 </navigation>

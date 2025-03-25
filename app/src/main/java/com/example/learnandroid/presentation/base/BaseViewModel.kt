@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 
-abstract class BaseViewModel<STATE, EVENT, EFFECT>(
+abstract class BaseViewModel<STATE, EVENT, EFFECT : Any>(
     initialState: STATE
 ) : ViewModel() {
 

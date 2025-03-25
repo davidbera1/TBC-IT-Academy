@@ -4,4 +4,7 @@
     <string name="take_a_photo">Take a photo</string>
     <string name="choose_from_gallery">Choose from Gallery</string>
     <string name="add_an_image">Add an image</string>
+    <string name="default_notification_channel_id">123</string>
+    <string name="fcm_token">FCM Token: %1$s</string>
+
 </resources>

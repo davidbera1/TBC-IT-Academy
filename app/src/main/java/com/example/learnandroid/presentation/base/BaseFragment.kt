@@ -33,6 +33,6 @@ abstract class BaseFragment<VB : ViewBinding>(
         _binding = null
     }
 
-    abstract fun start()
-    abstract fun setupListeners()
+    open fun start() { }
+    open fun setupListeners() {}
 }

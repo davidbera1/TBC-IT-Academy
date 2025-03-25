@@ -24,7 +24,6 @@ abstract class BaseBottomSheetDialogFragment <VB : ViewBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        start()
         setupListeners()
     }
 
@@ -33,6 +32,5 @@ abstract class BaseBottomSheetDialogFragment <VB : ViewBinding>(
         _binding = null
     }
 
-    abstract fun start()
-    abstract fun setupListeners()
+    open fun setupListeners() {}
 }

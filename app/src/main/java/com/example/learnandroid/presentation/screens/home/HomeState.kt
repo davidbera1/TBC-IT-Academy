@@ -1,4 +1,7 @@
 package com.example.learnandroid.presentation.screens.home
 
-class HomeState {
-}
+import android.net.Uri
+
+data class HomeState(
+    val imageList: List<Uri> = emptyList()
+)
