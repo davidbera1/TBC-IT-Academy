@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.learnandroid.databinding.ImageItemBinding
 
 class ImageAdapter(
@@ -15,10 +16,16 @@ class ImageAdapter(
     inner class ImageViewHolder(private val binding: ImageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(uri: Uri) {
-            binding.imgPhoto.setImageURI(uri)
-            binding.root.setOnClickListener {
-                onItemClick(uri)
+            with(binding) {
+                Glide.with(root.context)
+                    .load(uri.toString())
+                    .into(imgPhoto)
+
+                root.setOnClickListener {
+                    onItemClick(uri)
+                }
             }
+
         }
     }
 

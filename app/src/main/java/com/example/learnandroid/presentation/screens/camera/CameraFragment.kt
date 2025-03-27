@@ -5,10 +5,13 @@ import android.content.pm.PackageManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.view.LifecycleCameraController
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.databinding.FragmentCameraBinding
 import com.example.learnandroid.presentation.base.BaseFragment
+import com.example.learnandroid.presentation.screens.home.HomeEvent
+import com.example.learnandroid.presentation.screens.home.HomeViewModel
 import com.example.learnandroid.presentation.util.launchViewLifecycleOwnerScopeWithStartedState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -17,6 +20,7 @@ import kotlinx.coroutines.flow.collectLatest
 class CameraFragment : BaseFragment<FragmentCameraBinding>(FragmentCameraBinding::inflate) {
 
     private val viewModel: CameraViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by activityViewModels()
     private lateinit var cameraController: LifecycleCameraController
 
     private val cameraPermission = Manifest.permission.CAMERA
@@ -57,10 +61,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(FragmentCameraBinding
         launchViewLifecycleOwnerScopeWithStartedState {
             viewModel.state.collectLatest { state ->
                 state.photoUri?.let { uri ->
-                    findNavController().previousBackStackEntry
-                        ?.savedStateHandle
-                        ?.set("captured_image_uri", uri)
-
+                    homeViewModel.onEvent(HomeEvent.ImageAdded(uri))
                     findNavController().popBackStack()
                 }
             }

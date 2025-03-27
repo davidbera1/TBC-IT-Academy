@@ -21,14 +21,12 @@ class CameraViewModel @Inject constructor(
 
     private fun takePhoto(controller: LifecycleCameraController) {
         viewModelScope.launch {
-            updateState { copy(isLoading = true, error = null) }
-
             val result = takePhotoUseCase(controller)
 
             result.onSuccess { uri ->
-                updateState { copy(isLoading = false, photoUri = uri) }
+                updateState { copy(photoUri = uri) }
             }.onFailure { error ->
-                updateState { copy(isLoading = false, error = error.message) }
+                updateState { copy(error = error.message) }
             }
         }
     }

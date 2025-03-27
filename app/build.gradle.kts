@@ -68,6 +68,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.storage)
 
     // cameraX
     implementation(libs.androidx.camera.core)
@@ -76,4 +77,10 @@ dependencies {
     implementation(libs.androidx.camera.video)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.extensions)
+
+    // work manager
+    implementation(libs.androidx.work.runtime.ktx)
+
+    // glide
+    implementation(libs.glide)
 }
