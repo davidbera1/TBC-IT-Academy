@@ -11,13 +11,11 @@
     <string name="amount">Amount</string>
     <string name="description">Description</string>
     <string name="write_description">Write description</string>
-
-    <!--  dummy texts  -->
-    <string name="_350">350</string>
-    <string name="_2345">**** 2345</string>
-    <string name="cash">\@cash</string>
-    <string name="_10">10</string>
-    <string name="_1_0_33">1₾ = 0.33 €</string>
+    <string name="choose_a_card">Choose a card</string>
     <string name="_continue">Continue</string>
+    <string name="account_number">**** %1$s</string>
+    <string name="choose_account">Choose an account</string>
+    <string name="enter_account_number">Enter account number, phone number or personal ID number</string>
+    <string name="enter_here">Enter here</string>
 
 </resources>

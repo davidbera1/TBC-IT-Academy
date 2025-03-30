@@ -9,5 +9,22 @@
         android:id="@+id/transferFragment"
         android:name="com.example.learnandroid.presentation.screens.transfer.TransferFragment"
         android:label="fragment_transfer"
-        tools:layout="@layout/fragment_transfer" />
+        tools:layout="@layout/fragment_transfer" >
+        <action
+            android:id="@+id/action_transferFragment_to_chooseCardFragment"
+            app:destination="@id/chooseCardFragment" />
+        <action
+            android:id="@+id/action_transferFragment_to_chooseDestinationFragment"
+            app:destination="@id/chooseDestinationFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/chooseCardFragment"
+        android:name="com.example.learnandroid.presentation.screens.choose_card.ChooseCardFragment"
+        android:label="fragment_choose_card"
+        tools:layout="@layout/fragment_choose_card" />
+    <dialog
+        android:id="@+id/chooseDestinationFragment"
+        android:name="com.example.learnandroid.presentation.screens.choose_destination.ChooseDestinationFragment"
+        android:label="fragment_choose_destination"
+        tools:layout="@layout/fragment_choose_destination" />
 </navigation>

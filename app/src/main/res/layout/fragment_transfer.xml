@@ -64,8 +64,7 @@
         android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/fromContainer"
         app:layout_constraintStart_toStartOf="@id/fromContainer"
-        app:layout_constraintTop_toTopOf="@+id/fromContainer"
-        app:srcCompat="@drawable/visa" />
+        app:layout_constraintTop_toTopOf="@+id/fromContainer" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvFromCardName"
@@ -73,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
-        android:text="@string/cash"
+        android:text="@string/choose_a_card"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/tvFromAmount"
@@ -85,7 +84,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="@string/_350"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/imgFromCard"
@@ -97,7 +95,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:text="@string/GEL"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/tvFromAmount"
@@ -109,7 +106,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:text="@string/_2345"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/fromContainer"
@@ -151,8 +147,7 @@
         android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/toContainer"
         app:layout_constraintStart_toStartOf="@id/toContainer"
-        app:layout_constraintTop_toTopOf="@+id/toContainer"
-        app:srcCompat="@drawable/visa" />
+        app:layout_constraintTop_toTopOf="@+id/toContainer" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvToCardName"
@@ -160,7 +155,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
-        android:text="@string/cash"
+        android:text="@string/choose_account"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/tvToAmount"
@@ -172,7 +167,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="@string/_10"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/imgToCard"
@@ -184,7 +178,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:text="@string/EUR"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/tvToAmount"
@@ -196,7 +189,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:text="@string/_2345"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/toContainer"
@@ -215,6 +207,7 @@
         android:background="@drawable/rounded_corners"
         android:backgroundTint="@color/background_light"
         android:backgroundTintMode="src_over"
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@id/buyContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toContainer">
@@ -240,7 +233,6 @@
             android:background="@android:color/transparent"
             android:hint="@string/amount"
             android:inputType="numberDecimal"
-            android:maxLength="7"
             android:textColor="@color/white"
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -251,7 +243,6 @@
             android:id="@+id/tvSellCurrency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/GEL"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@id/etSell"
@@ -272,6 +263,7 @@
         android:background="@drawable/rounded_corners"
         android:backgroundTint="@color/background_light"
         android:backgroundTintMode="src_over"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/sellContainer"
         app:layout_constraintTop_toBottomOf="@id/toContainer">
@@ -297,7 +289,6 @@
             android:background="@android:color/transparent"
             android:hint="@string/amount"
             android:inputType="numberDecimal"
-            android:maxLength="7"
             android:textColor="@color/white"
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -308,7 +299,6 @@
             android:id="@+id/tvBuyCurrency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/EUR"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@id/etBuy"
@@ -323,7 +313,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/_1_0_33"
         android:textColor="@android:color/darker_gray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -342,6 +331,7 @@
         android:background="@drawable/rounded_corners"
         android:backgroundTint="@color/background_light"
         android:backgroundTintMode="src_over"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/tvCurrencyInfo">
 
         <androidx.appcompat.widget.AppCompatTextView

@@ -5,6 +5,7 @@ plugins {
     kotlin("plugin.serialization") version "2.1.20"
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -21,6 +22,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://run.mocky.io/v3/\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
