@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#000219</color>
+    <color name="background_light">#131528</color>
+    <color name="stroke_color">#35374f</color>
+
+    <!-- button gradient-->
+    <color name="btn_gradient_start">#1d1f34</color>
+    <color name="btn_gradient_end">#01031b</color>
 </resources>

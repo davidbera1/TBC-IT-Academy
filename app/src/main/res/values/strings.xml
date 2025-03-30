@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="transfer_internally">Transfer Internally</string>
+    <string name="GEL">₾</string>
+    <string name="USD">$</string>
+    <string name="EUR">€</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="sell">Sell</string>
+    <string name="buy">Buy</string>
+    <string name="amount">Amount</string>
+    <string name="description">Description</string>
+    <string name="write_description">Write description</string>
+
+    <!--  dummy texts  -->
+    <string name="_350">350</string>
+    <string name="_2345">**** 2345</string>
+    <string name="cash">\@cash</string>
+    <string name="_10">10</string>
+    <string name="_1_0_33">1₾ = 0.33 €</string>
+    <string name="_continue">Continue</string>
+
 </resources>
