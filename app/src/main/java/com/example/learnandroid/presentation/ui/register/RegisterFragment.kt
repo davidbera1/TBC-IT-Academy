@@ -77,7 +77,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                             putString("email", binding.etEmail.text.toString())
                             putString("password", binding.etPassword.text.toString())
                         }
-                        setFragmentResult("credentials", bundle)
+                        setFragmentResult(REQUEST_KEY, bundle)
 
                         navigateToLoginFragment()
                     }
@@ -86,5 +86,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                 }
             }
         }
+    }
+
+    companion object {
+        const val REQUEST_KEY = "credentials"
     }
 }

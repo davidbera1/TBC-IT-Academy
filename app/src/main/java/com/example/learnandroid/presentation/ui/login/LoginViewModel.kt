@@ -23,7 +23,7 @@ class LoginViewModel @Inject constructor(
 
                 is LoginButtonClicked -> login()
 
-                is RememberMeChecked -> updateState { copy(isRememberMeChecked = event.isChecked) }
+                is SendUpdatedRememberMe -> updateState { copy(isRememberMeChecked = event.isChecked) }
             }
         }
     }

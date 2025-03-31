@@ -13,10 +13,13 @@ class WelcomeViewModel @Inject constructor(
     private val readUserSessionUseCase: ReadUserSessionUseCase
 ) : BaseViewModel<WelcomeState, WelcomeEvent, WelcomeEffect>(WelcomeState()) {
 
+    init {
+        getUserSession()
+    }
+
     override fun onEvent(event: WelcomeEvent) {
         viewModelScope.launch {
             when (event) {
-                WelcomeEvent.GetUserSession -> getUserSession()
                 WelcomeEvent.LoginButtonClicked -> emitEffect(WelcomeEffect.NavigateToLogin)
                 WelcomeEvent.RegisterButtonClicked -> emitEffect(WelcomeEffect.NavigateToRegister)
             }

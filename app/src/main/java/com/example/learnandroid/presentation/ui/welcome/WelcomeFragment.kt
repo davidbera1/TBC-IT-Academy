@@ -1,32 +1,31 @@
 package com.example.learnandroid.presentation.ui.welcome
 
+import androidx.compose.runtime.Composable
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.learnandroid.databinding.FragmentWelcomeBinding
-import com.example.learnandroid.presentation.base.BaseFragment
-import com.example.learnandroid.presentation.util.UiUtils
+import com.example.learnandroid.presentation.base.BaseComposeFragment
+import com.example.learnandroid.presentation.compose.WelcomeScreen
 import com.example.learnandroid.presentation.util.launchViewLifecycleOwnerScopeWithStartedState
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBinding::inflate) {
+class WelcomeFragment : BaseComposeFragment() {
 
     private val viewModel: WelcomeViewModel by viewModels()
 
-    @Inject
-    lateinit var uiUtils: UiUtils
-
     override fun start() {
-        viewModel.onEvent(WelcomeEvent.GetUserSession)
-        observeState()
         observeEffects()
     }
 
-    override fun setUpListeners() {
-        binding.btnRegister.setOnClickListener { viewModel.onEvent(WelcomeEvent.RegisterButtonClicked) }
-
-        binding.btnLogin.setOnClickListener { viewModel.onEvent(WelcomeEvent.LoginButtonClicked) }
+    @Composable
+    override fun SetupContent() {
+        val state = viewModel.state.collectAsStateWithLifecycle()
+        WelcomeScreen(
+            registerButtonClicked = { viewModel.onEvent(WelcomeEvent.RegisterButtonClicked) },
+            loginButtonClicked = { viewModel.onEvent(WelcomeEvent.LoginButtonClicked) },
+            isLoading = state.value.isLoading
+        )
     }
 
     private fun navigateToRegisterFragment() {
@@ -42,20 +41,6 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
     private fun navigateToHomeFragment() {
         val direction = WelcomeFragmentDirections.actionWelcomeFragmentToHomeFragment()
         findNavController().navigate(direction)
-    }
-
-    private fun observeState() {
-        launchViewLifecycleOwnerScopeWithStartedState {
-            viewModel.state.collect { state ->
-                uiUtils.handleLoader(
-                    progressBar = binding.progressBar,
-                    loadingView = binding.loadingView,
-                    button = binding.btnRegister,
-                    button2 = binding.btnLogin,
-                    loader = state.isLoading
-                )
-            }
-        }
     }
 
     private fun observeEffects() {
