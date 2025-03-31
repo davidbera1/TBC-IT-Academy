@@ -35,7 +35,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     }
 
     override fun setUpListeners() {
-        binding.btnLogin.setOnClickListener { viewModel.sendIntent(LoginIntent.LoginButtonClicked) }
+        binding.btnLogin.setOnClickListener { viewModel.onEvent(LoginEvent.LoginButtonClicked) }
     }
 
     private fun navigateToHomeFragment() {
@@ -45,15 +45,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun observeUiFields() {
         binding.etEmail.addTextChangedListener { email ->
-            viewModel.sendIntent(LoginIntent.SendUpdatedEmail(email.toString()))
+            viewModel.onEvent(LoginEvent.SendUpdatedEmail(email.toString()))
         }
 
         binding.etPassword.addTextChangedListener { password ->
-            viewModel.sendIntent(LoginIntent.SendUpdatedPassword(password.toString()))
+            viewModel.onEvent(LoginEvent.SendUpdatedPassword(password.toString()))
         }
 
         binding.cbRememberMe.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.sendIntent(LoginIntent.RememberMeChecked(isChecked))
+            viewModel.onEvent(LoginEvent.RememberMeChecked(isChecked))
         }
     }
 

@@ -20,13 +20,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     lateinit var uiUtils: UiUtils
 
     override fun start() {
-        viewModel.sendIntent(ProfileIntent.ReadUserSession)
+        viewModel.onEvent(ProfileEvent.ReadUserSession)
         observeState()
         observeEffects()
     }
 
     override fun setUpListeners() {
-        binding.btnLogout.setOnClickListener { viewModel.sendIntent(ProfileIntent.LogoutButtonClicked) }
+        binding.btnLogout.setOnClickListener { viewModel.onEvent(ProfileEvent.LogoutButtonClicked) }
     }
 
     private fun navigateToLoginFragment() {

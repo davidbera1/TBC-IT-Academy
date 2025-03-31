@@ -11,13 +11,15 @@ import javax.inject.Inject
 @HiltViewModel
 class WelcomeViewModel @Inject constructor(
     private val readUserSessionUseCase: ReadUserSessionUseCase
-) : BaseViewModel<WelcomeState, WelcomeIntent, WelcomeEffect>(WelcomeState()) {
+) : BaseViewModel<WelcomeState, WelcomeEvent, WelcomeEffect>(WelcomeState()) {
 
-    override suspend fun handleIntent(intent: WelcomeIntent) {
-        when (intent) {
-            WelcomeIntent.GetUserSession -> getUserSession()
-            WelcomeIntent.LoginButtonClicked -> emitEffect(WelcomeEffect.NavigateToLogin)
-            WelcomeIntent.RegisterButtonClicked -> emitEffect(WelcomeEffect.NavigateToRegister)
+    override fun onEvent(event: WelcomeEvent) {
+        viewModelScope.launch {
+            when (event) {
+                WelcomeEvent.GetUserSession -> getUserSession()
+                WelcomeEvent.LoginButtonClicked -> emitEffect(WelcomeEffect.NavigateToLogin)
+                WelcomeEvent.RegisterButtonClicked -> emitEffect(WelcomeEffect.NavigateToRegister)
+            }
         }
     }
 

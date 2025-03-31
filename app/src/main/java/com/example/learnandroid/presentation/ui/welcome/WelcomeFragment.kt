@@ -18,15 +18,15 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
     lateinit var uiUtils: UiUtils
 
     override fun start() {
-        viewModel.sendIntent(WelcomeIntent.GetUserSession)
+        viewModel.onEvent(WelcomeEvent.GetUserSession)
         observeState()
         observeEffects()
     }
 
     override fun setUpListeners() {
-        binding.btnRegister.setOnClickListener { viewModel.sendIntent(WelcomeIntent.RegisterButtonClicked) }
+        binding.btnRegister.setOnClickListener { viewModel.onEvent(WelcomeEvent.RegisterButtonClicked) }
 
-        binding.btnLogin.setOnClickListener { viewModel.sendIntent(WelcomeIntent.LoginButtonClicked) }
+        binding.btnLogin.setOnClickListener { viewModel.onEvent(WelcomeEvent.LoginButtonClicked) }
     }
 
     private fun navigateToRegisterFragment() {

@@ -7,22 +7,24 @@ import com.example.learnandroid.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.example.learnandroid.presentation.ui.login.LoginIntent.*
+import com.example.learnandroid.presentation.ui.login.LoginEvent.*
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase
-) : BaseViewModel<LoginState, LoginIntent, LoginEffect>(LoginState()) {
+) : BaseViewModel<LoginState, LoginEvent, LoginEffect>(LoginState()) {
 
-    override suspend fun handleIntent(intent: LoginIntent) {
-        when (intent) {
-            is SendUpdatedEmail -> updateState { copy(email = intent.email) }
+    override fun onEvent(event: LoginEvent) {
+        viewModelScope.launch {
+            when (event) {
+                is SendUpdatedEmail -> updateState { copy(email = event.email) }
 
-            is SendUpdatedPassword -> updateState { copy(password = intent.password) }
+                is SendUpdatedPassword -> updateState { copy(password = event.password) }
 
-            is LoginButtonClicked -> login()
+                is LoginButtonClicked -> login()
 
-            is RememberMeChecked -> updateState { copy(isRememberMeChecked = intent.isChecked) }
+                is RememberMeChecked -> updateState { copy(isRememberMeChecked = event.isChecked) }
+            }
         }
     }
 

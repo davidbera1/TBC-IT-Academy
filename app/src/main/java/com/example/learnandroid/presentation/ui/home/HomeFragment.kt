@@ -28,7 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     lateinit var uiUtils: UiUtils
 
     override fun start() {
-        viewModel.sendIntent(HomeIntent.RefreshUsers)
+        viewModel.onEvent(HomeEvent.RefreshUsers)
         setUpRecyclerView()
         observeState()
         observeEffect()
@@ -36,7 +36,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun setUpListeners() {
-        binding.btnProfile.setOnClickListener { viewModel.sendIntent(HomeIntent.ProfileButtonClicked) }
+        binding.btnProfile.setOnClickListener { viewModel.onEvent(HomeEvent.ProfileButtonClicked) }
     }
 
     private fun setUpRecyclerView() {

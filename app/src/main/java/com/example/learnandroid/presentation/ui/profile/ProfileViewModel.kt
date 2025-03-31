@@ -13,17 +13,19 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val readUserSessionUseCase: ReadUserSessionUseCase,
     private val clearUserSessionUseCase: ClearUserSessionUseCase
-) : BaseViewModel<ProfileState, ProfileIntent, ProfileEffect>(ProfileState()) {
+) : BaseViewModel<ProfileState, ProfileEvent, ProfileEffect>(ProfileState()) {
 
-    override suspend fun handleIntent(intent: ProfileIntent) {
-        when (intent) {
-            ProfileIntent.LogoutButtonClicked -> {
-                emitEffect(ProfileEffect.ShowToast("Logged out"))
-                emitEffect(ProfileEffect.NavigateToLogin)
-                clearUserSession()
+    override fun onEvent(event: ProfileEvent) {
+        viewModelScope.launch {
+            when (event) {
+                is ProfileEvent.LogoutButtonClicked -> {
+                    emitEffect(ProfileEffect.ShowToast("Logged out"))
+                    emitEffect(ProfileEffect.NavigateToLogin)
+                    clearUserSession()
+                }
+
+                is ProfileEvent.ReadUserSession -> getUserSession()
             }
-
-            ProfileIntent.ReadUserSession -> getUserSession()
         }
     }
 

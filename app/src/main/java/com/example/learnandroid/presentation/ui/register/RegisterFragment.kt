@@ -28,9 +28,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
     }
 
     override fun setUpListeners() {
-        binding.btnRegister.setOnClickListener { viewModel.sendIntent(RegisterIntent.RegisterButtonClicked) }
+        binding.btnRegister.setOnClickListener { viewModel.onEvent(RegisterEvent.RegisterButtonClicked) }
 
-        binding.imgBtnBack.setOnClickListener { viewModel.sendIntent(RegisterIntent.BackButtonClicked) }
+        binding.imgBtnBack.setOnClickListener { viewModel.onEvent(RegisterEvent.BackButtonClicked) }
     }
 
     private fun navigateToLoginFragment() {
@@ -40,15 +40,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     private fun observeUiFields() {
         binding.etEmail.addTextChangedListener {
-            viewModel.sendIntent(RegisterIntent.SendUpdatedEmail(it.toString()))
+            viewModel.onEvent(RegisterEvent.SendUpdatedEmail(it.toString()))
         }
         binding.etPassword.addTextChangedListener {
-            viewModel.sendIntent(RegisterIntent.SendUpdatedPassword(password = it.toString()))
+            viewModel.onEvent(RegisterEvent.SendUpdatedPassword(password = it.toString()))
         }
 
         binding.etRepeatPassword.addTextChangedListener {
-            viewModel.sendIntent(
-                RegisterIntent.SendUpdatedRepeatPassword(repeatPassword = it.toString())
+            viewModel.onEvent(
+                RegisterEvent.SendUpdatedRepeatPassword(repeatPassword = it.toString())
             )
         }
     }

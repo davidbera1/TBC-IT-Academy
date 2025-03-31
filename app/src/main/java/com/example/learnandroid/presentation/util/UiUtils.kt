@@ -14,10 +14,10 @@ class UiUtils @Inject constructor() {
         progressBar: ProgressBar,
         loadingView: View? = null,
         button: Button? = null,
-        loader: Boolean,
+        loader: Boolean?,
         button2: Button? = null // for welcome page login button
     ) {
-        if (loader) {
+        if (loader == true) {
             progressBar.show()
             loadingView?.show()
             button?.disable()
@@ -25,7 +25,7 @@ class UiUtils @Inject constructor() {
             button2?.disable()
             button2?.setBackgroundResource(R.drawable.gray_button_background)
 
-        } else {
+        } else if (loader == false) {
             progressBar.hide()
             loadingView?.hide()
             button?.enable()

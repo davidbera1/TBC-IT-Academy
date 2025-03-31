@@ -11,17 +11,20 @@ import com.example.learnandroid.presentation.model.UserUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase
-) : BaseViewModel<HomeState, HomeIntent, HomeEffect>(HomeState()) {
+) : BaseViewModel<HomeState, HomeEvent, HomeEffect>(HomeState()) {
 
-    override suspend fun handleIntent(intent: HomeIntent) {
-        when (intent) {
-            HomeIntent.RefreshUsers -> refreshUsers()
-            HomeIntent.ProfileButtonClicked -> emitEffect(HomeEffect.NavigateToProfile)
+    override fun onEvent(event: HomeEvent) {
+        viewModelScope.launch {
+            when (event) {
+                is HomeEvent.RefreshUsers -> refreshUsers()
+                is HomeEvent.ProfileButtonClicked -> emitEffect(HomeEffect.NavigateToProfile)
+            }
         }
     }
 

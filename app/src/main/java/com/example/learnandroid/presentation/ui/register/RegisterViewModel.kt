@@ -6,25 +6,27 @@ import com.example.learnandroid.domain.use_case.RegisterUseCase
 import com.example.learnandroid.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import com.example.learnandroid.presentation.ui.register.RegisterIntent.*
+import com.example.learnandroid.presentation.ui.register.RegisterEvent.*
 import kotlinx.coroutines.launch
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase
-) : BaseViewModel<RegisterState, RegisterIntent, RegisterEffect>(RegisterState()) {
+) : BaseViewModel<RegisterState, RegisterEvent, RegisterEffect>(RegisterState()) {
 
-    override suspend fun handleIntent(intent: RegisterIntent) {
-        when (intent) {
-            is SendUpdatedEmail -> updateState { copy(email = intent.email) }
+    override fun onEvent(event: RegisterEvent) {
+        viewModelScope.launch {
+            when (event) {
+                is SendUpdatedEmail -> updateState { copy(email = event.email) }
 
-            is SendUpdatedPassword -> updateState { copy(password = intent.password) }
+                is SendUpdatedPassword -> updateState { copy(password = event.password) }
 
-            is SendUpdatedRepeatPassword -> updateState { copy(repeatPassword = intent.repeatPassword) }
+                is SendUpdatedRepeatPassword -> updateState { copy(repeatPassword = event.repeatPassword) }
 
-            is RegisterButtonClicked -> register()
+                is RegisterButtonClicked -> register()
 
-            is BackButtonClicked -> emitEffect(RegisterEffect.NavigateToHome)
+                is BackButtonClicked -> emitEffect(RegisterEffect.NavigateToHome)
+            }
         }
     }
 
