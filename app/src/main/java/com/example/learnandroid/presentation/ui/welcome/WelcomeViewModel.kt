@@ -40,3 +40,25 @@ class WelcomeViewModel @Inject constructor(
         }
     }
 }
+
+
+// region WelcomeState
+data class WelcomeState(
+    val isLoading: Boolean = false
+)
+// endregion
+
+// region WelcomeEvent
+sealed class WelcomeEvent {
+    data object RegisterButtonClicked : WelcomeEvent()
+    data object LoginButtonClicked : WelcomeEvent()
+}
+// endregion
+
+// region WelcomeEffect
+sealed class WelcomeEffect {
+    data object NavigateToRegister : WelcomeEffect()
+    data object NavigateToLogin : WelcomeEffect()
+    data object NavigateToHome : WelcomeEffect()
+}
+// endregion

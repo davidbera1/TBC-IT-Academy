@@ -38,7 +38,6 @@ class RegisterViewModel @Inject constructor(
             registerUseCase(email, password, repeatPassword).collect { result ->
                 when (result) {
                     is Resource.Success -> {
-                        updateState { copy(isLoading = false) }
                         emitEffect(RegisterEffect.ShowToast("Registration successful"))
                         emitEffect(RegisterEffect.NavigateToLogin)
                     }
@@ -54,3 +53,31 @@ class RegisterViewModel @Inject constructor(
         }
     }
 }
+
+
+// region RegisterState
+data class RegisterState(
+    val isLoading: Boolean = false,
+    val email: String = "",
+    val password: String = "",
+    val repeatPassword: String = ""
+)
+// endregion
+
+// region RegisterEvent
+sealed class RegisterEvent {
+    data class SendUpdatedEmail(val email: String) : RegisterEvent()
+    data class SendUpdatedPassword(val password: String) : RegisterEvent()
+    data class SendUpdatedRepeatPassword(val repeatPassword: String) : RegisterEvent()
+    data object RegisterButtonClicked : RegisterEvent()
+    data object BackButtonClicked : RegisterEvent()
+}
+// endregion
+
+// region RegisterEffect
+sealed class RegisterEffect {
+    data class ShowToast(val message: String) : RegisterEffect()
+    data object NavigateToLogin : RegisterEffect()
+    data object NavigateToHome : RegisterEffect()
+}
+// endregion

@@ -54,3 +54,29 @@ class LoginViewModel @Inject constructor(
         }
     }
 }
+
+
+// region LoginState
+data class LoginState(
+    val isLoading: Boolean = false,
+    val email: String = "",
+    val password: String = "",
+    val isRememberMeChecked: Boolean = false
+)
+// endregion
+
+// region LoginEvent
+sealed class LoginEvent {
+    data class SendUpdatedEmail(val email: String) : LoginEvent()
+    data class SendUpdatedPassword(val password: String) : LoginEvent()
+    data class SendUpdatedRememberMe(val isChecked: Boolean) : LoginEvent()
+    data object LoginButtonClicked : LoginEvent()
+}
+// endregion
+
+// region LoginEffect
+sealed class LoginEffect {
+    data class ShowToast(val message: String) : LoginEffect()
+    data object NavigateToHome : LoginEffect()
+}
+// endregion

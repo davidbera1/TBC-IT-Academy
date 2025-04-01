@@ -16,6 +16,22 @@ class LoginFragment : BaseComposeFragment() {
 
     private val viewModel: LoginViewModel by viewModels()
 
+    @Composable
+    override fun SetupContent() {
+        val state = viewModel.state.collectAsState()
+
+        LoginScreen(
+            email = state.value.email,
+            password = state.value.password,
+            rememberMe = state.value.isRememberMeChecked,
+            loginButtonClicked = { viewModel.onEvent(LoginEvent.LoginButtonClicked) },
+            updateEmailValue = { viewModel.onEvent(LoginEvent.SendUpdatedEmail(it)) },
+            updatePasswordValue = { viewModel.onEvent(LoginEvent.SendUpdatedPassword(it)) },
+            updateRememberMeValue = { viewModel.onEvent(LoginEvent.SendUpdatedRememberMe(it)) },
+            isLoading = state.value.isLoading,
+        )
+    }
+
     override fun start() {
         setUpFragmentResultListener()
         observeEffects()
@@ -24,26 +40,12 @@ class LoginFragment : BaseComposeFragment() {
     private fun setUpFragmentResultListener() {
         // receive email and password after successful registration and fill ETs
         setFragmentResultListener(REQUEST_KEY) { _, bundle ->
-            val email = bundle.getString("email")
-            val password = bundle.getString("password")
+            val email = bundle.getString(EMAIL_KEY)
+            val password = bundle.getString(PASSWORD_KEY)
 
             viewModel.onEvent(LoginEvent.SendUpdatedEmail(email ?: ""))
             viewModel.onEvent(LoginEvent.SendUpdatedPassword(password ?: ""))
         }
-    }
-
-    @Composable
-    override fun SetupContent() {
-        val state = viewModel.state.collectAsState()
-        LoginScreen(
-            loginButtonClicked = { viewModel.onEvent(LoginEvent.LoginButtonClicked) },
-            updateEmailValue = { viewModel.onEvent(LoginEvent.SendUpdatedEmail(it)) },
-            updatePasswordValue = { viewModel.onEvent(LoginEvent.SendUpdatedPassword(it)) },
-            updateRememberMeValue = { viewModel.onEvent(LoginEvent.SendUpdatedRememberMe(it)) },
-            isLoading = state.value.isLoading,
-            emailTextFromRegistration = state.value.email,
-            passwordTextFromRegistration = state.value.password
-        )
     }
 
     private fun navigateToHomeFragment() {
@@ -64,6 +66,8 @@ class LoginFragment : BaseComposeFragment() {
     }
 
     companion object {
+        const val EMAIL_KEY = "email"
+        const val PASSWORD_KEY = "password"
         const val REQUEST_KEY = "credentials"
     }
 }
