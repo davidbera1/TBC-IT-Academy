@@ -1,5 +1,6 @@
 package com.example.learnandroid.presentation.ui.home
 
+import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
@@ -7,25 +8,20 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.learnandroid.databinding.FragmentHomeBinding
 import com.example.learnandroid.presentation.base.BaseFragment
+import com.example.learnandroid.presentation.extensions.hide
+import com.example.learnandroid.presentation.extensions.launchViewLifecycleOwnerScopeWithStartedState
+import com.example.learnandroid.presentation.extensions.show
+import com.example.learnandroid.presentation.extensions.showToast
 import com.example.learnandroid.presentation.model.UserUi
-import com.example.learnandroid.presentation.util.UiUtils
-import com.example.learnandroid.presentation.util.hide
-import com.example.learnandroid.presentation.util.launchViewLifecycleOwnerScopeWithStartedState
-import com.example.learnandroid.presentation.util.show
-import com.example.learnandroid.presentation.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel: HomeViewModel by viewModels()
     private val adapter: UsersAdapter by lazy { UsersAdapter() }
-
-    @Inject
-    lateinit var uiUtils: UiUtils
 
     override fun start() {
         viewModel.onEvent(HomeEvent.RefreshUsers)
@@ -53,9 +49,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun observeState() {
         launchViewLifecycleOwnerScopeWithStartedState {
             viewModel.state.collect { state ->
-                uiUtils.handleLoader(
+                handleLoader(
                     progressBar = binding.progressBar,
-                    button = binding.btnProfile,
                     loader = state.isLoading
                 )
 
@@ -92,6 +87,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     binding.progressBar.hide()
                 }
             }
+        }
+    }
+
+    private fun handleLoader(
+        progressBar: ProgressBar,
+        loader: Boolean?,
+    ) {
+        if (loader == false) {
+            progressBar.show()
+
+        } else if (loader == false) {
+            progressBar.hide()
         }
     }
 }

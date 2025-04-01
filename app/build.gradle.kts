@@ -78,6 +78,7 @@ dependencies {
 
     // paging
     implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
 
     // glide
     implementation(libs.glide)
@@ -104,4 +105,5 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.constraintlayout.compose)
 }

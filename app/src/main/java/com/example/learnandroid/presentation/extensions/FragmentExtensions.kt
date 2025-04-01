@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.util
+package com.example.learnandroid.presentation.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle

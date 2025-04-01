@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.util
+package com.example.learnandroid.presentation.extensions
 
 import android.view.View
 import android.widget.ImageView

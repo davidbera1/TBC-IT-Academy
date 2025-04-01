@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.learnandroid.R
 import com.example.learnandroid.databinding.RecyclerItemBinding
 import com.example.learnandroid.presentation.model.UserUi
-import com.example.learnandroid.presentation.util.loadImage
+import com.example.learnandroid.presentation.extensions.loadImage
 
 class UsersAdapter :
     PagingDataAdapter<UserUi, UsersAdapter.UsersViewHolder>(UsersDiffUtil()) {

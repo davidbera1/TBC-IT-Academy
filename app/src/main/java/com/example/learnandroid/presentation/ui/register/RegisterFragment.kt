@@ -1,15 +1,15 @@
 package com.example.learnandroid.presentation.ui.register
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.presentation.base.BaseComposeFragment
-import com.example.learnandroid.presentation.compose.RegisterScreen
-import com.example.learnandroid.presentation.util.launchViewLifecycleOwnerScopeWithStartedState
-import com.example.learnandroid.presentation.util.showToast
+import com.example.learnandroid.presentation.compose.screens.RegisterScreen
+import com.example.learnandroid.presentation.extensions.launchViewLifecycleOwnerScopeWithStartedState
+import com.example.learnandroid.presentation.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,7 +19,7 @@ class RegisterFragment : BaseComposeFragment() {
 
     @Composable
     override fun SetupContent() {
-        val state = viewModel.state.collectAsState()
+        val state = viewModel.state.collectAsStateWithLifecycle()
         RegisterScreen(
             email = state.value.email,
             password = state.value.password,

@@ -33,7 +33,7 @@ class LoginUseCase @Inject constructor(
             return flowOf(Resource.Error("Invalid password"))
         }
 
-        return loginRepository.login(email, password).transform { result ->
+        return loginRepository.login(email.lowercase(), password).transform { result ->
             when (result) {
                 is Resource.Success -> {
                     saveUserSession(email, result.data.token, rememberMe)

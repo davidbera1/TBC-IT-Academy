@@ -10,6 +10,7 @@ import com.example.learnandroid.presentation.mapper.toPresentation
 import com.example.learnandroid.presentation.model.UserUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -37,3 +38,25 @@ class HomeViewModel @Inject constructor(
         updateState { copy(pagingData = users) }
     }
 }
+
+
+// region HomeState
+data class HomeState(
+    val isLoading: Boolean = false,
+    val pagingData: Flow<PagingData<UserUi>> = emptyFlow()
+)
+// endregion
+
+// region HomeEvent
+sealed class HomeEvent {
+    data object RefreshUsers : HomeEvent()
+    data object ProfileButtonClicked : HomeEvent()
+}
+// endregion
+
+// region HomeEffect
+sealed class HomeEffect {
+    data class ShowToast(val message: String) : HomeEffect()
+    data object NavigateToProfile : HomeEffect()
+}
+// endregion

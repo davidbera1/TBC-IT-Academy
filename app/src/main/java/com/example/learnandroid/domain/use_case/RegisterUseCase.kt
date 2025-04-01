@@ -34,6 +34,6 @@ class RegisterUseCase @Inject constructor(
             return flowOf(Resource.Error("Invalid password"))
         }
 
-        return registerRepository.register(email, password)
+        return registerRepository.register(email.lowercase(), password)
     }
 }

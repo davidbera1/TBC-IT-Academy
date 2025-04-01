@@ -5,8 +5,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.learnandroid.presentation.base.BaseComposeFragment
-import com.example.learnandroid.presentation.compose.WelcomeScreen
-import com.example.learnandroid.presentation.util.launchViewLifecycleOwnerScopeWithStartedState
+import com.example.learnandroid.presentation.compose.screens.WelcomeScreen
+import com.example.learnandroid.presentation.extensions.launchViewLifecycleOwnerScopeWithStartedState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

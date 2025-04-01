@@ -1,49 +1,38 @@
 package com.example.learnandroid.presentation.ui.profile
 
+import androidx.compose.runtime.Composable
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.learnandroid.R
-import com.example.learnandroid.databinding.FragmentProfileBinding
-import com.example.learnandroid.presentation.base.BaseFragment
-import com.example.learnandroid.presentation.util.UiUtils
-import com.example.learnandroid.presentation.util.launchViewLifecycleOwnerScopeWithStartedState
-import com.example.learnandroid.presentation.util.showToast
+import com.example.learnandroid.presentation.base.BaseComposeFragment
+import com.example.learnandroid.presentation.compose.screens.ProfileScreen
+import com.example.learnandroid.presentation.extensions.launchViewLifecycleOwnerScopeWithStartedState
+import com.example.learnandroid.presentation.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
+class ProfileFragment : BaseComposeFragment() {
 
     private val viewModel: ProfileViewModel by viewModels()
 
-    @Inject
-    lateinit var uiUtils: UiUtils
+    @Composable
+    override fun SetupContent() {
+        val state = viewModel.state.collectAsStateWithLifecycle()
+        ProfileScreen(
+            logoutButtonClicked = { viewModel.onEvent(ProfileEvent.LogoutButtonClicked) },
+            email = state.value.email,
+            isLoading = state.value.isLoading
+        )
+    }
 
     override fun start() {
         viewModel.onEvent(ProfileEvent.ReadUserSession)
-        observeState()
         observeEffects()
-    }
-
-    override fun setUpListeners() {
-        binding.btnLogout.setOnClickListener { viewModel.onEvent(ProfileEvent.LogoutButtonClicked) }
     }
 
     private fun navigateToLoginFragment() {
         val direction = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
         findNavController().navigate(direction)
-    }
-
-    private fun observeState() {
-        launchViewLifecycleOwnerScopeWithStartedState {
-            viewModel.state.collect { state ->
-                uiUtils.handleLoader(
-                    progressBar = binding.progressBar,
-                    loader = state.isLoading
-                )
-                binding.tvEmail.text = getString(R.string.welcome_email, state.email)
-            }
-        }
     }
 
     private fun observeEffects() {

@@ -42,3 +42,25 @@ class ProfileViewModel @Inject constructor(
         }
     }
 }
+
+
+// region ProfileState
+data class ProfileState(
+    val isLoading: Boolean = false,
+    val email: String = "",
+)
+// endregion
+
+// region ProfileEvent
+sealed class ProfileEvent {
+    data object LogoutButtonClicked : ProfileEvent()
+    data object ReadUserSession : ProfileEvent()
+}
+// endregion
+
+// region ProfileEffect
+sealed class ProfileEffect {
+    data class ShowToast(val message: String) : ProfileEffect()
+    data object NavigateToLogin : ProfileEffect()
+}
+// endregion
