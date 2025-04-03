@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.compose
+package com.example.learnandroid.presentation.common
 
 import androidx.compose.ui.graphics.Color
 

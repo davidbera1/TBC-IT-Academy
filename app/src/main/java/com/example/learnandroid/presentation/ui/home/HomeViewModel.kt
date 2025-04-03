@@ -20,10 +20,13 @@ class HomeViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase
 ) : BaseViewModel<HomeState, HomeEvent, HomeEffect>(HomeState()) {
 
+    init {
+        refreshUsers()
+    }
+
     override fun onEvent(event: HomeEvent) {
         viewModelScope.launch {
             when (event) {
-                is HomeEvent.RefreshUsers -> refreshUsers()
                 is HomeEvent.ProfileButtonClicked -> emitEffect(HomeEffect.NavigateToProfile)
             }
         }
@@ -49,14 +52,12 @@ data class HomeState(
 
 // region HomeEvent
 sealed class HomeEvent {
-    data object RefreshUsers : HomeEvent()
     data object ProfileButtonClicked : HomeEvent()
 }
 // endregion
 
 // region HomeEffect
 sealed class HomeEffect {
-    data class ShowToast(val message: String) : HomeEffect()
     data object NavigateToProfile : HomeEffect()
 }
 // endregion

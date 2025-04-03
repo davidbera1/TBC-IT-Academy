@@ -1,4 +1,4 @@
-package com.example.learnandroid.presentation.compose.components
+package com.example.learnandroid.presentation.common.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -29,8 +29,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.learnandroid.R
-import com.example.learnandroid.presentation.compose.LightPurple
-import com.example.learnandroid.presentation.compose.Purple
+import com.example.learnandroid.presentation.common.LightPurple
+import com.example.learnandroid.presentation.common.Purple
 
 @Composable
 fun CustomTextField(

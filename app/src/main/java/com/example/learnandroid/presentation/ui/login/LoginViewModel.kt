@@ -37,7 +37,6 @@ class LoginViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> {
                         updateState { copy(isLoading = false) }
-                        emitEffect(LoginEffect.ShowToast("Login successful"))
                         emitEffect(LoginEffect.NavigateToHome)
                     }
 
@@ -47,7 +46,7 @@ class LoginViewModel @Inject constructor(
 
                     is Resource.Error -> {
                         updateState { copy(isLoading = false) }
-                        emitEffect(LoginEffect.ShowToast(result.errorMessage))
+                        emitEffect(LoginEffect.ShowSnackbar(result.errorMessage))
                     }
                 }
             }
@@ -76,7 +75,7 @@ sealed class LoginEvent {
 
 // region LoginEffect
 sealed class LoginEffect {
-    data class ShowToast(val message: String) : LoginEffect()
+    data class ShowSnackbar(val message: String) : LoginEffect()
     data object NavigateToHome : LoginEffect()
 }
 // endregion

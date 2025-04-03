@@ -25,7 +25,7 @@ class RegisterViewModel @Inject constructor(
 
                 is RegisterButtonClicked -> register()
 
-                is BackButtonClicked -> emitEffect(RegisterEffect.NavigateToHome)
+                is BackButtonClicked -> emitEffect(RegisterEffect.NavigateToWelcome)
             }
         }
     }
@@ -38,7 +38,6 @@ class RegisterViewModel @Inject constructor(
             registerUseCase(email, password, repeatPassword).collect { result ->
                 when (result) {
                     is Resource.Success -> {
-                        emitEffect(RegisterEffect.ShowToast("Registration successful"))
                         emitEffect(RegisterEffect.NavigateToLogin)
                     }
 
@@ -46,7 +45,7 @@ class RegisterViewModel @Inject constructor(
 
                     is Resource.Error -> {
                         updateState { copy(isLoading = false) }
-                        emitEffect(RegisterEffect.ShowToast(result.errorMessage))
+                        emitEffect(RegisterEffect.ShowSnackbar(result.errorMessage))
                     }
                 }
             }
@@ -76,8 +75,8 @@ sealed class RegisterEvent {
 
 // region RegisterEffect
 sealed class RegisterEffect {
-    data class ShowToast(val message: String) : RegisterEffect()
+    data class ShowSnackbar(val message: String) : RegisterEffect()
     data object NavigateToLogin : RegisterEffect()
-    data object NavigateToHome : RegisterEffect()
+    data object NavigateToWelcome : RegisterEffect()
 }
 // endregion

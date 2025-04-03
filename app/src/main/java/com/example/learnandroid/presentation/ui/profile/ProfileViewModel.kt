@@ -15,16 +15,17 @@ class ProfileViewModel @Inject constructor(
     private val clearUserSessionUseCase: ClearUserSessionUseCase
 ) : BaseViewModel<ProfileState, ProfileEvent, ProfileEffect>(ProfileState()) {
 
+    init {
+        getUserSession()
+    }
+
     override fun onEvent(event: ProfileEvent) {
         viewModelScope.launch {
             when (event) {
                 is ProfileEvent.LogoutButtonClicked -> {
-                    emitEffect(ProfileEffect.ShowToast("Logged out"))
-                    emitEffect(ProfileEffect.NavigateToLogin)
                     clearUserSession()
+                    emitEffect(ProfileEffect.NavigateToWelcome)
                 }
-
-                is ProfileEvent.ReadUserSession -> getUserSession()
             }
         }
     }
@@ -36,10 +37,8 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    private fun clearUserSession() {
-        viewModelScope.launch {
-            clearUserSessionUseCase()
-        }
+    private suspend fun clearUserSession() {
+        clearUserSessionUseCase()
     }
 }
 
@@ -54,13 +53,12 @@ data class ProfileState(
 // region ProfileEvent
 sealed class ProfileEvent {
     data object LogoutButtonClicked : ProfileEvent()
-    data object ReadUserSession : ProfileEvent()
 }
 // endregion
 
 // region ProfileEffect
 sealed class ProfileEffect {
-    data class ShowToast(val message: String) : ProfileEffect()
-    data object NavigateToLogin : ProfileEffect()
+    data class ShowSnackbar(val message: String) : ProfileEffect()
+    data object NavigateToWelcome : ProfileEffect()
 }
 // endregion
