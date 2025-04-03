@@ -7,14 +7,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.learnandroid.presentation.navigation.Routes
+import com.example.learnandroid.presentation.navigation.Route
 import com.example.learnandroid.presentation.ui.profile.ProfileEffect
 import com.example.learnandroid.presentation.ui.profile.ProfileScreen
 import com.example.learnandroid.presentation.ui.profile.ProfileViewModel
 import com.example.learnandroid.presentation.util.CollectSideEffect
 
 fun NavGraphBuilder.profileNavigation(navController: NavController) {
-    composable(Routes.PROFILE) {
+    composable<Route.Profile> {
         val viewModel: ProfileViewModel = hiltViewModel()
         val state = viewModel.state.collectAsStateWithLifecycle().value
         val snackbarHostState = remember { SnackbarHostState() }
@@ -28,7 +28,7 @@ fun NavGraphBuilder.profileNavigation(navController: NavController) {
         CollectSideEffect(flow = viewModel.effects) { effect ->
             when (effect) {
                 is ProfileEffect.NavigateToWelcome -> {
-                    navController.navigate(Routes.WELCOME) {
+                    navController.navigate(Route.Welcome) {
                         popUpTo(navController.graph.id)
                     }
                 }

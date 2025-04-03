@@ -7,14 +7,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.learnandroid.presentation.navigation.Routes
+import com.example.learnandroid.presentation.navigation.Route
 import com.example.learnandroid.presentation.ui.login.LoginEffect
 import com.example.learnandroid.presentation.ui.login.LoginScreen
 import com.example.learnandroid.presentation.ui.login.LoginViewModel
 import com.example.learnandroid.presentation.util.CollectSideEffect
 
 fun NavGraphBuilder.loginNavigation(navController: NavController) {
-    composable(Routes.LOGIN) {
+    composable<Route.Login> {
         val viewModel: LoginViewModel = hiltViewModel()
         val state = viewModel.state.collectAsStateWithLifecycle().value
         val snackbarHostState = remember { SnackbarHostState() }
@@ -28,7 +28,7 @@ fun NavGraphBuilder.loginNavigation(navController: NavController) {
         CollectSideEffect(flow = viewModel.effects) { effect ->
             when (effect) {
                 LoginEffect.NavigateToHome -> {
-                    navController.navigate(Routes.HOME) {
+                    navController.navigate(Route.Home) {
                         popUpTo(navController.graph.id)
                     }
                 }

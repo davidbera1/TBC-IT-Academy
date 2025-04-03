@@ -7,14 +7,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.learnandroid.presentation.navigation.Routes
+import com.example.learnandroid.presentation.navigation.Route
 import com.example.learnandroid.presentation.ui.register.RegisterEffect
 import com.example.learnandroid.presentation.ui.register.RegisterScreen
 import com.example.learnandroid.presentation.ui.register.RegisterViewModel
 import com.example.learnandroid.presentation.util.CollectSideEffect
 
 fun NavGraphBuilder.registerNavigation(navController: NavController) {
-    composable(Routes.REGISTER) {
+    composable<Route.Register> {
         val viewModel: RegisterViewModel = hiltViewModel()
         val state = viewModel.state.collectAsStateWithLifecycle().value
         val snackbarHostState = remember { SnackbarHostState() }
@@ -30,8 +30,8 @@ fun NavGraphBuilder.registerNavigation(navController: NavController) {
                 is RegisterEffect.NavigateToWelcome -> navController.navigateUp()
 
                 is RegisterEffect.NavigateToLogin -> {
-                    navController.navigate(Routes.LOGIN) {
-                        popUpTo(Routes.REGISTER) { inclusive = true }
+                    navController.navigate(Route.Login) {
+                        popUpTo(Route.Register) { inclusive = true }
                     }
                 }
 

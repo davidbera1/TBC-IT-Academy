@@ -8,11 +8,12 @@ import com.example.learnandroid.presentation.navigation.nav_graphs.loginNavigati
 import com.example.learnandroid.presentation.navigation.nav_graphs.profileNavigation
 import com.example.learnandroid.presentation.navigation.nav_graphs.registerNavigation
 import com.example.learnandroid.presentation.navigation.nav_graphs.welcomeNavigation
+import kotlinx.serialization.Serializable
 
 @Composable
 fun AppNavGraph(
     navController: NavHostController,
-    startDestination: String = Routes.WELCOME
+    startDestination: Route = Route.Welcome
 ) {
     NavHost(
         navController = navController,
@@ -26,10 +27,19 @@ fun AppNavGraph(
     }
 }
 
-object Routes {
-    const val WELCOME = "welcome"
-    const val LOGIN = "login"
-    const val REGISTER = "registration"
-    const val HOME = "home"
-    const val PROFILE = "profile"
+sealed class Route {
+    @Serializable
+    data object Welcome : Route()
+
+    @Serializable
+    data object Login : Route()
+
+    @Serializable
+    data object Register : Route()
+
+    @Serializable
+    data object Home : Route()
+
+    @Serializable
+    data object Profile : Route()
 }
