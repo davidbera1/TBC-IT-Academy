@@ -15,18 +15,16 @@ class RegisterViewModel @Inject constructor(
 ) : BaseViewModel<RegisterState, RegisterEvent, RegisterEffect>(RegisterState()) {
 
     override fun onEvent(event: RegisterEvent) {
-        viewModelScope.launch {
-            when (event) {
-                is SendUpdatedEmail -> updateState { copy(email = event.email) }
+        when (event) {
+            is SendUpdatedEmail -> updateState { copy(email = event.email) }
 
-                is SendUpdatedPassword -> updateState { copy(password = event.password) }
+            is SendUpdatedPassword -> updateState { copy(password = event.password) }
 
-                is SendUpdatedRepeatPassword -> updateState { copy(repeatPassword = event.repeatPassword) }
+            is SendUpdatedRepeatPassword -> updateState { copy(repeatPassword = event.repeatPassword) }
 
-                is RegisterButtonClicked -> register()
+            is RegisterButtonClicked -> register()
 
-                is BackButtonClicked -> emitEffect(RegisterEffect.NavigateToWelcome)
-            }
+            is BackButtonClicked -> emitEffect(RegisterEffect.NavigateToWelcome)
         }
     }
 

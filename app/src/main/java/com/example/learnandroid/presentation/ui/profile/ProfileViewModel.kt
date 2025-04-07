@@ -20,9 +20,9 @@ class ProfileViewModel @Inject constructor(
     }
 
     override fun onEvent(event: ProfileEvent) {
-        viewModelScope.launch {
-            when (event) {
-                is ProfileEvent.LogoutButtonClicked -> {
+        when (event) {
+            is ProfileEvent.LogoutButtonClicked -> {
+                viewModelScope.launch {
                     clearUserSession()
                     emitEffect(ProfileEffect.NavigateToWelcome)
                 }

@@ -18,11 +18,9 @@ class WelcomeViewModel @Inject constructor(
     }
 
     override fun onEvent(event: WelcomeEvent) {
-        viewModelScope.launch {
-            when (event) {
-                WelcomeEvent.LoginButtonClicked -> emitEffect(WelcomeEffect.NavigateToLogin)
-                WelcomeEvent.RegisterButtonClicked -> emitEffect(WelcomeEffect.NavigateToRegister)
-            }
+        when (event) {
+            WelcomeEvent.LoginButtonClicked -> emitEffect(WelcomeEffect.NavigateToLogin)
+            WelcomeEvent.RegisterButtonClicked -> emitEffect(WelcomeEffect.NavigateToRegister)
         }
     }
 

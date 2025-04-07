@@ -15,16 +15,14 @@ class LoginViewModel @Inject constructor(
 ) : BaseViewModel<LoginState, LoginEvent, LoginEffect>(LoginState()) {
 
     override fun onEvent(event: LoginEvent) {
-        viewModelScope.launch {
-            when (event) {
-                is SendUpdatedEmail -> updateState { copy(email = event.email) }
+        when (event) {
+            is SendUpdatedEmail -> updateState { copy(email = event.email) }
 
-                is SendUpdatedPassword -> updateState { copy(password = event.password) }
+            is SendUpdatedPassword -> updateState { copy(password = event.password) }
 
-                is LoginButtonClicked -> login()
+            is LoginButtonClicked -> login()
 
-                is SendUpdatedRememberMe -> updateState { copy(isRememberMeChecked = event.isChecked) }
-            }
+            is SendUpdatedRememberMe -> updateState { copy(isRememberMeChecked = event.isChecked) }
         }
     }
 

@@ -12,7 +12,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,10 +24,8 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun onEvent(event: HomeEvent) {
-        viewModelScope.launch {
-            when (event) {
-                is HomeEvent.ProfileButtonClicked -> emitEffect(HomeEffect.NavigateToProfile)
-            }
+        when (event) {
+            is HomeEvent.ProfileButtonClicked -> emitEffect(HomeEffect.NavigateToProfile)
         }
     }
 
